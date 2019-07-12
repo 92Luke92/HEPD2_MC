@@ -1,0 +1,19 @@
+
+/HEPD02/ActivateOptics false
+
+/run/verbose 1
+/run/initialize
+
+#SET PARTICLE
+#/HEPD02/primary/particle proton
+
+#SET ENERGY
+#/HEPD02/primary/energy 500 MeV
+/HEPD02/primary/powenergy 600. 6000. MeV 0
+
+#SET PRIMARY GENERATION
+#/HEPD02/primary/point 0. 0. 0. cm
+#/HEPD02/primary/planewave 20 20 0 cm 0 0 deg
+/HEPD02/primary/random 20 20 0 cm
+
+/run/beamOn 1
