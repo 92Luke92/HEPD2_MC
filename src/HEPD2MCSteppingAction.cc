@@ -213,7 +213,6 @@ void HEPD2MCSteppingAction::UserSteppingAction(const G4Step* step)
   
   //if the photon is generated in scintillatorEJ200_Opt,
   //it's expressed in MeV so it must be converted in eV
-  if(step->GetTrack()->GetParticleDefinition()->GetParticleName() == "opticalphoton" && step->GetPreStepPoint()->GetPhysicalVolume()->GetLogicalVolume()->GetMaterial()->GetName() == "ScintillatorEJ200_Opt")
     {
       phot_energy = phot_energy*1.E6;
     }
