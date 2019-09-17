@@ -49,7 +49,7 @@ set(SCRIPTS
   run1.mac
   run2.mac
   vis.mac
-  test.mac
+  HEPD2MC.mac
   )
 
 foreach(_script ${SCRIPTS})
