@@ -77,18 +77,20 @@ void HEPD2MCPhysicsList::ConstructProcess()
   
   AddTransportation();
   ConstructDecay();
-  ConstructEM();
   ConstructOp();
   
-  //ELASTIC HADRONIC model
+  //ELECTROMAGNETIC model
+  ConstructEM();
+  //ELASTIC HADRONIC models
   hadronPhys.push_back(new G4HadronElasticPhysics());
   hadronPhys.push_back(new G4IonElasticPhysics());
-  //INELASTIC HADRONIC moel
+  //INELASTIC HADRONIC models
   hadronPhys.push_back(new G4HadronPhysicsShielding());
   hadronPhys.push_back(new G4IonQMDPhysics());
   
   for(size_t i=0; i<hadronPhys.size(); i++)
     hadronPhys[i]->ConstructProcess();
+  
   
 }
 

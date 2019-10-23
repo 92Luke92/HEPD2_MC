@@ -26,13 +26,11 @@ HEPD2MCEventAction::HEPD2MCEventAction()
    fTP{0},
    fTC1{0},
    fTC2{0},
-   fTVL1(0),
-   fTVL2(0),
-   fTVL3(0),
-   fTVL4(0),
+   fTVL{0},
    fTVB(0),
    
    fPhot{0},
+   fPhotEnergy{0},
    
    fEA{0},
    fET1{0},
@@ -40,10 +38,7 @@ HEPD2MCEventAction::HEPD2MCEventAction()
    fEP{0},
    fEC1{0},
    fEC2{0},
-   fEVL1(0),
-   fEVL2(0),
-   fEVL3(0),
-   fEVL4(0),
+   fEVL{0},
    fEVB(0),
    
    fAlp1Pos{0},
@@ -90,28 +85,23 @@ void HEPD2MCEventAction::BeginOfEventAction(const G4Event* /*event*/)
   for (int i=0; i<3; i++) fEA[i] = 0.;
   for (int i = 0 ; i < NBARS ; i++) fET1[i]  = 0.;
   for (int i = 0 ; i < NBARS ; i++) fET2[i]  = 0.;
-  for (int i = 0 ; i < NCOUPLEDPLANES+1 ; i++) fEP[i]=0.;
+  for (int i = 0 ; i < NCALOPLANES ; i++) fEP[i]=0.;
   for (int i = 0 ; i < NCRYSTALS ; i++) fEC1[i]=0.;
   for (int i = 0 ; i < NCRYSTALS ; i++) fEC2[i]=0.;
-  fEVB  =0.;
-  fEVL1 = 0.;
-  fEVL2 = 0.;
-  fEVL3 = 0.;
-  fEVL4 = 0.;
+  fEVB = 0.;
+  for (int i = 0 ; i < 4 ; i++) fEVL[i] = 0.;
   
   for (int i=0; i<NPMTS; i++) fPhot[i] = 0;
+  for (int i=0; i<NPMTS; i++) fPhotEnergy[i] = 0;
   
   for (int i=0; i<3; i++) fTA[i] = 0.;
   for (int i = 0 ; i < NBARS ; i++) fTT1[i]  = 0.;
   for (int i = 0 ; i < NBARS ; i++) fTT2[i]  = 0.;
-  for (int i = 0 ; i < NCOUPLEDPLANES+1 ; i++) fTP[i]=0.;
+  for (int i = 0 ; i < NCALOPLANES ; i++) fTP[i]=0.;
   for (int i = 0 ; i < NCRYSTALS ; i++) fTC1[i]=0.;
   for (int i = 0 ; i < NCRYSTALS ; i++) fTC2[i]=0.;
-  fTVB  =0.;
-  fTVL1 = 0.;
-  fTVL2 = 0.;
-  fTVL3 = 0.;
-  fTVL4 = 0.;
+  fTVB = 0.;
+  for (int i = 0 ; i < 4 ; i++) fTVL[i] = 0.;
   
 }
 
@@ -174,7 +164,7 @@ void HEPD2MCEventAction::EndOfEventAction(const G4Event* event)
   G4double TRIGEdep = fET1[0]+fET1[1]+fET1[2]+fET1[3]+fET1[4]+fET2[0]+fET2[1]+fET2[2]+fET2[3]+fET2[4];
   analysisManager->FillNtupleDColumn(7, TRIGEdep);
   
-  if(NCOUPLEDPLANES+1!=11) G4cout << "WARNING: N planes is " << NCOUPLEDPLANES+1 << ". Modify code in EventAction" << G4endl;
+  if(NCALOPLANES!=11) G4cout << "WARNING: N planes is " << NCALOPLANES << ". Modify code in EventAction" << G4endl;
   fVPEdep = {fEP[0], fEP[1], fEP[2], fEP[3], fEP[4], fEP[5], fEP[6], fEP[7], fEP[8], fEP[9], fEP[10]};
   G4double TOWEREdep = fEP[0]+fEP[1]+fEP[2]+fEP[3]+fEP[4]+fEP[5]+fEP[6]+fEP[7]+fEP[8]+fEP[9]+fEP[10];
   analysisManager->FillNtupleDColumn(8, TOWEREdep);
@@ -187,7 +177,7 @@ void HEPD2MCEventAction::EndOfEventAction(const G4Event* event)
   G4double CALOEdep = TRIGEdep + TOWEREdep + LYSOEdep;
   analysisManager->FillNtupleDColumn(10, CALOEdep);
   
-  fVVEdep = {fEVL1, fEVL2, fEVL3, fEVL4, fEVB};
+  fVVEdep = {fEVL[0], fEVL[1], fEVL[2], fEVL[3], fEVB};
   
   if(NPMTS!=64) G4cout << "WARNING: NPMTS is " << NPMTS << ". Modify code in EventAction" << G4endl;
   fVphot = {fPhot[0], fPhot[1], fPhot[2], fPhot[3], fPhot[4],
@@ -203,6 +193,20 @@ void HEPD2MCEventAction::EndOfEventAction(const G4Event* event)
 	    fPhot[50], fPhot[51], fPhot[52], fPhot[53], fPhot[54],
 	    fPhot[55], fPhot[56], fPhot[57], fPhot[58], fPhot[59],
 	    fPhot[60], fPhot[61], fPhot[62], fPhot[63]};
+  
+  fVphotenergy = {fPhotEnergy[0], fPhotEnergy[1], fPhotEnergy[2], fPhotEnergy[3], fPhotEnergy[4],
+		  fPhotEnergy[5], fPhotEnergy[6], fPhotEnergy[7], fPhotEnergy[8], fPhotEnergy[9],
+		  fPhotEnergy[10], fPhotEnergy[11], fPhotEnergy[12], fPhotEnergy[13], fPhotEnergy[14],
+		  fPhotEnergy[15], fPhotEnergy[16], fPhotEnergy[17], fPhotEnergy[18], fPhotEnergy[19],
+		  fPhotEnergy[20], fPhotEnergy[21], fPhotEnergy[22], fPhotEnergy[23], fPhotEnergy[24],
+		  fPhotEnergy[25], fPhotEnergy[26], fPhotEnergy[27], fPhotEnergy[28], fPhotEnergy[29],
+		  fPhotEnergy[30], fPhotEnergy[31], fPhotEnergy[32], fPhotEnergy[33], fPhotEnergy[34],
+		  fPhotEnergy[35], fPhotEnergy[36], fPhotEnergy[37], fPhotEnergy[38], fPhotEnergy[39],
+		  fPhotEnergy[40], fPhotEnergy[41], fPhotEnergy[42], fPhotEnergy[43], fPhotEnergy[44],
+		  fPhotEnergy[45], fPhotEnergy[46], fPhotEnergy[47], fPhotEnergy[48], fPhotEnergy[49],
+		  fPhotEnergy[50], fPhotEnergy[51], fPhotEnergy[52], fPhotEnergy[53], fPhotEnergy[54],
+		  fPhotEnergy[55], fPhotEnergy[56], fPhotEnergy[57], fPhotEnergy[58], fPhotEnergy[59],
+		  fPhotEnergy[60], fPhotEnergy[61], fPhotEnergy[62], fPhotEnergy[63]};
   
   G4double Alp1Leng = 0.;
   Alp1Leng += fTA[0];
@@ -220,14 +224,14 @@ void HEPD2MCEventAction::EndOfEventAction(const G4Event* event)
   fVT1Leng = {fTT1[0], fTT1[1], fTT1[2], fTT1[3], fTT1[4]};
   fVT2Leng = {fTT2[0], fTT2[1], fTT2[2], fTT2[3], fTT2[4]};
   
-  if(NCOUPLEDPLANES+1!=11) G4cout << "WARNING: N planes is " << NCOUPLEDPLANES+1 << ". Modify code in EventAction" << G4endl;
+  if(NCALOPLANES!=11) G4cout << "WARNING: N planes is " << NCALOPLANES << ". Modify code in EventAction" << G4endl;
   fVPLeng = {fTP[0], fTP[1], fTP[2], fTP[3], fTP[4], fTP[5], fTP[6], fTP[7], fTP[8], fTP[9], fTP[10]};
   
   if(NCRYSTALS!=3) G4cout << "WARNING: NCRYSTALS is " << NCRYSTALS << ". Modify code in EventAction" << G4endl;
   fVL1Leng = {fTC1[0], fTC1[1], fTC1[2]};
   fVL2Leng = {fTC2[0], fTC2[1], fTC2[2]};
   
-  fVVLeng = {fTVL1, fTVL2, fTVL3, fTVL4, fTVB};
+  fVVLeng = {fTVL[0], fTVL[1], fTVL[2], fTVL[3], fTVB};
   
   analysisManager->FillNtupleDColumn(14, fEBeforeT1);
   analysisManager->FillNtupleDColumn(15, fEBeforeT2);

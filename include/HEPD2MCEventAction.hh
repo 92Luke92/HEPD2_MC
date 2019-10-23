@@ -25,18 +25,15 @@ public:
   virtual void  BeginOfEventAction(const G4Event* event);
   virtual void  EndOfEventAction(const G4Event* event);
   
-  void AddAbso(G4double de, G4double dl, G4int copynumber);
+  void AddPlane(G4double de, G4double dl, G4int copynumber);
   
-  void AddVetoB(G4double de, G4double dl);
-  void AddVetoL1(G4double de, G4double dl);
-  void AddVetoL2(G4double de, G4double dl);
-  void AddVetoL3(G4double de, G4double dl);
-  void AddVetoL4(G4double de, G4double dl);
+  void AddBotVeto(G4double de, G4double dl);
+  void AddLatVeto(G4double de, G4double dl, G4int copyNumber);
   
-  void AddTBars1(G4double de, G4double dl, G4int copynumber);
-  void AddTBars2(G4double de, G4double dl, G4int copynumber);
-  void AddCBars1(G4double de, G4double dl, G4int copynumber);
-  void AddCBars2(G4double de, G4double dl, G4int copynumber);
+  void AddT1Bars(G4double de, G4double dl, G4int copynumber);
+  void AddT2Bars(G4double de, G4double dl, G4int copynumber);
+  void AddC1Bars(G4double de, G4double dl, G4int copynumber);
+  void AddC2Bars(G4double de, G4double dl, G4int copynumber);
   
   void AddAlp(G4double de, G4double dl, G4int copynumber, G4double X, G4double Y, G4double Z);
   
@@ -70,7 +67,9 @@ public:
   std::vector<G4double>& GetAlp3Dir() {return fVAlp3Dir;}
   
   void AddPhot(G4int pmtID);
+  void AddPhotEnergy(G4int pmtID, G4double E);
   std::vector<G4int>& GetPhot() {return fVphot;}
+  std::vector<G4double>& GetPhotEnergy() {return fVphotenergy;}
   
 private:
   
@@ -84,6 +83,7 @@ private:
   std::vector<G4double> fVVEdep;
   
   std::vector<G4int> fVphot;
+  std::vector<G4double> fVphotenergy;
   
   std::vector<G4double> fVT1Leng;
   std::vector<G4double> fVT2Leng;
@@ -95,29 +95,24 @@ private:
   G4double  fTA[3];
   G4double  fTT1[NBARS];
   G4double  fTT2[NBARS];
-  G4double  fTP[NCOUPLEDPLANES+1];
+  G4double  fTP[NCALOPLANES];
   G4double  fTC1[NCRYSTALS];
   G4double  fTC2[NCRYSTALS];
   
-  G4double fTVL1;
-  G4double fTVL2;
-  G4double fTVL3;
-  G4double fTVL4;
+  G4double fTVL[4];
   G4double fTVB;
-
+  
   G4int fPhot[NPMTS];
+  G4double fPhotEnergy[NPMTS];
   
   G4double  fEA[3];
   G4double  fET1[NBARS];
   G4double  fET2[NBARS];
-  G4double  fEP[NCOUPLEDPLANES+1];
+  G4double  fEP[NCALOPLANES];
   G4double  fEC1[NCRYSTALS];
   G4double  fEC2[NCRYSTALS];
   
-  G4double fEVL1;
-  G4double fEVL2;
-  G4double fEVL3;
-  G4double fEVL4;
+  G4double fEVL[4];
   G4double fEVB;
 
   std::vector<G4double> fVAlp1Pos;
@@ -129,88 +124,128 @@ private:
   std::vector<G4double> fVAlp2Dir;
   std::vector<G4double> fVAlp3Dir;
   G4double fAlp1Dir[2], fAlp2Dir[2], fAlp3Dir[2];
-
+  
   G4double fEBeforeT1;
   G4double fEBeforeT2;
   G4double fEBeforeP1;
 };
 
 // inline functions
-inline void HEPD2MCEventAction::AddAbso(G4double de, G4double dl, G4int copynumber) {fEP[copynumber] += de; fTP[copynumber] += dl;}
-inline void HEPD2MCEventAction::AddVetoB(G4double de, G4double dl) {fEVB += de; fTVB += dl;}
-inline void HEPD2MCEventAction::AddVetoL1(G4double de, G4double dl) {fEVL1 += de; fTVL1 += dl;}
-inline void HEPD2MCEventAction::AddVetoL2(G4double de, G4double dl) {fEVL2 += de; fTVL2 += dl;}
-inline void HEPD2MCEventAction::AddVetoL3(G4double de, G4double dl) {fEVL3 += de; fTVL3 += dl;}
-inline void HEPD2MCEventAction::AddVetoL4(G4double de, G4double dl) {fEVL4 += de; fTVL4 += dl;}
-inline void HEPD2MCEventAction::AddTBars1(G4double de, G4double dl, G4int copynumber) {fET1[copynumber] += de; fTT1[copynumber] += dl;}
-inline void HEPD2MCEventAction::AddTBars2(G4double de, G4double dl, G4int copynumber) {fET2[copynumber] += de; fTT2[copynumber] += dl;}
-inline void HEPD2MCEventAction::AddCBars1(G4double de, G4double dl, G4int copynumber) {fEC1[copynumber] += de; fTC1[copynumber] += dl;}
-inline void HEPD2MCEventAction::AddCBars2(G4double de, G4double dl, G4int copynumber) {fEC2[copynumber] += de; fTC2[copynumber] += dl;}
 
-inline void HEPD2MCEventAction::AddAlp(G4double de, G4double dl, G4int copynumber, G4double X, G4double Y, G4double Z) {
+inline void HEPD2MCEventAction::AddAlp(G4double de, G4double dl, G4int copynumber, G4double X, G4double Y, G4double Z)
+{
+  G4int nplane = copynumber;
   
-  G4int nplane = copynumber/100;
-  //G4int ncol = (copynumber-(copynumber/100)*100)/10;
-  //G4int nrow = copynumber-(copynumber/100)*100-((copynumber-(copynumber/100)*100)/10)*10;
+  fEA[nplane] += de;
+  fTA[nplane] += dl;
   
-  fEA[nplane-1] += de;
-  fTA[nplane-1] += dl;
-  
-  if(nplane==1){
+  if(nplane==0){
     fAlp1Pos[0] = X;
     fAlp1Pos[1] = Y;
     fAlp1Pos[2] = Z;
   }
   
-  if(nplane==2){
+  if(nplane==1){
     fAlp2Pos[0] = X;
     fAlp2Pos[1] = Y;
     fAlp2Pos[2] = Z;
   }
   
-  if(nplane==3){
+  if(nplane==2){
     fAlp3Pos[0] = X;
     fAlp3Pos[1] = Y;
     fAlp3Pos[2] = Z;
   }
   
 }
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
-inline void HEPD2MCEventAction::AddAlpMSC(G4int copynumber, G4double theta, G4double phi) {
+inline void HEPD2MCEventAction::AddAlpMSC(G4int copynumber, G4double theta, G4double phi)
+{
+  G4int nplane = copynumber;
   
-  G4int nplane = copynumber/100;
-  
-  if(nplane==1){
+  if(nplane==0){
     fAlp1Dir[0] = theta;
     fAlp1Dir[1] = phi;
   }
   
-  if(nplane==2){
+  if(nplane==1){
     fAlp2Dir[0] = theta;
     fAlp2Dir[1] = phi;
   }
   
-  if(nplane==3){
+  if(nplane==2){
     fAlp3Dir[0] = theta;
     fAlp3Dir[1] = phi;
   }
   
 }
 
+inline void HEPD2MCEventAction::AddT1Bars(G4double de, G4double dl, G4int copynumber)
+{
+  fET1[copynumber] += de;
+  fTT1[copynumber] += dl;
+}
 
-inline void HEPD2MCEventAction::AddEBeforeT1(G4double E){
+inline void HEPD2MCEventAction::AddT2Bars(G4double de, G4double dl, G4int copynumber)
+{
+  fET2[copynumber] += de;
+  fTT2[copynumber] += dl;
+}
+
+inline void HEPD2MCEventAction::AddPlane(G4double de, G4double dl, G4int copynumber)
+{
+  fEP[copynumber] += de;
+  fTP[copynumber] += dl;
+}
+
+inline void HEPD2MCEventAction::AddC1Bars(G4double de, G4double dl, G4int copynumber)
+{
+  fEC1[copynumber] += de;
+  fTC1[copynumber] += dl;
+}
+
+inline void HEPD2MCEventAction::AddC2Bars(G4double de, G4double dl, G4int copynumber)
+{
+  fEC2[copynumber] += de;
+  fTC2[copynumber] += dl;
+}
+
+inline void HEPD2MCEventAction::AddBotVeto(G4double de, G4double dl)
+{
+  fEVB += de;
+  fTVB += dl;
+}
+
+inline void HEPD2MCEventAction::AddLatVeto(G4double de, G4double dl, G4int copynumber)
+{
+  fEVL[copynumber] += de;
+  fTVL[copynumber] += dl;
+}
+
+
+inline void HEPD2MCEventAction::AddEBeforeT1(G4double E)
+{
   fEBeforeT1 = E;
 }
 
-inline void HEPD2MCEventAction::AddEBeforeT2(G4double E){
+inline void HEPD2MCEventAction::AddEBeforeT2(G4double E)
+{
   fEBeforeT2 = E;
 }
 
-inline void HEPD2MCEventAction::AddEBeforeP1(G4double E){
+inline void HEPD2MCEventAction::AddEBeforeP1(G4double E)
+{
   fEBeforeP1 = E;
 }
 
-inline void HEPD2MCEventAction::AddPhot(G4int pmtID){fPhot[pmtID] += 1;}
+inline void HEPD2MCEventAction::AddPhot(G4int pmtID)
+{
+  fPhot[pmtID] += 1;
+}
+
+inline void HEPD2MCEventAction::AddPhotEnergy(G4int pmtID, G4double E)
+{
+  fPhotEnergy[pmtID] = E;
+}
 
 #endif

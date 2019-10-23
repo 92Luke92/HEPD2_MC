@@ -1,4 +1,4 @@
-/////////////////////////////////////////////
+////////////////////////////////////////////
 //                                         //
 // HEPD2MC software                        //
 // HEPD2MCDetectorConstruction.hh file     //
@@ -24,21 +24,6 @@ public:
 public:
   virtual G4VPhysicalVolume* Construct();
   
-  // get methods
-  const G4VPhysicalVolume* GetAbso1PV() const;
-  const G4VPhysicalVolume* GetAbso2PV() const;
-  const G4VPhysicalVolume* GetLastAbsoPV() const;
-  const G4VPhysicalVolume* GetCBars1PV() const;
-  const G4VPhysicalVolume* GetCBars2PV() const;
-  const G4VPhysicalVolume* GetVetoBPV() const;
-  const G4VPhysicalVolume* GetVetoL1PV() const;
-  const G4VPhysicalVolume* GetVetoL2PV() const;
-  const G4VPhysicalVolume* GetVetoL3PV() const;
-  const G4VPhysicalVolume* GetVetoL4PV() const; 
-  const G4VPhysicalVolume* GetTBars1PV() const;
-  const G4VPhysicalVolume* GetTBars2PV() const;
-  const G4VPhysicalVolume* GetAlpPV() const;
-  
   void ActivateOptics(G4bool optics);
   
   
@@ -53,77 +38,141 @@ private:
   G4MaterialPropertiesTable* cryOptMat_MPT;
   G4MaterialPropertiesTable* pmtMat_MPT;
   
-  G4VPhysicalVolume*   fDoubleLayerPV;
-  G4VPhysicalVolume*   fLayer1PV;
-  G4VPhysicalVolume*   fLayer2PV;
-  G4VPhysicalVolume*   fAbsorber1PV;
-  G4VPhysicalVolume*   fAbsorber2PV;
-  G4VPhysicalVolume*   fGap1PV;
-  G4VPhysicalVolume*   fGap2PV;
-  G4VPhysicalVolume*   fLastLayerPV;
-  G4VPhysicalVolume*   fLastAbsorberPV;
-  G4VPhysicalVolume*   fLastGapPV;
-  
-  G4VPhysicalVolume*   fCrystal1PV;
-  G4VPhysicalVolume*   fCBars1PV;
-  G4VPhysicalVolume*   fCrystal2PV;
-  G4VPhysicalVolume*   fCBars2PV;
-  
-  G4VPhysicalVolume*   fVetobPV;
-  G4VPhysicalVolume*   fLveto1PV;
-  G4VPhysicalVolume*   fLveto2PV;
-  G4VPhysicalVolume*   fLveto3PV;
-  G4VPhysicalVolume*   fLveto4PV;
-  
-  G4VPhysicalVolume*   ftrigger1PV;
-  G4VPhysicalVolume*   fTBars1PV;
-  G4VPhysicalVolume*   ftrigger2PV;
-  G4VPhysicalVolume*   fTBars2PV;
-  
-  G4VPhysicalVolume*   fCFplaneBeforeT1PV;
-  G4VPhysicalVolume*   fCFplaneAfterT1PV;
-  G4VPhysicalVolume*   fCFplaneBeforeT2PV;
-  G4VPhysicalVolume*   fCFplaneAfterT2PV;
-  
-  G4VPhysicalVolume*   fGrk1PV;
-  G4VPhysicalVolume*   fGrk2PV;
-  
-  G4VPhysicalVolume*   fAlumPlanePV;
-  
-  G4VPhysicalVolume*   fAlpContPV;
-  G4VPhysicalVolume*   fAlpTowerPV;
-  G4VPhysicalVolume*   fAlpPlane1PV;
-  G4VPhysicalVolume*   fAlpPlane2PV;
-  G4VPhysicalVolume*   fAlpPlane3PV;
-  G4VPhysicalVolume*   fAlpHPlanePV;
-  G4VPhysicalVolume*   fAlpPV;
-  
-  G4VPhysicalVolume* fCuSupport1_PV;
-  G4VPhysicalVolume* fCuSupport2_PV;
-  G4VPhysicalVolume* fCuSupport3_PV;
-  
-  G4VPhysicalVolume* fFPC1_PV;
-  G4VPhysicalVolume* fFPC2_PV;
-  G4VPhysicalVolume* fFPC3_PV;
-  
-  G4VPhysicalVolume* fColdPlate1_PV;
-  G4VPhysicalVolume* fColdPlate2_PV;
-  G4VPhysicalVolume* fColdPlate3_PV;
-  
-  G4VPhysicalVolume* fRibs1_PV;
-  G4VPhysicalVolume* fRibs2_PV;
-  G4VPhysicalVolume* fRibs3_PV;
-  G4VPhysicalVolume* fRibs4_PV;
-  G4VPhysicalVolume* fRibs5_PV;
-  G4VPhysicalVolume* fRibs6_PV;
+  G4VPhysicalVolume* worldPV;
   
   G4VPhysicalVolume* fBlanketPV;
   
+  G4VPhysicalVolume* fWindowContainerPV;
   G4VPhysicalVolume* fWindowOutPV;
   G4VPhysicalVolume* fWindowInPV;
   G4VPhysicalVolume* fWallHoneyCombPV;
   G4VPhysicalVolume* fWallExternalOutPV;
   G4VPhysicalVolume* fWallExternalInPV;
+  
+  G4VPhysicalVolume* fAlpContPV;
+  G4VPhysicalVolume* fAlpTowerPV;
+  G4VPhysicalVolume* fAlpDoublePV;
+  G4VPhysicalVolume* fAlp1PV;
+  G4VPhysicalVolume* fAlp2PV;
+  G4VPhysicalVolume* fAlpActive1PV;
+  G4VPhysicalVolume* fAlpActive2PV;
+  G4VPhysicalVolume* fAlpPlane1PV;
+  G4VPhysicalVolume* fAlpPlane2PV;
+  G4VPhysicalVolume* fAlpPlane3PV;
+  
+  G4VPhysicalVolume* fCuSupport1_PV;
+  G4VPhysicalVolume* fCuSupport2_PV;
+  G4VPhysicalVolume* fCuSupport3_PV;
+  G4VPhysicalVolume* fFPC1_PV;
+  G4VPhysicalVolume* fFPC2_PV;
+  G4VPhysicalVolume* fFPC3_PV;
+  G4VPhysicalVolume* fColdPlate1_PV;
+  G4VPhysicalVolume* fColdPlate2_PV;
+  G4VPhysicalVolume* fColdPlate3_PV;
+  G4VPhysicalVolume* fAlpRibs1_PV;
+  G4VPhysicalVolume* fAlpRibs2_PV;
+  G4VPhysicalVolume* fAlpRibs3_PV;
+  G4VPhysicalVolume* fAlpRibs4_PV;
+  G4VPhysicalVolume* fAlpRibs5_PV;
+  G4VPhysicalVolume* fAlpRibs6_PV;
+  
+  G4VPhysicalVolume* fAlpInterfacePlatePV;
+
+  G4VPhysicalVolume* ftrigger1PV;
+  G4VPhysicalVolume* fTBars1PV;
+  G4VPhysicalVolume* fPoronBeforeT1PV;
+  G4VPhysicalVolume* fPoronAfterT1PV;
+  G4VPhysicalVolume* fWrappingBeforeT1PV;
+  G4VPhysicalVolume* fWrappingAfterT1PV;
+  G4VPhysicalVolume* fCompPlaneBeforeT1PV;
+  G4VPhysicalVolume* fCompPlaneAfterT1PV;
+  G4VPhysicalVolume* fFrameT1PV;
+  G4VPhysicalVolume* fT1RibsPV_1;
+  G4VPhysicalVolume* fT1RibsPV_2;
+  G4VPhysicalVolume* fT1RibsPV_3;
+  G4VPhysicalVolume* fT1RibsPV_4;
+
+  G4VPhysicalVolume* ftrigger2PV;
+  G4VPhysicalVolume* fTBars2PV;
+  G4VPhysicalVolume* fPoronBeforeT2PV;
+  G4VPhysicalVolume* fPoronAfterT2PV;
+  G4VPhysicalVolume* fWrappingBeforeT2PV;
+  G4VPhysicalVolume* fWrappingAfterT2PV;
+  G4VPhysicalVolume* fCompPlaneBeforeT2PV;
+  G4VPhysicalVolume* fCompPlaneAfterT2PV;
+  G4VPhysicalVolume* fT2RibsPV_1;
+  G4VPhysicalVolume* fT2RibsPV_2;
+  G4VPhysicalVolume* fT2RibsPV_3;
+  G4VPhysicalVolume* fT2RibsPV_4;
+  
+  G4VPhysicalVolume* fPCompPlane1_Block1PV;
+  G4VPhysicalVolume* fPCompPlane2_Block1PV;
+  G4VPhysicalVolume* fPCompPlane1_Block2PV;
+  G4VPhysicalVolume* fPCompPlane2_Block2PV;
+  G4VPhysicalVolume* fPCompPlane1_Block3PV;
+  G4VPhysicalVolume* fPCompPlane2_Block3PV;
+  G4VPhysicalVolume* fPPorondxPV;
+  G4VPhysicalVolume* fPPoronsxPV;
+  G4VPhysicalVolume* fPWrappingdx1PV;
+  G4VPhysicalVolume* fPWrappingdx2PV;
+  G4VPhysicalVolume* fPWrappingsx1PV;
+  G4VPhysicalVolume* fPWrappingsx2PV;
+  G4VPhysicalVolume* fPlanedxPV;
+  G4VPhysicalVolume* fPlanesxPV;
+  G4VPhysicalVolume* fPPoronEndBlock1PV;
+  G4VPhysicalVolume* fPPoronEndBlock2PV;
+  G4VPhysicalVolume* fPPoronEndBlock3PV;
+  
+  G4VPhysicalVolume* fLysoCoverPV;
+  
+  G4VPhysicalVolume* fBarCont1_plane1PV;
+  G4VPhysicalVolume* fBarCont2_plane1PV;
+  G4VPhysicalVolume* fBarCont3_plane1PV;
+  G4VPhysicalVolume* fCrystal1PV;
+  G4VPhysicalVolume* fCWrappingLat1_plane1PV;
+  G4VPhysicalVolume* fCWrappingLat2_plane1PV;
+  G4VPhysicalVolume* fCWrapping1_plane1PV;
+  G4VPhysicalVolume* fCWrapping2_plane1PV;
+  G4VPhysicalVolume* fCScotchTapeLat1_plane1PV;
+  G4VPhysicalVolume* fCScotchTapeLat2_plane1PV;
+  G4VPhysicalVolume* fCScotchTape1_plane1PV;
+  G4VPhysicalVolume* fCScotchTape2_plane1PV;
+  G4VPhysicalVolume* fCScotchTape3_plane1PV;
+  G4VPhysicalVolume* fCScotchTape4_plane1PV;
+  
+  G4VPhysicalVolume* fBarCont1_plane2PV;
+  G4VPhysicalVolume* fBarCont2_plane2PV;
+  G4VPhysicalVolume* fBarCont3_plane2PV;
+  G4VPhysicalVolume* fCrystal2PV;
+  G4VPhysicalVolume* fCWrappingLat1_plane2PV;
+  G4VPhysicalVolume* fCWrappingLat2_plane2PV;
+  G4VPhysicalVolume* fCWrapping1_plane2PV;
+  G4VPhysicalVolume* fCWrapping2_plane2PV;
+  G4VPhysicalVolume* fCScotchTapeLat1_plane2PV;
+  G4VPhysicalVolume* fCScotchTapeLat2_plane2PV;
+  G4VPhysicalVolume* fCScotchTape1_plane2PV;
+  G4VPhysicalVolume* fCScotchTape2_plane2PV;
+  G4VPhysicalVolume* fCScotchTape3_plane2PV;
+  G4VPhysicalVolume* fCScotchTape4_plane2PV;
+  
+  G4VPhysicalVolume* fVetoBotContPV;
+  G4VPhysicalVolume* fRearVetoBotPV;
+  G4VPhysicalVolume* fVetoBotCoverPV;
+  G4VPhysicalVolume* fVetoBotPoronPV;
+  G4VPhysicalVolume* fVetoBotWrappingPV;
+  G4VPhysicalVolume* fVetobPV;
+  
+  G4VPhysicalVolume* fVetoLatContainer1PV;
+  G4VPhysicalVolume* fVetoLatContainer2PV;
+  G4VPhysicalVolume* fVetoLatContainer3PV;
+  G4VPhysicalVolume* fVetoLatContainer4PV;
+  G4VPhysicalVolume* fVetoLatCoverPV;
+  G4VPhysicalVolume* fVetoLatPoronIntPV;
+  G4VPhysicalVolume* fVetoLatPoronExtPV;
+  G4VPhysicalVolume* fVetoLatWrappingIntPV;
+  G4VPhysicalVolume* fVetoLatWrappingExtPV;
+  G4VPhysicalVolume* fVetoLatPV;
+  
   
   G4bool  fCheckOverlaps;
 
@@ -132,24 +181,6 @@ private:
   HEPD2MCDetectorMessenger* fDetectorMessenger;
   
 };
-
-// inline functions
-inline const G4VPhysicalVolume* HEPD2MCDetectorConstruction::GetVetoBPV() const  {return fVetobPV;}
-inline const G4VPhysicalVolume* HEPD2MCDetectorConstruction::GetVetoL1PV() const  {return fLveto1PV;}
-inline const G4VPhysicalVolume* HEPD2MCDetectorConstruction::GetVetoL2PV() const  {return fLveto2PV;}
-inline const G4VPhysicalVolume* HEPD2MCDetectorConstruction::GetVetoL3PV() const  {return fLveto3PV;}
-inline const G4VPhysicalVolume* HEPD2MCDetectorConstruction::GetVetoL4PV() const  {return fLveto4PV;}
-inline const G4VPhysicalVolume* HEPD2MCDetectorConstruction::GetAbso1PV() const {return fAbsorber1PV;}
-inline const G4VPhysicalVolume* HEPD2MCDetectorConstruction::GetAbso2PV() const {return fAbsorber2PV;}
-inline const G4VPhysicalVolume* HEPD2MCDetectorConstruction::GetLastAbsoPV() const {return fLastAbsorberPV;}
-inline const G4VPhysicalVolume* HEPD2MCDetectorConstruction::GetCBars1PV() const  {return fCBars1PV;}
-inline const G4VPhysicalVolume* HEPD2MCDetectorConstruction::GetCBars2PV() const  {return fCBars2PV;}
-inline const G4VPhysicalVolume* HEPD2MCDetectorConstruction::GetTBars1PV() const  {return fTBars1PV;}
-inline const G4VPhysicalVolume* HEPD2MCDetectorConstruction::GetTBars2PV() const  {return fTBars2PV;}
-inline const G4VPhysicalVolume* HEPD2MCDetectorConstruction::GetAlpPV() const {return fAlpPV;}
-
-
-//....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 #endif
 

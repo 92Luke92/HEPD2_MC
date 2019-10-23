@@ -8,12 +8,12 @@
 /HEPD02/primary/particle proton
 
 #SET ENERGY
-/HEPD02/primary/energy 100 MeV
-#/HEPD02/primary/powenergy 1. 300. MeV 0
+/HEPD02/primary/energy 1 GeV
+#/HEPD02/primary/powenergy 0. 300. MeV 0
 
 #SET PRIMARY GENERATION
-/HEPD02/primary/point 0. 0. 0. cm
+/HEPD02/primary/point 3. 2. 0. cm
 #/HEPD02/primary/planewave 20 20 0 cm 0 0 deg
-#/HEPD02/primary/random 20 20 0 cm
+#/HEPD02/primary/random 40 40 0 cm
 
 /run/beamOn 1

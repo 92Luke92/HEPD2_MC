@@ -15,6 +15,7 @@
 #include "G4Box.hh"
 #include "G4Event.hh"
 #include "G4ParticleGun.hh"
+#include "G4GeneralParticleSource.hh"
 #include "G4ParticleTable.hh"
 #include "G4ParticleDefinition.hh"
 #include "G4SystemOfUnits.hh"
@@ -64,7 +65,6 @@ void HEPD2MCPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
       fParticleGun->SetParticleEnergy(energy);
     }
   
-  
   //position & direction
   //point generates primary in fixed point with fixed direction
   //you can set the point in mac
@@ -98,6 +98,53 @@ void HEPD2MCPrimaryGeneratorAction::GeneratePrimaries(G4Event* anEvent)
       G4ThreeVector direction = G4ThreeVector(cos(phi)*sin(theta),sin(phi)*sin(theta),cos(theta));
       fParticleGun->SetParticleMomentumDirection(direction.unit());
     }
+  
+  //RADIOACTIVITY LYSO - begin
+  /*
+  if(anEvent->GetEventID()%60 == 0)
+    {
+      G4ParticleDefinition* gammaDefinition = G4ParticleTable::GetParticleTable()->FindParticle("gamma");
+      fParticleGun->SetParticleDefinition(gammaDefinition);
+      fParticleGun->SetParticleEnergy(88.*keV);
+      G4double phi = 2*CLHEP::pi*G4RandFlat::shoot();
+      G4double costheta = std::sqrt(G4RandFlat::shoot());
+      G4double theta = std::acos(costheta);
+      G4ThreeVector direction = G4ThreeVector(cos(phi)*sin(theta),sin(phi)*sin(theta),cos(theta));
+      fParticleGun->SetParticleMomentumDirection(direction.unit());
+      G4double x = (-15./2. + 15.*G4RandFlat::shoot())*cm;
+      G4double y = (-15./2. + 15.*G4RandFlat::shoot())*cm;
+      G4double z = (23.1 + 5.*G4RandFlat::shoot())*cm;
+      fParticleGun->SetParticlePosition(G4ThreeVector(x, y, z));
+      fParticleGun->GeneratePrimaryVertex(anEvent);
+      
+      fParticleGun->SetParticleDefinition(gammaDefinition);
+      fParticleGun->SetParticleEnergy(202.*keV);
+      fParticleGun->SetParticleMomentumDirection(direction.unit());
+      fParticleGun->SetParticlePosition(G4ThreeVector(x, y, z));
+      fParticleGun->GeneratePrimaryVertex(anEvent);
+      
+      fParticleGun->SetParticleDefinition(gammaDefinition);
+      fParticleGun->SetParticleEnergy(307.*keV);
+      fParticleGun->SetParticleMomentumDirection(direction.unit());
+      fParticleGun->SetParticlePosition(G4ThreeVector(x, y, z));
+      fParticleGun->GeneratePrimaryVertex(anEvent);
+      
+      G4ParticleDefinition* electronDefinition = G4ParticleTable::GetParticleTable()->FindParticle("e-");
+      fParticleGun->SetParticleDefinition(electronDefinition);
+      fParticleGun->SetParticleEnergy(G4RandFlat::shoot()*596.*keV);
+      fParticleGun->SetParticleMomentumDirection(direction.unit());
+      fParticleGun->SetParticlePosition(G4ThreeVector(x, y, z));
+      fParticleGun->GeneratePrimaryVertex(anEvent);
+    }
+  
+  G4ParticleDefinition* protonDefinition = G4ParticleTable::GetParticleTable()->FindParticle("proton");
+  fParticleGun->SetParticleDefinition(protonDefinition);
+  fParticleGun->SetParticleEnergy(10.*GeV);
+  fParticleGun->SetParticleMomentumDirection(G4ThreeVector(0,0,1));
+  fParticleGun->SetParticlePosition(G4ThreeVector(0.,0.,0.));
+  fParticleGun->GeneratePrimaryVertex(anEvent);
+  */
+  //RADIOACTIVITY LYSO - end
   
   fParticleGun->GeneratePrimaryVertex(anEvent);
   

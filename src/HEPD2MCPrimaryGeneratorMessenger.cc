@@ -20,6 +20,7 @@
 
 HEPD2MCPrimaryGeneratorMessenger::HEPD2MCPrimaryGeneratorMessenger(HEPD2MCPrimaryGeneratorAction* Gun):fAction(Gun)
 {
+  
   fGunDir = new G4UIdirectory("/HEPD02/");
   fGunDir->SetGuidance("primary modes");
   
@@ -89,7 +90,7 @@ HEPD2MCPrimaryGeneratorMessenger::HEPD2MCPrimaryGeneratorMessenger(HEPD2MCPrimar
   parameter = new G4UIparameter("length_unit",'s',false);
   parameter->SetGuidance("length unit");
   fRandomCmd->SetParameter(parameter);
-    
+  
   fPowEnergyCmd = new G4UIcmdWithoutParameter("/HEPD02/primary/powenergy",this);
   fPowEnergyCmd->AvailableForStates(G4State_Idle);
   parameter = new G4UIparameter("Emin",'d',false);
@@ -103,8 +104,7 @@ HEPD2MCPrimaryGeneratorMessenger::HEPD2MCPrimaryGeneratorMessenger(HEPD2MCPrimar
   fPowEnergyCmd->SetParameter(parameter);
   parameter = new G4UIparameter("gamma",'i',false);
   parameter->SetGuidance("index of power law");
-  fPowEnergyCmd->SetParameter(parameter);
-  
+  fPowEnergyCmd->SetParameter(parameter);  
 }
 
 HEPD2MCPrimaryGeneratorMessenger::~HEPD2MCPrimaryGeneratorMessenger()
@@ -143,7 +143,7 @@ void HEPD2MCPrimaryGeneratorMessenger::SetNewValue(G4UIcommand* command,G4String
       
       fAction->SetPoint(X, Y, Z);
     }
-  
+    
   if(command == fPlanewaveCmd)
     {
       G4double Xside = 0.;
@@ -163,7 +163,7 @@ void HEPD2MCPrimaryGeneratorMessenger::SetNewValue(G4UIcommand* command,G4String
       
       fAction->SetPlanewave(Xside, Yside, Zplane, theta, phi);
     }
-  
+    
   if(command == fRandomCmd)
     {
       G4double Xside = 0.;

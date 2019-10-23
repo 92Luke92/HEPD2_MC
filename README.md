@@ -1,10 +1,9 @@
 # HEPD2_MC
-Last changes on 12/07/2019
+Last changes on 23/10/2019
 
 Monte Carlo Geant4 software of experiment HEPD-02
 
-This software is a Monte Carlo Geant4 simulation of experiment HEPD-02.
-
+This software is a Monte Carlo Geant4 simulation of experiment HEPD-02. Geant version is Geant4.10.01 (patch-03)
 
 To compile and install HEPD2_MC:
 

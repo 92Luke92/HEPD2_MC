@@ -59,6 +59,7 @@ HEPD2MCRunAction::HEPD2MCRunAction(HEPD2MCEventAction* eventAction)
   analysisManager->CreateNtupleDColumn("VEdep", fEventAction->GetVVEdep());
   
   analysisManager->CreateNtupleIColumn("phot", fEventAction->GetPhot());
+  analysisManager->CreateNtupleDColumn("phot_energy", fEventAction->GetPhotEnergy());
   
   analysisManager->CreateNtupleDColumn("Alp1Leng");
   analysisManager->CreateNtupleDColumn("Alp2Leng");

@@ -28,105 +28,113 @@ void HEPD2MCSteppingAction::UserSteppingAction(const G4Step* step)
   
   G4VPhysicalVolume* volume = step->GetPreStepPoint()->GetTouchableHandle()->GetVolume();
   
-  //copy number
-  //G4int copyNumber = step->GetPreStepPoint()->GetTouchableHandle()->GetCopyNumber();
-  
-  //copyNumber for crystals:
-  G4int crystalcopyNumber;
-  if(volume->GetName()== "CBar1" || volume->GetName()== "CBar2") crystalcopyNumber = step->GetPreStepPoint()->GetTouchableHandle()->GetCopyNumber(1);
-  
-  //copyNumber for Bars:
-  G4int barcopyNumber;
-  if(volume->GetName() == "Bar1" || volume->GetName() == "Bar2") barcopyNumber = step->GetPreStepPoint()->GetTouchableHandle()->GetCopyNumber(1);
-  
-  //copyNumber for absorber: in order from higher: doublelayerPV, layer1PV, Abso1
-  //copyNumber for absorber: in order from higher: doublelayerPV, layer2PV, Abso2
-  G4int absocopyNumber;
-  if(volume->GetName() == "Abso1") absocopyNumber = step->GetPreStepPoint()->GetTouchable()->GetCopyNumber(2)*2;
-  if(volume->GetName() == "Abso2") absocopyNumber = step->GetPreStepPoint()->GetTouchable()->GetCopyNumber(2)*2+1;
-  
-  //copyNumber for alpide (3 planes):
-  G4int alpcopyNumber = 0;
-  if(volume->GetName()=="Alp")
-    {
-      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "AlpPlane1") alpcopyNumber = 100;
-      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "AlpPlane2") alpcopyNumber = 200;
-      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "AlpPlane3") alpcopyNumber = 300;
-      alpcopyNumber += (step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(4)->GetCopyNo() + step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetCopyNo()*2)*10;
-      alpcopyNumber += step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(5)->GetCopyNo();
-    }
-  
   //energy deposit
   G4double edep = step->GetTotalEnergyDeposit();
   
   //step length
   G4double stepLength = 0.;
-  if ( step->GetTrack()->GetDefinition()->GetPDGCharge() != 0. )
+  if ( step->GetTrack()->GetDefinition()->GetPDGCharge() != 0.)
     {
       stepLength = step->GetStepLength();
     }
-  if ( volume == fDetConstruction->GetAbso1PV() || volume == fDetConstruction->GetAbso2PV())
-    {
-      fEventAction->AddAbso(edep,stepLength,absocopyNumber);
-    }
-  if ( volume == fDetConstruction->GetLastAbsoPV())
-    {
-      fEventAction->AddAbso(edep,stepLength,10);
-    }
-  if ( volume == fDetConstruction->GetCBars1PV())
-    {
-      fEventAction->AddCBars1(edep,stepLength,crystalcopyNumber);
-    }
-  if ( volume == fDetConstruction->GetCBars2PV() )
-    {
-      fEventAction->AddCBars2(edep,stepLength,crystalcopyNumber);
-    }
-  if ( volume == fDetConstruction->GetVetoBPV() )
-    {
-      fEventAction->AddVetoB(edep,stepLength);
-    }
-  if ( volume == fDetConstruction->GetVetoL1PV() )
-    {
-      fEventAction->AddVetoL1(edep,stepLength);
-    }
-  if ( volume == fDetConstruction->GetVetoL2PV() )
-    {
-      fEventAction->AddVetoL2(edep,stepLength);
-    }
-  if ( volume == fDetConstruction->GetVetoL3PV() )
-    {
-      fEventAction->AddVetoL3(edep,stepLength);
-    }
-  if ( volume == fDetConstruction->GetVetoL4PV() )
-    {
-      fEventAction->AddVetoL4(edep,stepLength);
-    }
-  if ( volume == fDetConstruction->GetTBars1PV())
-    {
-      fEventAction->AddTBars1(edep,stepLength,barcopyNumber);
-    }
-  if ( volume == fDetConstruction->GetTBars2PV() )
-    {
-      fEventAction->AddTBars2(edep,stepLength,barcopyNumber);
-    }
-    
+  
+  //copyNumber for alpide (3 planes)
+  G4int alpcopyNumber = 0;
   G4double X, Y, Z;
-  if ( volume == fDetConstruction->GetAlpPV() )
+  if(volume->GetName()=="AlpActive1" || volume->GetName()=="AlpActive2")
     {
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "AlpPlane1") alpcopyNumber = 0;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "AlpPlane2") alpcopyNumber = 1;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "AlpPlane3") alpcopyNumber = 2;
+      
       X = step->GetPreStepPoint()->GetPosition().getX();
       Y = step->GetPreStepPoint()->GetPosition().getY();
       Z = step->GetPreStepPoint()->GetPosition().getZ();
       fEventAction->AddAlp(edep,stepLength,alpcopyNumber, X, Y, Z);
     }
   
-  //multiple scattering
-  if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()!=0 && step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "Alp")
+  //copyNumber for trigger bars
+  G4int barcopyNumber;
+  if(volume->GetName() == "Bar1")
     {
-      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "AlpPlane1") alpcopyNumber = 100;
-      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "AlpPlane2") alpcopyNumber = 200;
-      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "AlpPlane3") alpcopyNumber = 300;
-      alpcopyNumber += (step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(4)->GetCopyNo() + step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetCopyNo()*2)*10;
-      alpcopyNumber += step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(5)->GetCopyNo();
+      barcopyNumber = step->GetPreStepPoint()->GetTouchableHandle()->GetCopyNumber(1);
+      fEventAction->AddT1Bars(edep,stepLength,barcopyNumber);
+    }
+  if(volume->GetName() == "Bar2")
+    {
+      barcopyNumber = step->GetPreStepPoint()->GetTouchableHandle()->GetCopyNumber(1);
+      fEventAction->AddT2Bars(edep,stepLength,barcopyNumber);
+    }
+  
+  //copyNumber for calo planes
+  G4int planecopyNumber;
+  if(volume->GetName() == "Planedx")
+    {
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxdx1_Block1") planecopyNumber = 0;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxdx3_Block1") planecopyNumber = 2;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxdx1_Block2") planecopyNumber = 3;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxdx3_Block2") planecopyNumber = 5;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxdx2_Block3") planecopyNumber = 8;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxdx4_Block3") planecopyNumber = 10;
+      
+      fEventAction->AddPlane(edep,stepLength,planecopyNumber);
+    }
+  if(volume->GetName() == "Planesx")
+    {
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxsx2_Block1") planecopyNumber = 1;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxsx2_Block2") planecopyNumber = 4;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxsx4_Block2") planecopyNumber = 6;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxsx1_Block3") planecopyNumber = 7;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxsx3_Block3") planecopyNumber = 9;
+      
+      fEventAction->AddPlane(edep,stepLength,planecopyNumber);
+    }
+    
+  //copyNumber for crystals
+  G4int crystalcopyNumber;
+  if(volume->GetName() == "Crystal1")
+    {
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetName() == "BarCont1_1") crystalcopyNumber = 0;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetName() == "BarCont2_1") crystalcopyNumber = 1;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetName() == "BarCont3_1") crystalcopyNumber = 2;
+      
+      fEventAction->AddC1Bars(edep,stepLength,crystalcopyNumber);
+    }
+  if(volume->GetName() == "Crystal2")
+    {
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetName() == "BarCont1_2") crystalcopyNumber = 0;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetName() == "BarCont2_2") crystalcopyNumber = 1;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetName() == "BarCont3_2") crystalcopyNumber = 2;
+      
+      fEventAction->AddC2Bars(edep,stepLength,crystalcopyNumber);
+    }
+  
+  //copyNumber for lateral veto
+  G4int VetocopyNumber = 0;
+  if(volume->GetName()=="VetoLat")
+    {
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(1)->GetName() == "VetoLatContainer1") VetocopyNumber = 0;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(1)->GetName() == "VetoLatContainer2") VetocopyNumber = 1;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(1)->GetName() == "VetoLatContainer3") VetocopyNumber = 2;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(1)->GetName() == "VetoLatContainer4") VetocopyNumber = 3;
+      
+      fEventAction->AddLatVeto(edep,stepLength, VetocopyNumber);
+    }
+  
+  //Bottom veto
+  if(volume->GetName() == "Vetob")
+    {
+      fEventAction->AddBotVeto(edep,stepLength);
+    }
+  
+  //multiple scattering
+  G4VPhysicalVolume* PostStepVolume = step->GetPostStepPoint()->GetTouchableHandle()->GetVolume();
+  
+  if(PostStepVolume!=0 && (PostStepVolume->GetName() == "AlpActive1" || PostStepVolume->GetName() == "AlpActive2"))
+    {
+      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "AlpPlane1") alpcopyNumber = 0;
+      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "AlpPlane2") alpcopyNumber = 1;
+      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "AlpPlane3") alpcopyNumber = 2;
       
       G4double theta = step->GetPreStepPoint()->GetMomentumDirection().getTheta();
       G4double phi = step->GetPreStepPoint()->GetMomentumDirection().getPhi();
@@ -136,17 +144,17 @@ void HEPD2MCSteppingAction::UserSteppingAction(const G4Step* step)
     }
   
   //fraction of energy lost before entering in trigger
-  if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()!=0 && (step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetName()=="World" || step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetName()=="T1" || step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetName()=="Grk1") && step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "Bar1")
+  if(PostStepVolume!=0 && PostStepVolume->GetName() == "Bar1" && (volume->GetName()=="T1Cont" || volume->GetName()=="WrappingAfterT1" || volume->GetName()=="WrappingBeforeT1" || volume->GetName()=="T1"))
     {
       fEventAction->AddEBeforeT1(step->GetPreStepPoint()->GetKineticEnergy());
     }
   
-  if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()!=0 && (step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetName()=="World" || step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetName()=="T2" || step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetName()=="Grk2") && step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "Bar2")
+  if(PostStepVolume!=0 && PostStepVolume->GetName() == "Bar2" && (volume->GetName()=="T2Cont" || volume->GetName()=="WrappingAfterT2" || volume->GetName()=="WrappingBeforeT2" || volume->GetName()=="T2"))
     {
       fEventAction->AddEBeforeT2(step->GetPreStepPoint()->GetKineticEnergy());
     }
   
-  if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()!=0 && step->GetPreStepPoint()->GetTouchableHandle()->GetVolume()->GetName()=="Gap1" && step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "Abso1" && step->GetPostStepPoint()->GetTouchable()->GetCopyNumber(2)==0)
+  if(PostStepVolume!=0 && PostStepVolume->GetName()=="Planedx" && (volume->GetName() == "PdxWrapping1" || volume->GetName() == "PdxWrapping2"))
     {
       fEventAction->AddEBeforeP1(step->GetPreStepPoint()->GetKineticEnergy());
     }
@@ -208,40 +216,44 @@ void HEPD2MCSteppingAction::UserSteppingAction(const G4Step* step)
 			    0.06, 0.06, 0.05, 0.05, 0.04,
 			    0.03};
   
-  G4int pmtCopyNumber;
+  G4int VolumeCopyNumber;
   G4int pmtID;
   
-  //if the photon is generated in scintillatorEJ200_Opt,
-  //it's expressed in MeV so it must be converted in eV
+  //if the photon is generated in scintillatorEJ200_Opt or LYSO_Opt,
+  if(step->GetTrack()->GetParticleDefinition()->GetParticleName() == "opticalphoton" && (step->GetPreStepPoint()->GetPhysicalVolume()->GetLogicalVolume()->GetMaterial()->GetName() == "ScintillatorEJ200_Opt" || step->GetPreStepPoint()->GetPhysicalVolume()->GetLogicalVolume()->GetMaterial()->GetName() == "LYSO_Opt"))
     {
+      //it's expressed in MeV so it must be converted in eV
       phot_energy = phot_energy*1.E6;
-    }
-  
-  if(step->GetTrack()->GetParticleDefinition()->GetParticleName() == "opticalphoton" &&
-     (step->GetPreStepPoint()->GetPhysicalVolume()->GetLogicalVolume()->GetMaterial()->GetName() == "ScintillatorEJ200_Opt" ||
-      step->GetPreStepPoint()->GetPhysicalVolume()->GetLogicalVolume()->GetMaterial()->GetName() == "LYSO_Opt") &&
-     step->GetPostStepPoint()->GetPhysicalVolume()->GetLogicalVolume()->GetName() == "Pmt")
-    {
-      pmtCopyNumber = step->GetPostStepPoint()->GetTouchableHandle()->GetCopyNumber();
-      if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtT1_1") pmtID = pmtCopyNumber*2;
-      if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtT1_2") pmtID = pmtCopyNumber*2+1;
-      if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtT2_1") pmtID = pmtCopyNumber*2+10;
-      if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtT2_2") pmtID = pmtCopyNumber*2+11;
-      
-      G4String name = step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName();
-      if(name == "PmtP1_1" || name == "PmtP1_2" || name == "PmtP2_1" || name == "PmtP2_2") pmtID = 20+(absocopyNumber/2)*4+pmtCopyNumber;
-      if(name == "PmtLastP_1" || name == "PmtLastP_2") pmtID = 20+(10/2)*4+pmtCopyNumber;
-      
-      if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtL") pmtID = pmtCopyNumber+44;
-      
-      G4double prob;
-      for(int i=0; i<number; i++)
+      if(step->GetPostStepPoint()->GetPhysicalVolume()->GetLogicalVolume()->GetName() == "Pmt")
 	{
-	  prob = rand() % 101;  //random number between 0 and 100
-	  prob = prob/100.;
-	  if((phot_energy > ph_energy[i] && phot_energy < ph_energy[i+1]) && prob < pmt_qe[i]+(pmt_qe[i+1]-pmt_qe[i])/(ph_energy[i+1]-ph_energy[i])*(phot_energy-ph_energy[i]))
+	  VolumeCopyNumber = step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetCopyNo();
+	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtT1_1") pmtID = 2*VolumeCopyNumber;
+	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtT1_2") pmtID = 2*VolumeCopyNumber+1;
+	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtT2_1") pmtID = 2*VolumeCopyNumber+10;
+	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtT2_2") pmtID = 2*VolumeCopyNumber+11;
+	  
+	  //if(name == "PmtP1_1" || name == "PmtP1_2" || name == "PmtP2_1" || name == "PmtP2_2") pmtID = 20+(planecopyNumber/2)*4+pmtCopyNumber;
+	  //if(name == "PmtLastP_1" || name == "PmtLastP_2") pmtID = 20+(10/2)*4+pmtCopyNumber;
+	  
+	  //if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtL1_1") pmtID = pmtCopyNumber+44;
+	  //if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtL1_2") pmtID = pmtCopyNumber+47;
+	  //if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtL2_1") pmtID = pmtCopyNumber+50;
+	  //if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtL2_2") pmtID = pmtCopyNumber+53;
+	  
+	  //... e pmt veto lat
+	  //... e pmt veto bot
+	  
+	  G4double prob;
+	  for(int i=0; i<number; i++)
 	    {
-	      fEventAction->AddPhot(pmtID);
+	      prob = rand() % 101;  //random number between 0 and 100
+	      prob = prob/100.;
+	      
+	      if((phot_energy > ph_energy[i] && phot_energy < ph_energy[i+1]) && prob < pmt_qe[i]+(pmt_qe[i+1]-pmt_qe[i])/(ph_energy[i+1]-ph_energy[i])*(phot_energy-ph_energy[i]))
+		{
+		  fEventAction->AddPhot(pmtID);
+		  fEventAction->AddPhotEnergy(pmtID,phot_energy);
+		}
 	    }
 	}
     }
