@@ -75,7 +75,7 @@ The following commands are available:
 
 (4) /HEPD02/primary/powenergy <double> <double> <string> <int> sets the minimum and maximum value, the unit of measure and the spetral index of the particle energy spectrum to be generated;
 
-(5) /HEPD02/primary/point <double> <double> <double> <string> (fixed point with fixed direction) sets the X and Y coordinates and unit of measure of the particle point to be generated;
+(5) /HEPD02/primary/point <double> <double> <double> <string> (fixed point with fixed direction) sets the X, Y and Z coordinates and unit of measure of the particle point to be generated;
 
 (6) /HEPD02/primary/planewave <double> <double> <double> <string> <double> <double> <string> (random point from a plane rectangle with fixed direction) sets the X and Y maximum coordinates, Z coordinate and unit of measure of the plane, the theta and phi angle and unit of measure of the particle position and direction to be generated;
 

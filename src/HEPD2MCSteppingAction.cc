@@ -89,7 +89,7 @@ void HEPD2MCSteppingAction::UserSteppingAction(const G4Step* step)
       
       fEventAction->AddPlane(edep,stepLength,planecopyNumber);
     }
-    
+  
   //copyNumber for crystals
   G4int crystalcopyNumber;
   if(volume->GetName() == "Crystal1")
