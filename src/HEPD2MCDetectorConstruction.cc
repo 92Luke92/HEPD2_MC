@@ -76,7 +76,11 @@ HEPD2MCDetectorConstruction::HEPD2MCDetectorConstruction()
     
     fAlpInterfacePlatePV(0),
     
-    ftrigger1PV(0),
+    ftrigger1_1PV(0),
+    ftrigger1_2PV(0),
+    ftrigger1_3PV(0),
+    ftrigger1_4PV(0),
+    ftrigger1_5PV(0),
     fTBars1PV(0),
     fPoronBeforeT1PV(0),
     fPoronAfterT1PV(0),
@@ -90,7 +94,11 @@ HEPD2MCDetectorConstruction::HEPD2MCDetectorConstruction()
     fT1RibsPV_3(0),
     fT1RibsPV_4(0),
     
-    ftrigger2PV(0),
+    ftrigger2_1PV(0),
+    ftrigger2_2PV(0),
+    ftrigger2_3PV(0),
+    ftrigger2_4PV(0),
+    ftrigger2_5PV(0),
     fTBars2PV(0),
     fPoronBeforeT2PV(0),
     fPoronAfterT2PV(0),
@@ -676,17 +684,17 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   //ribs
   G4VSolid* AlpRibsS = new G4Box("AlpRibs", AlpRibsX/2., AlpRibsY/2., AlpRibsZ/2.);
   G4LogicalVolume* AlpRibsLV = new G4LogicalVolume(AlpRibsS, CarbonFiberAlpideMaterial, "AlpRibs");
-  fAlpRibs1_PV = new G4PVPlacement(0,G4ThreeVector(0., -ColdPlateSizeY/2.-AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+ColdPlateSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
-  fAlpRibs2_PV = new G4PVPlacement(0,G4ThreeVector(0., +ColdPlateSizeY/2.+AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+ColdPlateSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
-  fAlpRibs3_PV = new G4PVPlacement(0,G4ThreeVector(0., -ColdPlateSizeY/2.-AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+alpideGap+alpideSizeZ+ColdPlateSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
-  fAlpRibs4_PV = new G4PVPlacement(0,G4ThreeVector(0., +ColdPlateSizeY/2.+AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+alpideGap+alpideSizeZ+ColdPlateSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
-  fAlpRibs5_PV = new G4PVPlacement(0,G4ThreeVector(0., -ColdPlateSizeY/2.-AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+alpideGap+alpideSizeZ+alpideGap+alpideSizeZ+ColdPlateSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
-  fAlpRibs6_PV = new G4PVPlacement(0,G4ThreeVector(0., +ColdPlateSizeY/2.+AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+alpideGap+alpideSizeZ+alpideGap+alpideSizeZ+ColdPlateSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
+  fAlpRibs1_PV = new G4PVPlacement(0,G4ThreeVector(0., -ColdPlateSizeY/2.-AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
+  fAlpRibs2_PV = new G4PVPlacement(0,G4ThreeVector(0., +ColdPlateSizeY/2.+AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
+  fAlpRibs3_PV = new G4PVPlacement(0,G4ThreeVector(0., -ColdPlateSizeY/2.-AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+alpideGap+alpideSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
+  fAlpRibs4_PV = new G4PVPlacement(0,G4ThreeVector(0., +ColdPlateSizeY/2.+AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+alpideGap+alpideSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
+  fAlpRibs5_PV = new G4PVPlacement(0,G4ThreeVector(0., -ColdPlateSizeY/2.-AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+alpideGap+alpideSizeZ+alpideGap+alpideSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
+  fAlpRibs6_PV = new G4PVPlacement(0,G4ThreeVector(0., +ColdPlateSizeY/2.+AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+alpideGap+alpideSizeZ+alpideGap+alpideSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
   
   //Alpide interface plate (positioned between Alpide and T1)
   G4SubtractionSolid* AlpInterfacePlateS = new G4SubtractionSolid("AlpInterfacePlate", new G4Box("AlpInterfacePlate_1", (AlpInterfacePlate_X)/2., (AlpInterfacePlate_Y)/2., AlpInterfacePlate_Z/2.),new G4Box("AlpInterfacePlate_2", ColdPlateSizeX/2., 5.*(ColdPlateSizeY+2.*AlpRibsY+alpideGap_Y)/2., (AlpInterfacePlate_Z+1.*mm)/2.),0,G4ThreeVector(24.*mm,0,0));
   G4LogicalVolume* AlpInterfacePlateLV = new G4LogicalVolume(AlpInterfacePlateS, AlMixMaterial, "AlpInterfacePlate");
-  fAlpInterfacePlatePV = new G4PVPlacement(0, G4ThreeVector(FPCShift_X,0,axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+window_dist+CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ+AlpInterfacePlate_Z/2.), AlpInterfacePlateLV, "AlpInterfacePlate", worldLV, false, 0, fCheckOverlaps);  
+  fAlpInterfacePlatePV = new G4PVPlacement(0, G4ThreeVector(FPCShift_X,0,axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+window_dist+CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+AlpRibsZ+0.4*mm+AlpInterfacePlate_Z/2.), AlpInterfacePlateLV, "AlpInterfacePlate", worldLV, false, 0, fCheckOverlaps);  
   //****************************************************************************************
   
   //****************************************************************************************
@@ -694,18 +702,22 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   // Trigger: container 1st plane and its structures
   G4VSolid* T1ContS = new G4Box("T1Cont", (trigger1SizeX+2.*LG_height+2.*FrameT1_X+2.*PmtFrameT1_dist)/2., (AlpInterfacePlate_Y)/2., FrameT1_Z/2.);
   G4LogicalVolume* T1ContLV = new G4LogicalVolume(T1ContS, defaultMaterial, "T1Cont");
-  G4double T1_posZ = axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+window_dist+CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ+AlpInterfacePlate_Z+FrameT1_Z/2.;
+  G4double T1_posZ = axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+window_dist+CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+AlpRibsZ+0.4*mm+AlpInterfacePlate_Z+FrameT1_Z/2.;
   new G4PVPlacement(0, G4ThreeVector(0,0,T1_posZ), T1ContLV, "T1Cont", worldLV, false, 0, fCheckOverlaps);
   
   // Trigger: container 1st plane
-  G4VSolid* triggerCont1S = new G4Box("triggerCont1", trigger1SizeX/2., trigger1SizeY/2., trigger1Thickness/2.);
+  G4VSolid* triggerCont1S = new G4Box("triggerCont1", (trigger1SizeX+2.*pmtHeight+2.*LG_height)/2., trigger1SizeY/2., T1Ribs_Z/2.);
   G4LogicalVolume* triggerCont1LV = new G4LogicalVolume(triggerCont1S, defaultMaterial, "triggerCont1");
   new G4PVPlacement(0, G4ThreeVector(0,0,0), triggerCont1LV, "triggerCont1", T1ContLV, false, 0, fCheckOverlaps);
   
   // Trigger: bars 1st plane
-  G4VSolid* trigger1S = new G4Box("T1", (trigger1SizeX+2.*pmtHeight+2.*LG_height)/2., (trigger1SizeY/2.)/nofBars, (trigger1Thickness+2.*T1PoronThickness+2.*T1CompPlane_Z+2.*T1WrappingThickness)/2.);
+  G4VSolid* trigger1S = new G4Box("T1", (trigger1SizeX+2.*pmtHeight+2.*LG_height)/2., (trigger1SizeY/nofBars - barsGap)/2., (trigger1Thickness+2.*T1PoronThickness+2.*T1WrappingThickness)/2.);
   G4LogicalVolume* trigger1LV = new G4LogicalVolume(trigger1S, defaultMaterial, "T1");
-  ftrigger1PV = new G4PVReplica("T1", trigger1LV, triggerCont1LV, kYAxis, nofBars, trigger1SizeY/nofBars);
+  ftrigger1_1PV = new G4PVPlacement(0, G4ThreeVector(0.,-2.*(trigger1SizeY/nofBars),0.), trigger1LV, "T1_1", triggerCont1LV, false, 0, fCheckOverlaps);
+  ftrigger1_2PV = new G4PVPlacement(0, G4ThreeVector(0.,-1.*(trigger1SizeY/nofBars),0.), trigger1LV, "T1_2", triggerCont1LV, false, 0, fCheckOverlaps);
+  ftrigger1_3PV = new G4PVPlacement(0, G4ThreeVector(0.,0.,0.), trigger1LV, "T1_3", triggerCont1LV, false, 0, fCheckOverlaps);
+  ftrigger1_4PV = new G4PVPlacement(0, G4ThreeVector(0.,+1.*(trigger1SizeY/nofBars),0.), trigger1LV, "T1_4", triggerCont1LV, false, 0, fCheckOverlaps);
+  ftrigger1_5PV = new G4PVPlacement(0, G4ThreeVector(0.,+2.*(trigger1SizeY/nofBars),0.), trigger1LV, "T1_5", triggerCont1LV, false, 0, fCheckOverlaps);
   
   // Trigger: bars 1st plane
   G4VSolid* bar1S = new G4Box("Bar1", trigger1SizeX/2., (trigger1SizeY/nofBars - barsGap)/2., trigger1Thickness/2.);
@@ -738,10 +750,10 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   //Support ribs between T1 bars
   G4Box* T1RibsS = new G4Box("T1Ribs", T1Ribs_X/2., T1Ribs_Y/2., T1Ribs_Z/2.);
   G4LogicalVolume* T1RibsLV = new G4LogicalVolume(T1RibsS, CarbonFiberCaloMaterial, "T1Ribs");
-  fT1RibsPV_1 = new G4PVPlacement(0, G4ThreeVector(0.,+3.*(trigger1SizeY/nofBars)/2.,0), T1RibsLV, "T1Ribs", T1ContLV, false, 0, fCheckOverlaps);
-  fT1RibsPV_2 = new G4PVPlacement(0, G4ThreeVector(0.,+(trigger1SizeY/nofBars)/2.,0), T1RibsLV, "T1Ribs", T1ContLV, false, 0, fCheckOverlaps);
-  fT1RibsPV_3 = new G4PVPlacement(0, G4ThreeVector(0.,-(trigger1SizeY/nofBars)/2.,0), T1RibsLV, "T1Ribs", T1ContLV, false, 0, fCheckOverlaps);
-  fT1RibsPV_4 = new G4PVPlacement(0, G4ThreeVector(0.,-3.*(trigger1SizeY/nofBars)/2.,0), T1RibsLV, "T1Ribs", T1ContLV, false, 0, fCheckOverlaps);
+  fT1RibsPV_1 = new G4PVPlacement(0, G4ThreeVector(0.,+3.*(trigger1SizeY/nofBars)/2.,0), T1RibsLV, "T1Ribs", triggerCont1LV, false, 0, fCheckOverlaps);
+  fT1RibsPV_2 = new G4PVPlacement(0, G4ThreeVector(0.,+(trigger1SizeY/nofBars)/2.,0), T1RibsLV, "T1Ribs", triggerCont1LV, false, 0, fCheckOverlaps);
+  fT1RibsPV_3 = new G4PVPlacement(0, G4ThreeVector(0.,-(trigger1SizeY/nofBars)/2.,0), T1RibsLV, "T1Ribs", triggerCont1LV, false, 0, fCheckOverlaps);
+  fT1RibsPV_4 = new G4PVPlacement(0, G4ThreeVector(0.,-3.*(trigger1SizeY/nofBars)/2.,0), T1RibsLV, "T1Ribs", triggerCont1LV, false, 0, fCheckOverlaps);
   
   //Light Guide for T1
   G4VSolid* LightGuide1S = new G4Trd("LightGuide1", ((trigger1SizeY)/2.)/nofBars-barsGap/2., LG_X/2., trigger1Thickness/2., LG_Y/2., LG_height/2.);
@@ -765,14 +777,18 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   new G4PVPlacement(0, G4ThreeVector(0,0,T2_posZ), T2ContLV, "T2Cont", worldLV, false, 0, fCheckOverlaps);
   
   // Trigger: container 2nd plane
-  G4VSolid* triggerCont2S = new G4Box("triggerCont2", trigger2SizeX/2., (trigger2SizeY+2.*pmtHeight)/2., trigger2Thickness/2.);
+  G4VSolid* triggerCont2S = new G4Box("triggerCont2", trigger2SizeX/2., (trigger2SizeY+2.*pmtHeight)/2., (trigger2Thickness+2.*T2PoronThickness+2.*T2WrappingThickness)/2.);
   G4LogicalVolume* triggerCont2LV = new G4LogicalVolume(triggerCont2S, defaultMaterial, "triggerCont2");
   new G4PVPlacement(0, G4ThreeVector(0,0,0), triggerCont2LV, "triggerCont2", T2ContLV, false, 0, fCheckOverlaps);
   
   // Trigger: bars 2nd plane
-  G4VSolid* trigger2S = new G4Box("T2", (trigger2SizeX/2.)/nofBars, (trigger2SizeY+2.*pmtHeight)/2., (trigger2Thickness+2.*T2PoronThickness+2.*T2WrappingThickness)/2.);
+  G4VSolid* trigger2S = new G4Box("T2", (trigger2SizeX/nofBars - barsGap)/2., (trigger2SizeY+2.*pmtHeight)/2., (trigger2Thickness+2.*T2PoronThickness+2.*T2WrappingThickness)/2.);
   G4LogicalVolume* trigger2LV = new G4LogicalVolume(trigger2S, defaultMaterial, "T2");
-  ftrigger2PV = new G4PVReplica("T2", trigger2LV, triggerCont2LV, kXAxis, nofBars, trigger2SizeX/nofBars);
+  ftrigger2_1PV = new G4PVPlacement(0, G4ThreeVector(-2.*(trigger2SizeX/nofBars),0.,0.), trigger2LV, "T2_1", triggerCont2LV, false, 0, fCheckOverlaps);
+  ftrigger2_2PV = new G4PVPlacement(0, G4ThreeVector(-1.*(trigger2SizeX/nofBars),0.,0.), trigger2LV, "T2_2", triggerCont2LV, false, 0, fCheckOverlaps);
+  ftrigger2_3PV = new G4PVPlacement(0, G4ThreeVector(0.,0.), trigger2LV, "T2_3", triggerCont2LV, false, 0, fCheckOverlaps);
+  ftrigger2_4PV = new G4PVPlacement(0, G4ThreeVector(+1.*(trigger2SizeX/nofBars),0.,0.), trigger2LV, "T2_4", triggerCont2LV, false, 0, fCheckOverlaps);
+  ftrigger2_5PV = new G4PVPlacement(0, G4ThreeVector(+2.*(trigger2SizeX/nofBars),0.,0.), trigger2LV, "T2_5", triggerCont2LV, false, 0, fCheckOverlaps);
   
   // Trigger: bars 2nd plane
   G4VSolid* bar2S = new G4Box("Bar2", (trigger2SizeX/nofBars - barsGap)/2., trigger2SizeY/2., trigger2Thickness/2.);
@@ -800,10 +816,10 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   //Support ribs between T2 bars
   G4Box* T2RibsS = new G4Box("T2Ribs", T2Ribs_X/2., T2Ribs_Y/2., T2Ribs_Z/2.);
   G4LogicalVolume* T2RibsLV = new G4LogicalVolume(T2RibsS, CarbonFiberCaloMaterial, "T2Ribs");
-  fT2RibsPV_1 = new G4PVPlacement(0, G4ThreeVector(-3.*(trigger2SizeX/nofBars)/2.,0,0), T2RibsLV, "T2Ribs", T2ContLV, false, 0, fCheckOverlaps);
-  fT2RibsPV_2 = new G4PVPlacement(0, G4ThreeVector(-(trigger2SizeX/nofBars)/2.,0,0), T2RibsLV, "T2Ribs", T2ContLV, false, 0, fCheckOverlaps);
-  fT2RibsPV_3 = new G4PVPlacement(0, G4ThreeVector(+(trigger2SizeX/nofBars)/2.,0,0), T2RibsLV, "T2Ribs", T2ContLV, false, 0, fCheckOverlaps);
-  fT2RibsPV_4 = new G4PVPlacement(0, G4ThreeVector(+3.*(trigger2SizeX/nofBars)/2.,0,0), T2RibsLV, "T2Ribs", T2ContLV, false, 0, fCheckOverlaps);
+  fT2RibsPV_1 = new G4PVPlacement(0, G4ThreeVector(-3.*(trigger2SizeX/nofBars)/2.,0,0), T2RibsLV, "T2Ribs", triggerCont2LV, false, 0, fCheckOverlaps);
+  fT2RibsPV_2 = new G4PVPlacement(0, G4ThreeVector(-(trigger2SizeX/nofBars)/2.,0,0), T2RibsLV, "T2Ribs", triggerCont2LV, false, 0, fCheckOverlaps);
+  fT2RibsPV_3 = new G4PVPlacement(0, G4ThreeVector(+(trigger2SizeX/nofBars)/2.,0,0), T2RibsLV, "T2Ribs", triggerCont2LV, false, 0, fCheckOverlaps);
+  fT2RibsPV_4 = new G4PVPlacement(0, G4ThreeVector(+3.*(trigger2SizeX/nofBars)/2.,0,0), T2RibsLV, "T2Ribs", triggerCont2LV, false, 0, fCheckOverlaps);
   //****************************************************************************************
   
   //****************************************************************************************

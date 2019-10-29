@@ -77,8 +77,12 @@ private:
   G4VPhysicalVolume* fAlpRibs6_PV;
   
   G4VPhysicalVolume* fAlpInterfacePlatePV;
-
-  G4VPhysicalVolume* ftrigger1PV;
+  
+  G4VPhysicalVolume* ftrigger1_1PV;
+  G4VPhysicalVolume* ftrigger1_2PV;
+  G4VPhysicalVolume* ftrigger1_3PV;
+  G4VPhysicalVolume* ftrigger1_4PV;
+  G4VPhysicalVolume* ftrigger1_5PV;
   G4VPhysicalVolume* fTBars1PV;
   G4VPhysicalVolume* fPoronBeforeT1PV;
   G4VPhysicalVolume* fPoronAfterT1PV;
@@ -91,8 +95,12 @@ private:
   G4VPhysicalVolume* fT1RibsPV_2;
   G4VPhysicalVolume* fT1RibsPV_3;
   G4VPhysicalVolume* fT1RibsPV_4;
-
-  G4VPhysicalVolume* ftrigger2PV;
+  
+  G4VPhysicalVolume* ftrigger2_1PV;
+  G4VPhysicalVolume* ftrigger2_2PV;
+  G4VPhysicalVolume* ftrigger2_3PV;
+  G4VPhysicalVolume* ftrigger2_4PV;
+  G4VPhysicalVolume* ftrigger2_5PV;
   G4VPhysicalVolume* fTBars2PV;
   G4VPhysicalVolume* fPoronBeforeT2PV;
   G4VPhysicalVolume* fPoronAfterT2PV;

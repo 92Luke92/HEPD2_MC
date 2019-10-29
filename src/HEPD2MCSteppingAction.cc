@@ -57,12 +57,21 @@ void HEPD2MCSteppingAction::UserSteppingAction(const G4Step* step)
   G4int barcopyNumber;
   if(volume->GetName() == "Bar1")
     {
-      barcopyNumber = step->GetPreStepPoint()->GetTouchableHandle()->GetCopyNumber(1);
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T1_1") barcopyNumber = 0;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T1_2") barcopyNumber = 1;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T1_3") barcopyNumber = 2;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T1_4") barcopyNumber = 3;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T1_5") barcopyNumber = 4;
+      
       fEventAction->AddT1Bars(edep,stepLength,barcopyNumber);
     }
   if(volume->GetName() == "Bar2")
     {
-      barcopyNumber = step->GetPreStepPoint()->GetTouchableHandle()->GetCopyNumber(1);
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T2_1") barcopyNumber = 0;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T2_2") barcopyNumber = 1;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T2_3") barcopyNumber = 2;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T2_4") barcopyNumber = 3;
+      if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T2_5") barcopyNumber = 4;
       fEventAction->AddT2Bars(edep,stepLength,barcopyNumber);
     }
   
