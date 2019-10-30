@@ -225,32 +225,216 @@ void HEPD2MCSteppingAction::UserSteppingAction(const G4Step* step)
 			    0.06, 0.06, 0.05, 0.05, 0.04,
 			    0.03};
   
-  G4int VolumeCopyNumber;
   G4int pmtID;
   
   //if the photon is generated in scintillatorEJ200_Opt or LYSO_Opt,
   if(step->GetTrack()->GetParticleDefinition()->GetParticleName() == "opticalphoton" && (step->GetPreStepPoint()->GetPhysicalVolume()->GetLogicalVolume()->GetMaterial()->GetName() == "ScintillatorEJ200_Opt" || step->GetPreStepPoint()->GetPhysicalVolume()->GetLogicalVolume()->GetMaterial()->GetName() == "LYSO_Opt"))
     {
+      
       //it's expressed in MeV so it must be converted in eV
       phot_energy = phot_energy*1.E6;
       if(step->GetPostStepPoint()->GetPhysicalVolume()->GetLogicalVolume()->GetName() == "Pmt")
 	{
-	  VolumeCopyNumber = step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetCopyNo();
-	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtT1_1") pmtID = 2*VolumeCopyNumber;
-	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtT1_2") pmtID = 2*VolumeCopyNumber+1;
-	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtT2_1") pmtID = 2*VolumeCopyNumber+10;
-	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtT2_2") pmtID = 2*VolumeCopyNumber+11;
+	  G4String name = step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName();
 	  
-	  //if(name == "PmtP1_1" || name == "PmtP1_2" || name == "PmtP2_1" || name == "PmtP2_2") pmtID = 20+(planecopyNumber/2)*4+pmtCopyNumber;
-	  //if(name == "PmtLastP_1" || name == "PmtLastP_2") pmtID = 20+(10/2)*4+pmtCopyNumber;
+	  //PMT trigger T1
+	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetName() == "triggerCont1")
+	    {
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T1_1")
+		{
+		  if(name == "PmtT1_1") pmtID = 0;
+		  if(name == "PmtT1_2") pmtID = 1;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T1_2")
+		{
+		  if(name == "PmtT1_1") pmtID = 2;
+		  if(name == "PmtT1_2") pmtID = 3;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T1_3")
+		{
+		  if(name == "PmtT1_1") pmtID = 4;
+		  if(name == "PmtT1_2") pmtID = 5;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T1_4")
+		{
+		  if(name == "PmtT1_1") pmtID = 6;
+		  if(name == "PmtT1_2") pmtID = 7;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T1_5")
+		{
+		  if(name == "PmtT1_1") pmtID = 8;
+		  if(name == "PmtT1_2") pmtID = 9;
+		}
+	    }
 	  
-	  //if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtL1_1") pmtID = pmtCopyNumber+44;
-	  //if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtL1_2") pmtID = pmtCopyNumber+47;
-	  //if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtL2_1") pmtID = pmtCopyNumber+50;
-	  //if(step->GetPostStepPoint()->GetTouchableHandle()->GetVolume()->GetName() == "PmtL2_2") pmtID = pmtCopyNumber+53;
+	  //PMT trigger T2
+	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetName() == "triggerCont2")
+	    {
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T2_1")
+		{
+		  if(name == "PmtT2_1") pmtID = 10;
+		  if(name == "PmtT2_2") pmtID = 11;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T2_2")
+		{
+		  if(name == "PmtT2_1") pmtID = 12;
+		  if(name == "PmtT2_2") pmtID = 13;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T2_3")
+		{
+		  if(name == "PmtT2_1") pmtID = 14;
+		  if(name == "PmtT2_2") pmtID = 15;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T2_4")
+		{
+		  if(name == "PmtT2_1") pmtID = 16;
+		  if(name == "PmtT2_2") pmtID = 17;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T2_5")
+		{
+		  if(name == "PmtT2_1") pmtID = 18;
+		  if(name == "PmtT2_2") pmtID = 19;
+		}
+	    }
 	  
-	  //... e pmt veto lat
-	  //... e pmt veto bot
+	  //PMT calorimeter block1
+	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetName() == "Calorimeter_Block1")
+	    {
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxdx1_Block1")
+		{
+		  if(name == "PmtPdx_1") pmtID = 20;
+		  if(name == "PmtPdx_2") pmtID = 21;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxsx2_Block1")
+		{
+		  if(name == "PmtPsx_1") pmtID = 22;
+		  if(name == "PmtPsx_2") pmtID = 23;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxdx3_Block1")
+		{
+		  if(name == "PmtPdx_1") pmtID = 24;
+		  if(name == "PmtPdx_2") pmtID = 25;
+		}
+	    }
+	  
+	  //PMT calorimeter block2
+	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetName() == "Calorimeter_Block2")
+	    {
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxdx1_Block2")
+		{
+		  if(name == "PmtPdx_1") pmtID = 26;
+		  if(name == "PmtPdx_2") pmtID = 27;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxsx2_Block2")
+		{
+		  if(name == "PmtPsx_1") pmtID = 28;
+		  if(name == "PmtPsx_2") pmtID = 29;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxdx3_Block2")
+		{
+		  if(name == "PmtPdx_1") pmtID = 30;
+		  if(name == "PmtPdx_2") pmtID = 31;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxsx4_Block2")
+		{
+		  if(name == "PmtPsx_1") pmtID = 32;
+		  if(name == "PmtPsx_2") pmtID = 33;
+		}
+	    }
+	  
+	  //PMT calorimeter block3
+	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetName() == "Calorimeter_Block3")
+	    {
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxsx1_Block3")
+		{
+		  if(name == "PmtPsx_1") pmtID = 34;
+		  if(name == "PmtPsx_2") pmtID = 35;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxdx2_Block3")
+		{
+		  if(name == "PmtPdx_1") pmtID = 36;
+		  if(name == "PmtPdx_2") pmtID = 37;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxsx3_Block3")
+		{
+		  if(name == "PmtPsx_1") pmtID = 38;
+		  if(name == "PmtPsx_2") pmtID = 39;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxdx4_Block3")
+		{
+		  if(name == "PmtPdx_1") pmtID = 40;
+		  if(name == "PmtPdx_2") pmtID = 41;
+		}
+	    }
+	  
+	  //PMT crystal L1
+	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(1)->GetName() == "CrystalCont1")
+	    {
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetName() == "BarCont1_1")
+		{
+		  if(name == "PmtL1_1") pmtID = 42;
+		  if(name == "PmtL1_2") pmtID = 43;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetName() == "BarCont2_1")
+		{
+		  if(name == "PmtL1_1") pmtID = 44;
+		  if(name == "PmtL1_2") pmtID = 45;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetName() == "BarCont3_1")
+		{
+		  if(name == "PmtL1_1") pmtID = 46;
+		  if(name == "PmtL1_2") pmtID = 47;
+		}
+	    }
+	  
+	  //PMT crystal L2
+	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(1)->GetName() == "CrystalCont2")
+	    {
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetName() == "BarCont1_2")
+		{
+		  if(name == "PmtL2_1") pmtID = 48;
+		  if(name == "PmtL2_2") pmtID = 49;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetName() == "BarCont2_2")
+		{
+		  if(name == "PmtL2_1") pmtID = 50;
+		  if(name == "PmtL2_2") pmtID = 51;
+		}
+	      if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(2)->GetName() == "BarCont3_2")
+		{
+		  if(name == "PmtL2_1") pmtID = 52;
+		  if(name == "PmtL2_2") pmtID = 53;
+		}
+	    }
+	  
+	  //PMT Lat Veto
+	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(1)->GetName() == "VetoLatContainer1")
+	    {
+	      if(name == "PmtVLat_1") pmtID = 54;
+	      if(name == "PmtVLat_2") pmtID = 55;
+	    }
+	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(1)->GetName() == "VetoLatContainer2")
+	    {
+	      if(name == "PmtVLat_1") pmtID = 56;
+	      if(name == "PmtVLat_2") pmtID = 57;
+	    }
+	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(1)->GetName() == "VetoLatContainer3")
+	    {
+	      if(name == "PmtVLat_1") pmtID = 58;
+	      if(name == "PmtVLat_2") pmtID = 59;
+	    }
+	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(1)->GetName() == "VetoLatContainer4")
+	    {
+	      if(name == "PmtVLat_1") pmtID = 60;
+	      if(name == "PmtVLat_2") pmtID = 61;
+	    }
+	  
+	  //PMT Bot Veto
+	  if(step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(1)->GetName() == "VetoBotCont")
+	    {
+	      if(name == "PmtVBot_1") pmtID = 62;
+	      if(name == "PmtVBot_2") pmtID = 63;
+	    }
 	  
 	  G4double prob;
 	  for(int i=0; i<number; i++)
