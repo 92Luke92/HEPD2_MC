@@ -66,6 +66,12 @@ private:
   G4VPhysicalVolume* fFPC1_PV;
   G4VPhysicalVolume* fFPC2_PV;
   G4VPhysicalVolume* fFPC3_PV;
+  G4VPhysicalVolume* fGlueBeforeAlp1_PV;
+  G4VPhysicalVolume* fGlueBeforeAlp2_PV;
+  G4VPhysicalVolume* fGlueBeforeAlp3_PV;
+  G4VPhysicalVolume* fGlueAfterAlp1_PV;
+  G4VPhysicalVolume* fGlueAfterAlp2_PV;
+  G4VPhysicalVolume* fGlueAfterAlp3_PV;
   G4VPhysicalVolume* fColdPlate1_PV;
   G4VPhysicalVolume* fColdPlate2_PV;
   G4VPhysicalVolume* fColdPlate3_PV;

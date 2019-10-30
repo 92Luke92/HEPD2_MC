@@ -271,6 +271,12 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   G4double FPCSizeZ = FPC_SIZEZ;
   G4double FPCShift_X = FPCSHIFT_X;
   
+  //Glue Araldite 2011 FPC-chip and chip-cold plate
+  G4double GlueSizeX = GLUE_SIZEX;
+  G4double GlueSizeY = GLUE_SIZEY;
+  G4double GlueFPC_SizeZ = GLUE_FPC_SIZEZ;
+  G4double GlueColdPlate_SizeZ = GLUE_COLDPLATE_SIZEZ;
+  
   //Cold plate
   G4double ColdPlateSizeX = COLDPLATE_SIZEX;
   G4double ColdPlateSizeY = COLDPLATE_SIZEY;
@@ -481,6 +487,10 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   G4Material *CarbonFiberAlpideMaterial = new G4Material("CarbonFiberAlpide",1.867*g/cm3,1);
   CarbonFiberAlpideMaterial->AddElement(elC,1);
   
+  //glue Araldite 2011 material for Alpide
+  G4Material *GlueMaterial = new G4Material("GlueMaterial",1.05*g/cm3,1);
+  GlueMaterial->AddElement(elC,1);
+  
   //carbon fiber material for Trigger and Calo
   G4Material *CarbonFiberCaloMaterial = new G4Material("CarbonFiberCalo",1.581*g/cm3,1);
   CarbonFiberCaloMaterial->AddElement(elC,1);
@@ -624,12 +634,12 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   //****************************************************************************************
   // ALPIDE
   //Alpide container
-  G4VSolid* AlpContS = new G4Box("AlpCont", ColdPlateSizeX/2., ((nofAlpideY/2)*(2*alpideSizeY+alpchip_gap+2.*alpideGap_Y+2*AlpRibsY)-2.*alpideGap_Y)/2., (CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.);
+  G4VSolid* AlpContS = new G4Box("AlpCont", ColdPlateSizeX/2., ((nofAlpideY/2)*(2*alpideSizeY+alpchip_gap+2.*alpideGap_Y+2*AlpRibsY)-2.*alpideGap_Y)/2., (CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+3.*GlueFPC_SizeZ+3.*GlueColdPlate_SizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.);
   G4LogicalVolume* AlpContLV = new G4LogicalVolume(AlpContS, defaultMaterial, "AlpCont");
-  fAlpContPV = new G4PVPlacement(0, G4ThreeVector(-ColdPlateShift_X,0.,axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+window_dist+(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.), AlpContLV, "AlpCont", worldLV, false, 0, fCheckOverlaps);
+  fAlpContPV = new G4PVPlacement(0, G4ThreeVector(-ColdPlateShift_X,0.,axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+window_dist+(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+3.*GlueFPC_SizeZ+3.*GlueColdPlate_SizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.), AlpContLV, "AlpCont", worldLV, false, 0, fCheckOverlaps);
   
   //Alpide tower
-  G4VSolid* AlpTowerS = new G4Box("AlpTower", ColdPlateSizeX/2., (2*alpideSizeY+alpchip_gap+2.*alpideGap_Y+2*AlpRibsY)/2., (CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.);
+  G4VSolid* AlpTowerS = new G4Box("AlpTower", ColdPlateSizeX/2., (2*alpideSizeY+alpchip_gap+2.*alpideGap_Y+2*AlpRibsY)/2., (CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+3.*GlueFPC_SizeZ+3.*GlueColdPlate_SizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.);
   G4LogicalVolume* AlpTowerLV = new G4LogicalVolume(AlpTowerS, defaultMaterial, "AlpTower");
   fAlpTowerPV = new G4PVReplica("AlpTower", AlpTowerLV, AlpContLV, kYAxis, nofAlpideY/2, (2*alpideSizeY+2.*alpideGap_Y+2*AlpRibsY));
   
@@ -656,45 +666,59 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   fAlpActive1PV = new G4PVPlacement(0, G4ThreeVector(0.,-(alpideSizeY-alpideActiveSizeY)/2.,0.),AlpActiveLV, "AlpActive1",Alp1LV, false, 0, fCheckOverlaps);
   fAlpActive2PV = new G4PVPlacement(0, G4ThreeVector(0.,+(alpideSizeY-alpideActiveSizeY)/2.,0.),AlpActiveLV, "AlpActive2",Alp2LV, false, 0, fCheckOverlaps);
   
-  fAlpPlane1PV = new G4PVPlacement(0,G4ThreeVector(ColdPlateShift_X, 0., -(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ/2.), AlpPlaneLV, "AlpPlane1", AlpTowerLV, false, 0, fCheckOverlaps);
-  fAlpPlane2PV = new G4PVPlacement(0,G4ThreeVector(ColdPlateShift_X, 0., -(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+alpideGap+alpideSizeZ/2.), AlpPlaneLV, "AlpPlane2", AlpTowerLV, false, 0, fCheckOverlaps);
-  fAlpPlane3PV = new G4PVPlacement(0,G4ThreeVector(ColdPlateShift_X, 0., -(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+alpideGap+alpideSizeZ+alpideGap+alpideSizeZ/2.), AlpPlaneLV, "AlpPlane3", AlpTowerLV, false, 0, fCheckOverlaps);
+  fAlpPlane1PV = new G4PVPlacement(0,G4ThreeVector(ColdPlateShift_X, 0., -(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+alpideSizeZ/2.), AlpPlaneLV, "AlpPlane1", AlpTowerLV, false, 0, fCheckOverlaps);
+  fAlpPlane2PV = new G4PVPlacement(0,G4ThreeVector(ColdPlateShift_X, 0., -(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+alpideSizeZ+alpideGap+alpideSizeZ/2.), AlpPlaneLV, "AlpPlane2", AlpTowerLV, false, 0, fCheckOverlaps);
+  fAlpPlane3PV = new G4PVPlacement(0,G4ThreeVector(ColdPlateShift_X, 0., -(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+alpideSizeZ+alpideGap+alpideSizeZ+alpideGap+alpideSizeZ/2.), AlpPlaneLV, "AlpPlane3", AlpTowerLV, false, 0, fCheckOverlaps);
   
   //copper support
   G4VSolid* CuSupport_S = new G4Box("CuSupport", CuSupportSizeX/2., CuSupportSizeY/2., CuSupportSizeZ/2.);
   G4LogicalVolume* CuSupport_LV = new G4LogicalVolume(CuSupport_S, CopperMaterial, "CuSupport");
-  fCuSupport1_PV = new G4PVPlacement(0,G4ThreeVector(FPCShift_X-ColdPlateShift_X, 0.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ/2.), CuSupport_LV, "CuSupport1", AlpTowerLV, false, 0, fCheckOverlaps);
-  fCuSupport2_PV = new G4PVPlacement(0,G4ThreeVector(FPCShift_X-ColdPlateShift_X, 0.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ/2.+alpideSizeZ+alpideGap), CuSupport_LV, "CuSupport2", AlpTowerLV, false, 0, fCheckOverlaps);
-  fCuSupport3_PV = new G4PVPlacement(0,G4ThreeVector(FPCShift_X-ColdPlateShift_X, 0.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ/2.+alpideSizeZ+alpideGap+alpideSizeZ+alpideGap), CuSupport_LV, "CuSupport3", AlpTowerLV, false, 0, fCheckOverlaps);
+  fCuSupport1_PV = new G4PVPlacement(0,G4ThreeVector(FPCShift_X-ColdPlateShift_X, 0.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ/2.), CuSupport_LV, "CuSupport1", AlpTowerLV, false, 0, fCheckOverlaps);
+  fCuSupport2_PV = new G4PVPlacement(0,G4ThreeVector(FPCShift_X-ColdPlateShift_X, 0.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ/2.+alpideSizeZ+alpideGap), CuSupport_LV, "CuSupport2", AlpTowerLV, false, 0, fCheckOverlaps);
+  fCuSupport3_PV = new G4PVPlacement(0,G4ThreeVector(FPCShift_X-ColdPlateShift_X, 0.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ/2.+alpideSizeZ+alpideGap+alpideSizeZ+alpideGap), CuSupport_LV, "CuSupport3", AlpTowerLV, false, 0, fCheckOverlaps);
   
   //FPC
   G4VSolid* FPC_S = new G4Box("FPC", FPCSizeX/2., FPCSizeY/2., FPCSizeZ/2.);
   G4LogicalVolume* FPC_LV = new G4LogicalVolume(FPC_S, KaptonMaterial, "FPC");
-  fFPC1_PV = new G4PVPlacement(0,G4ThreeVector(FPCShift_X-ColdPlateShift_X,0.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ/2.), FPC_LV, "FPC1", AlpTowerLV, false, 0, fCheckOverlaps);
-  fFPC2_PV = new G4PVPlacement(0,G4ThreeVector(FPCShift_X-ColdPlateShift_X,0.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ/2.+alpideSizeZ+alpideGap), FPC_LV, "FPC2", AlpTowerLV, false, 0, fCheckOverlaps);
-  fFPC3_PV = new G4PVPlacement(0,G4ThreeVector(FPCShift_X-ColdPlateShift_X,0.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ/2.+alpideSizeZ+alpideGap+alpideSizeZ+alpideGap), FPC_LV, "FPC3", AlpTowerLV, false, 0, fCheckOverlaps);
+  fFPC1_PV = new G4PVPlacement(0,G4ThreeVector(FPCShift_X-ColdPlateShift_X,0.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ/2.), FPC_LV, "FPC1", AlpTowerLV, false, 0, fCheckOverlaps);
+  fFPC2_PV = new G4PVPlacement(0,G4ThreeVector(FPCShift_X-ColdPlateShift_X,0.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ/2.+alpideSizeZ+alpideGap), FPC_LV, "FPC2", AlpTowerLV, false, 0, fCheckOverlaps);
+  fFPC3_PV = new G4PVPlacement(0,G4ThreeVector(FPCShift_X-ColdPlateShift_X,0.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ/2.+alpideSizeZ+alpideGap+alpideSizeZ+alpideGap), FPC_LV, "FPC3", AlpTowerLV, false, 0, fCheckOverlaps);
+  
+  //Glue Araldite 2011 between FPC and chip
+  G4VSolid* GlueBeforeAlpS = new G4Box("GlueBeforeAlp", GlueSizeX/2., GlueSizeY/2., GlueFPC_SizeZ/2.);
+  G4LogicalVolume* GlueBeforeAlpLV = new G4LogicalVolume(GlueBeforeAlpS, GlueMaterial, "GlueBeforeAlp");
+  fGlueBeforeAlp1_PV = new G4PVPlacement(0,G4ThreeVector(ColdPlateShift_X,0.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ/2.), GlueBeforeAlpLV, "GlueBeforeAlp1", AlpTowerLV, false, 0, fCheckOverlaps);
+  fGlueBeforeAlp2_PV = new G4PVPlacement(0,G4ThreeVector(ColdPlateShift_X,0.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ/2.+alpideSizeZ+alpideGap), GlueBeforeAlpLV, "GlueBeforeAlp2", AlpTowerLV, false, 0, fCheckOverlaps);
+  fGlueBeforeAlp3_PV = new G4PVPlacement(0,G4ThreeVector(ColdPlateShift_X,0.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ/2.+alpideSizeZ+alpideGap+alpideSizeZ+alpideGap), GlueBeforeAlpLV, "GlueBeforeAlp3", AlpTowerLV, false, 0, fCheckOverlaps);
+  
+  //Glue Araldite 2011 between chip and cold plate
+  G4VSolid* GlueAfterAlpS = new G4Box("GlueAfterAlp", GlueSizeX/2., GlueSizeY/2., GlueColdPlate_SizeZ/2.);
+  G4LogicalVolume* GlueAfterAlpLV = new G4LogicalVolume(GlueAfterAlpS, GlueMaterial, "GlueAfterAlp");
+  fGlueAfterAlp1_PV = new G4PVPlacement(0,G4ThreeVector(ColdPlateShift_X,0.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+alpideSizeZ+GlueColdPlate_SizeZ/2.), GlueAfterAlpLV, "GlueAfterAlp1", AlpTowerLV, false, 0, fCheckOverlaps);
+  fGlueAfterAlp2_PV = new G4PVPlacement(0,G4ThreeVector(ColdPlateShift_X,0.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+alpideSizeZ+alpideGap+alpideSizeZ+GlueColdPlate_SizeZ/2.), GlueAfterAlpLV, "GlueAfterAlp2", AlpTowerLV, false, 0, fCheckOverlaps);
+  fGlueAfterAlp3_PV = new G4PVPlacement(0,G4ThreeVector(ColdPlateShift_X,0.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+alpideSizeZ+alpideGap+alpideSizeZ+alpideGap+alpideSizeZ+GlueColdPlate_SizeZ/2.), GlueAfterAlpLV, "GlueAfterAlp3", AlpTowerLV, false, 0, fCheckOverlaps);
   
   //cold plate
   G4VSolid* ColdPlateS = new G4Box("ColdPlate", ColdPlateSizeX/2., ColdPlateSizeY/2., ColdPlateSizeZ/2.);
   G4LogicalVolume* ColdPlateLV = new G4LogicalVolume(ColdPlateS, CarbonFiberAlpideMaterial, "ColdPlate");
-  fColdPlate1_PV = new G4PVPlacement(0,G4ThreeVector(0.,0.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+ColdPlateSizeZ/2.),ColdPlateLV,"ColdPlate1",AlpTowerLV, false, 0, fCheckOverlaps);
-  fColdPlate2_PV = new G4PVPlacement(0,G4ThreeVector(0.,0.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+alpideGap+alpideSizeZ+ColdPlateSizeZ/2.),ColdPlateLV,"ColdPlate2",AlpTowerLV, false, 0, fCheckOverlaps);
-  fColdPlate3_PV = new G4PVPlacement(0,G4ThreeVector(0.,0.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+alpideGap+alpideSizeZ+alpideGap+alpideSizeZ+ColdPlateSizeZ/2.),ColdPlateLV,"ColdPlate3",AlpTowerLV, false, 0, fCheckOverlaps);
+  fColdPlate1_PV = new G4PVPlacement(0,G4ThreeVector(0.,0.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+alpideSizeZ+GlueColdPlate_SizeZ+ColdPlateSizeZ/2.),ColdPlateLV,"ColdPlate1",AlpTowerLV, false, 0, fCheckOverlaps);
+  fColdPlate2_PV = new G4PVPlacement(0,G4ThreeVector(0.,0.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+alpideSizeZ+GlueColdPlate_SizeZ+alpideGap+alpideSizeZ+ColdPlateSizeZ/2.),ColdPlateLV,"ColdPlate2",AlpTowerLV, false, 0, fCheckOverlaps);
+  fColdPlate3_PV = new G4PVPlacement(0,G4ThreeVector(0.,0.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+alpideSizeZ+GlueColdPlate_SizeZ+alpideGap+alpideSizeZ+alpideGap+alpideSizeZ+ColdPlateSizeZ/2.),ColdPlateLV,"ColdPlate3",AlpTowerLV, false, 0, fCheckOverlaps);
   
   //ribs
   G4VSolid* AlpRibsS = new G4Box("AlpRibs", AlpRibsX/2., AlpRibsY/2., AlpRibsZ/2.);
   G4LogicalVolume* AlpRibsLV = new G4LogicalVolume(AlpRibsS, CarbonFiberAlpideMaterial, "AlpRibs");
-  fAlpRibs1_PV = new G4PVPlacement(0,G4ThreeVector(0., -ColdPlateSizeY/2.-AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
-  fAlpRibs2_PV = new G4PVPlacement(0,G4ThreeVector(0., +ColdPlateSizeY/2.+AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
-  fAlpRibs3_PV = new G4PVPlacement(0,G4ThreeVector(0., -ColdPlateSizeY/2.-AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+alpideGap+alpideSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
-  fAlpRibs4_PV = new G4PVPlacement(0,G4ThreeVector(0., +ColdPlateSizeY/2.+AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+alpideGap+alpideSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
-  fAlpRibs5_PV = new G4PVPlacement(0,G4ThreeVector(0., -ColdPlateSizeY/2.-AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+alpideGap+alpideSizeZ+alpideGap+alpideSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
-  fAlpRibs6_PV = new G4PVPlacement(0,G4ThreeVector(0., +ColdPlateSizeY/2.+AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+alpideSizeZ+alpideGap+alpideSizeZ+alpideGap+alpideSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
+  fAlpRibs1_PV = new G4PVPlacement(0,G4ThreeVector(0., -ColdPlateSizeY/2.-AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+alpideSizeZ+GlueColdPlate_SizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
+  fAlpRibs2_PV = new G4PVPlacement(0,G4ThreeVector(0., +ColdPlateSizeY/2.+AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+alpideSizeZ+GlueColdPlate_SizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
+  fAlpRibs3_PV = new G4PVPlacement(0,G4ThreeVector(0., -ColdPlateSizeY/2.-AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+alpideSizeZ+GlueColdPlate_SizeZ+alpideGap+alpideSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
+  fAlpRibs4_PV = new G4PVPlacement(0,G4ThreeVector(0., +ColdPlateSizeY/2.+AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+alpideSizeZ+GlueColdPlate_SizeZ+alpideGap+alpideSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
+  fAlpRibs5_PV = new G4PVPlacement(0,G4ThreeVector(0., -ColdPlateSizeY/2.-AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+alpideSizeZ+GlueColdPlate_SizeZ+alpideGap+alpideSizeZ+alpideGap+alpideSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
+  fAlpRibs6_PV = new G4PVPlacement(0,G4ThreeVector(0., +ColdPlateSizeY/2.+AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+alpideSizeZ+GlueColdPlate_SizeZ+alpideGap+alpideSizeZ+alpideGap+alpideSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
   
   //Alpide interface plate (positioned between Alpide and T1)
   G4SubtractionSolid* AlpInterfacePlateS = new G4SubtractionSolid("AlpInterfacePlate", new G4Box("AlpInterfacePlate_1", (AlpInterfacePlate_X)/2., (AlpInterfacePlate_Y)/2., AlpInterfacePlate_Z/2.),new G4Box("AlpInterfacePlate_2", ColdPlateSizeX/2., 5.*(ColdPlateSizeY+2.*AlpRibsY+alpideGap_Y)/2., (AlpInterfacePlate_Z+1.*mm)/2.),0,G4ThreeVector(24.*mm,0,0));
   G4LogicalVolume* AlpInterfacePlateLV = new G4LogicalVolume(AlpInterfacePlateS, AlMixMaterial, "AlpInterfacePlate");
-  fAlpInterfacePlatePV = new G4PVPlacement(0, G4ThreeVector(FPCShift_X,0,axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+window_dist+CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+AlpRibsZ+0.4*mm+AlpInterfacePlate_Z/2.), AlpInterfacePlateLV, "AlpInterfacePlate", worldLV, false, 0, fCheckOverlaps);  
+  fAlpInterfacePlatePV = new G4PVPlacement(0, G4ThreeVector(FPCShift_X,0,axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+window_dist+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ+0.4*mm+AlpInterfacePlate_Z/2.), AlpInterfacePlateLV, "AlpInterfacePlate", worldLV, false, 0, fCheckOverlaps);  
   //****************************************************************************************
   
   //****************************************************************************************
@@ -702,7 +726,7 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   // Trigger: container 1st plane and its structures
   G4VSolid* T1ContS = new G4Box("T1Cont", (trigger1SizeX+2.*LG_height+2.*FrameT1_X+2.*PmtFrameT1_dist)/2., (AlpInterfacePlate_Y)/2., FrameT1_Z/2.);
   G4LogicalVolume* T1ContLV = new G4LogicalVolume(T1ContS, defaultMaterial, "T1Cont");
-  G4double T1_posZ = axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+window_dist+CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+2.*alpideGap+AlpRibsZ+0.4*mm+AlpInterfacePlate_Z+FrameT1_Z/2.;
+  G4double T1_posZ = axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+window_dist+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ+0.4*mm+AlpInterfacePlate_Z+FrameT1_Z/2.;
   new G4PVPlacement(0, G4ThreeVector(0,0,T1_posZ), T1ContLV, "T1Cont", worldLV, false, 0, fCheckOverlaps);
   
   // Trigger: container 1st plane
@@ -1291,6 +1315,8 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   G4VisAttributes* attCyan = new G4VisAttributes(G4Colour::Cyan());
   attCyan->SetVisibility(true);
   attCyan->SetForceAuxEdgeVisible(true);
+  GlueBeforeAlpLV->SetVisAttributes(attCyan);
+  GlueAfterAlpLV->SetVisAttributes(attCyan);
   bar1LV->SetVisAttributes(attCyan);
   bar2LV->SetVisAttributes(attCyan);
   LightGuide1LV->SetVisAttributes(attCyan);
