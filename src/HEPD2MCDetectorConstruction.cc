@@ -860,12 +860,7 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   fPCompPlane2_Block1PV = new G4PVPlacement(0, G4ThreeVector(0., 0., caloBlock1_Thickness/2.-PCompPlaneThickness/2.), PCompPlaneLV, "PCompPlane2_Block1", calorimeterBlock1LV, false, 0, fCheckOverlaps);
   
   //plane box (poron+wrapping+plane+wrapping)
-  G4Box* PBoxS_1 = new G4Box("PBox_1", caloSizeXY/2.-cutPlane, caloSizeXY/2., (PPoronThickness+PWrappingThickness+planeThickness+PWrappingThickness)/2.);
-  G4Trd* PBoxS_2 = new G4Trd("PBox_2", caloSizeXY/2.-cutPlane, caloSizeXY/2., (PPoronThickness+PWrappingThickness+planeThickness+PWrappingThickness)/2., (PPoronThickness+PWrappingThickness+planeThickness+PWrappingThickness)/2.,cutPlane/2.);
-  
-  G4UnionSolid* PBoxS_1and2 = new G4UnionSolid("PBox_1and2", PBoxS_1, PBoxS_2, rot1, trans1);
-  G4UnionSolid* PBoxS = new G4UnionSolid("PBox", PBoxS_1and2, PBoxS_2, rot2, trans2);
-  
+  G4Box* PBoxS = new G4Box("PBox", caloSizeXY/2., caloSizeXY/2., (PPoronThickness+PWrappingThickness+planeThickness+PWrappingThickness)/2.);
   //NB: dx and sx for PMT position
   G4LogicalVolume* PBoxdxLV = new G4LogicalVolume(PBoxS, defaultMaterial, "PBoxdx");
   G4LogicalVolume* PBoxsxLV = new G4LogicalVolume(PBoxS, defaultMaterial, "PBoxsx");
@@ -1393,6 +1388,8 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   calorimeterBlock1LV->SetVisAttributes (G4VisAttributes::Invisible);
   calorimeterBlock2LV->SetVisAttributes (G4VisAttributes::Invisible);
   calorimeterBlock3LV->SetVisAttributes (G4VisAttributes::Invisible);
+  PBoxdxLV->SetVisAttributes (G4VisAttributes::Invisible);
+  PBoxsxLV->SetVisAttributes (G4VisAttributes::Invisible);
   CrystalCont1LV->SetVisAttributes (G4VisAttributes::Invisible);
   CrystalCont2LV->SetVisAttributes (G4VisAttributes::Invisible);
   VetoLatContainerLV->SetVisAttributes (G4VisAttributes::Invisible);
