@@ -67,7 +67,7 @@ They are:
 It is possible to set the particle features of the primary generator in HEPD2MCPrimaryGeneratorAction class or via the G4 build-in commands (HEPD2MCPrimaryGeneratorMessenger class).
 The following commands are available:
 
-(1) /HEPD02/ActivateOptics <bool> enables or disables the scintillating materials in the detector;
+(1) /HEPD02/ActivateOptics <bool> enables or disables the scintillating materials in the detector (it only works in vis mode);
 
 (2) /HEPD02/primary/particle <string> sets the particle type to be generated;
 
