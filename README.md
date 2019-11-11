@@ -158,6 +158,8 @@ At the end of the simulation, the ROOT file includes a TTree "HEPD2", which is c
 
 "VLeng[5]"	  vetor<double>	       stores the track length in the veto planes (5 planes);
 
+"EGammaKin"	  Double_t	       stores the kinetic energy of a gamma exiting world
+
 "EBeforeT1"	  Double_t	       stores the kinetic energy before entering T1;
 
 "EBeforeT2"	  Double_t	       stores the kinetic energy before entering T2;

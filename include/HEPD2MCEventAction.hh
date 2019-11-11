@@ -42,6 +42,8 @@ public:
   void AddEBeforeT2(G4double E);
   void AddEBeforeP1(G4double E);
   
+  void AddGammaKin(G4double E);
+  
   std::vector<G4double>& GetVgen() {return fVgen;}
   std::vector<G4double>& GetVp() {return fVp;}
   std::vector<G4double>& GetVT1Edep() {return fVT1Edep;}
@@ -93,8 +95,8 @@ private:
   std::vector<G4double> fVVLeng;
   
   G4double  fTA[3];
-  G4double  fTT1[NBARS];
-  G4double  fTT2[NBARS];
+  G4double  fTT1[NBARST1];
+  G4double  fTT2[NBARST2];
   G4double  fTP[NCALOPLANES];
   G4double  fTC1[NCRYSTALS];
   G4double  fTC2[NCRYSTALS];
@@ -106,8 +108,8 @@ private:
   G4double fPhotEnergy[NPMTS];
   
   G4double  fEA[3];
-  G4double  fET1[NBARS];
-  G4double  fET2[NBARS];
+  G4double  fET1[NBARST1];
+  G4double  fET2[NBARST2];
   G4double  fEP[NCALOPLANES];
   G4double  fEC1[NCRYSTALS];
   G4double  fEC2[NCRYSTALS];
@@ -124,6 +126,8 @@ private:
   std::vector<G4double> fVAlp2Dir;
   std::vector<G4double> fVAlp3Dir;
   G4double fAlp1Dir[2], fAlp2Dir[2], fAlp3Dir[2];
+  
+  G4double fGammaKin;
   
   G4double fEBeforeT1;
   G4double fEBeforeT2;
@@ -236,6 +240,11 @@ inline void HEPD2MCEventAction::AddEBeforeT2(G4double E)
 inline void HEPD2MCEventAction::AddEBeforeP1(G4double E)
 {
   fEBeforeP1 = E;
+}
+
+inline void HEPD2MCEventAction::AddGammaKin(G4double E)
+{
+  fGammaKin += E;
 }
 
 inline void HEPD2MCEventAction::AddPhot(G4int pmtID)
