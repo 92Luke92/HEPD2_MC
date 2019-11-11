@@ -26,6 +26,14 @@
 #include "G4VisExecutive.hh"
 #include "G4UIExecutive.hh"
 
+
+
+#include "Geant4GM/volumes/Factory.h"
+#include "RootGM/volumes/Factory.h"
+#include "TGeoManager.h"
+#include "TFile.h"
+
+
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
 
 namespace {
@@ -97,7 +105,29 @@ int main(int argc,char** argv)
   HEPD2MCActionInitialization* actionInitialization
      = new HEPD2MCActionInitialization(detConstruction);
   runManager->SetUserInitialization(actionInitialization);
-  
+
+
+  runManager->Initialize();
+
+  // Import Geant4 geometry to VGM                       
+ TFile* ff=new TFile("geom.root","RECREATE");
+ Geant4GM::Factory g4Factory;
+ g4Factory.Import(detConstruction->mother);
+ printf("----------------------\n");
+      // where physiWorld is of G4VPhysicalVolume* type 
+
+ // Export VGM geometry to Root                         
+ RootGM::Factory rtFactory;
+ g4Factory.Export(&rtFactory);
+
+        gGeoManager->CloseGeometry();
+        gGeoManager->Write();
+        ff->Write();
+        ff->Close();
+
+
+
+
   
   // Get the pointer to the User Interface manager
   G4UImanager* UImanager = G4UImanager::GetUIpointer();
@@ -146,7 +176,7 @@ int main(int argc,char** argv)
   // in the main() program !
   
   delete runManager;
-  
+  return 0;  
 }
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo.....

@@ -26,7 +26,7 @@ public:
   
   void ActivateOptics(G4bool optics);
   
-  
+  G4VPhysicalVolume* mother;
 private:
   
   // methods
@@ -50,7 +50,7 @@ private:
   G4VPhysicalVolume* fWallExternalInPV;
   
   G4VPhysicalVolume* fAlpContPV;
-  G4VPhysicalVolume* fAlpTowerPV;
+  G4VPhysicalVolume* fAlpTowerPV[5];
   G4VPhysicalVolume* fAlpDoublePV;
   G4VPhysicalVolume* fAlp1PV;
   G4VPhysicalVolume* fAlp2PV;

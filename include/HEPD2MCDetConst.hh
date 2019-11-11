@@ -7,24 +7,25 @@
 
 #ifndef HEPD2MC_CONST
 #define HEPD2MC_CONST
+#include "G4SystemOfUnits.hh"
 
 //all measurements must be in MILLIMETERS
 
 //AXES
-const double AXESBLANKET_DIST = 10.; //distance between origin of axes and blanket
+const double AXESBLANKET_DIST = 10.*cm; //distance between origin of axes and blanket
 
 //THERMAL BLANKET
-const double BLANKET_SIZEX = 258.; //horizontal width of blanket
-const double BLANKET_SIZEY = 236.; //vertical width of blanket
-const double BLANKET_SIZEZ = 0.068; //thickness of blanket
-const double BLANKETWINDOW_DIST = 13.; //distance between blanket and window
+const double BLANKET_SIZEX = 258.*mm; //horizontal width of blanket
+const double BLANKET_SIZEY = 236.*mm; //vertical width of blanket
+const double BLANKET_SIZEZ = 0.068 *cm; //thickness of blanket
+const double BLANKETWINDOW_DIST = 13.*cm; //distance between blanket and window
 
 //WINDOW
 const double WINDOW_SIZEX = BLANKET_SIZEX; //horizontal width of window
 const double WINDOW_SIZEY = BLANKET_SIZEY; //vertical width of window
-const double WINDOWOUT_THICKNESS = 0.045; //thickness of window out plane
-const double WINDOWIN_THICKNESS = 0.035; //thickness of window in plane
-const double WINDOWALPIDE_DIST = 7.; //distance between window and first alpide plane
+const double WINDOWOUT_THICKNESS = 0.045*cm; //thickness of window out plane
+const double WINDOWIN_THICKNESS = 0.035*cm; //thickness of window in plane
+const double WINDOWALPIDE_DIST = 7.*cm; //distance between window and first alpide plane
 
 //WALLHONEYCOMB
 const double WALLHONEYCOMB_SIZEX = 348.; //horizontal width of honeycomb wall
@@ -35,9 +36,9 @@ const double WALLEXTERNAL_THICKNESS = 0.5; //thickness of external wall
 //ALPIDE
 const int NALPIDEX = 5; //number of horizontal alpide sensors
 const int NALPIDEY = 10; //number of vertical alpide sensors
-const double ALPIDE_SIZEX = 30.; //horizontal width of one alpide sensor
-const double ALPIDE_SIZEY = 15.; //vertical width of one alpide sensor
-const double ALPIDE_SIZEZ = 0.05; //thickness of one alpide sensor
+const double ALPIDE_SIZEX = 30.*mm; //horizontal width of one alpide sensor
+const double ALPIDE_SIZEY = 15.*mm; //vertical width of one alpide sensor
+const double ALPIDE_SIZEZ = 0.05 *mm; //thickness of one alpide sensor
 const double ALPIDEACTIVE_SIZEX = 29.94; //horizontal width of one alpide active sensor
 const double ALPIDEACTIVE_SIZEY = 13.76; //vertical width of one alpide active sensor
 const double ALPIDEACTIVE_SIZEZ = 0.05; //thickness of one alpide active sensor
@@ -47,7 +48,7 @@ const double ALPIDE_GAPY = 0.63; //half distance between ribs of two adjacent to
 const double ALPCHIP_GAP = 0.15; //distance between two chips of the same stave
 
 //ALPIDE RIBS
-const double ALPRIBS_SIZEX = 196.;
+const double ALPRIBS_SIZEX = 190.*mm;
 const double ALPRIBS_SIZEY = 1.9;
 const double ALPRIBS_SIZEZ = 7.;
 

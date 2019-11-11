@@ -37,6 +37,8 @@
 #include "G4LossTableManager.hh"
 #include "G4EmSaturation.hh"
 
+#include "G4VUserPhysicsList.hh"
+
 HEPD2MCPhysicsList::HEPD2MCPhysicsList() 
  : G4VUserPhysicsList(),
    fVerboseLebel(0), fMaxNumPhotonStep(100)

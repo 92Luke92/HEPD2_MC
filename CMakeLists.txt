@@ -17,11 +17,36 @@ else()
 endif()
 
 #----------------------------------------------------------------------------
+# - Prepend local CMake Modules to the search path
+
+set(CMAKE_MODULE_PATH
+    ${PROJECT_SOURCE_DIR}/cmake/Modules
+    ${CMAKE_MODULE_PATH})
+
+
+
+
+#----------------------------------------------------------------------------
 # Setup Geant4 include directories and compile definitions
 # Setup include directory for this project
 #
 include(${Geant4_USE_FILE})
 include_directories(${PROJECT_SOURCE_DIR}/include)
+
+
+#------ Include ROOT
+
+include(FindROOT)
+if(ROOT_FOUND)
+        MESSAGE( STATUS "HEPDSW will be compiled with ROOT.")
+	set(VGM_INCLUDE "${PROJECT_SOURCE_DIR}/../VGM/include")
+        include_directories(${ROOT_INCLUDE_DIR} ${VGM_INCLUDE} )
+        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -DUSE_ANALYSIS_ROOT -Wno-unused-variable")
+        set(EXTRA_LIBRARIES "${EXTRA_LIBRARIES} ${ROOT_LIBRARIES} -lGeom")
+        set (HEPDSW_BUILTWITH_ROOT "yes")
+else()
+        MESSAGE(FATAL_ERROR "ROOT installation not found!Installation interrupted!")
+endif()
 
 #----------------------------------------------------------------------------
 # Locate sources and headers for this project
@@ -31,10 +56,29 @@ file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
 file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 
 #----------------------------------------------------------------------------
+# HEPDSW library
+option(STATIC_BUILD "Build HEPDSW static library" ON)
+STRING(TOUPPER ${STATIC_BUILD} staticbuild)
+STRING(COMPARE EQUAL ${staticbuild} "ON" test_res)
+set(ROOT_LIBRARIES "${ROOT_LIBRARIES} -lGeom  -L${PROJECT_SOURCE_DIR}/../VGM/lib64/ -lClhepVGM -lBaseVGM -lGeant4GM -lRootGM -lXmlVGM")
+if (test_res)
+    add_library(hepdsw_lib STATIC ${sources} ${headers})
+
+else()
+    add_library(hepdsw_lib SHARED ${sources} ${headers})
+
+endif()
+set_target_properties(hepdsw_lib PROPERTIES OUTPUT_NAME "hepdsw")
+target_link_libraries(hepdsw_lib  ${Geant4_LIBRARIES} ${ROOT_LIBRARIES})
+
+#dd the dictionary to the list of source files 
+set(sources ${sources} ${DataFormats_DICTIONARY})  
+ 
+#----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
 #
 add_executable(HEPD2_MC HEPD2_MC.cc ${sources} ${headers})
-target_link_libraries(HEPD2_MC ${Geant4_LIBRARIES})
+target_link_libraries(HEPD2_MC ${Geant4_LIBRARIES} ${ROOT_LIBRARIES})
 
 #----------------------------------------------------------------------------
 # Copy all scripts to the build directory, i.e. the directory in which we
