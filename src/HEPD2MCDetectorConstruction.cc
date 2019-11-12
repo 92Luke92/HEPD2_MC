@@ -746,8 +746,7 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   new G4PVPlacement(0, G4ThreeVector(0,0,0), triggerCont1LV, "triggerCont1", T1ContLV, false, 0, fCheckOverlaps);
   
   // Trigger: bars 1st plane
-  //G4VSolid* trigger1S = new G4Box("T1", (trigger1SizeX+2.*pmtHeight+2.*LG_height)/2., (trigger1SizeY/nofBarsT1 - barsGap)/2., (trigger1Thickness+2.*T1WrappingThickness)/2.);
-  G4VSolid* trigger1S = new G4Box("T1", (trigger1SizeX+2.*pmtHeight+2.*LG_height)/2., (trigger1SizeY/nofBarsT1 - barsGap)/2., (8.*mm)/2.);
+  G4VSolid* trigger1S = new G4Box("T1", (trigger1SizeX+2.*pmtHeight+2.*LG_height)/2., (trigger1SizeY/nofBarsT1 - barsGap)/2., (2.*T1CompPlane_dist+trigger1Thickness)/2.);
   G4LogicalVolume* trigger1LV = new G4LogicalVolume(trigger1S, defaultMaterial, "T1");
   ftrigger1_1PV = new G4PVPlacement(0, G4ThreeVector(0.,-2.*(trigger1SizeY/nofBarsT1),0.), trigger1LV, "T1_1", triggerCont1LV, false, 0, fCheckOverlaps);
   ftrigger1_2PV = new G4PVPlacement(0, G4ThreeVector(0.,-1.*(trigger1SizeY/nofBarsT1),0.), trigger1LV, "T1_2", triggerCont1LV, false, 0, fCheckOverlaps);
@@ -1405,6 +1404,7 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   Alp2LV->SetVisAttributes (G4VisAttributes::Invisible);
   GlueBeforeAlpLV->SetVisAttributes(G4VisAttributes::Invisible);
   GlueAfterAlpLV->SetVisAttributes(G4VisAttributes::Invisible);
+  trigger1LV->SetVisAttributes (G4VisAttributes::Invisible);
   T1ContLV->SetVisAttributes (G4VisAttributes::Invisible);
   triggerCont1LV->SetVisAttributes (G4VisAttributes::Invisible);
   BarCont1LV->SetVisAttributes (G4VisAttributes::Invisible);
