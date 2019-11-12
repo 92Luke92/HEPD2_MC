@@ -1,0 +1,155 @@
+HEPD2MCDetectorConstruction_Tracker.cc: In function ‘G4LogicalVolume* GetAlFpcLV()’:
+HEPD2MCDetectorConstruction_Tracker.cc:96:37: error: ‘fCheckOverlaps’ was not declared in this scope
+    FpcLV,"FPC",FpcPlasticLV,false,0,fCheckOverlaps);
+                                     ^~~~~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc: In function ‘G4LogicalVolume* GetAlSensorStaveLV()’:
+HEPD2MCDetectorConstruction_Tracker.cc:134:58: error: ‘fCheckOverlaps’ was not declared in this scope
+     AlSensorStaveLV,"AlSensorStave",Sensor,false,ii+jj*5,fCheckOverlaps);
+                                                          ^~~~~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:140:70: error: ‘fCheckOverlaps’ was not declared in this scope
+          AlSensorStaveLV,"AlSensorStave",AlSensorStaveGlueLV,false,0,fCheckOverlaps);
+                                                                      ^~~~~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc: In function ‘G4LogicalVolume* GetAlStaveHeadFLV()’:
+HEPD2MCDetectorConstruction_Tracker.cc:160:2: error: ‘G4Solid’ was not declared in this scope
+  G4Solid * AlHeadF_B2S= new G4Box("AlHeadF_B2S",AlHeadF_B2_SizeX/2.,AlHeadF_B2_SizeY/2.,AlHeadF_B2_SizeZ/2.);
+  ^~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:160:12: error: ‘AlHeadF_B2S’ was not declared in this scope
+  G4Solid * AlHeadF_B2S= new G4Box("AlHeadF_B2S",AlHeadF_B2_SizeX/2.,AlHeadF_B2_SizeY/2.,AlHeadF_B2_SizeZ/2.);
+            ^~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:176:11: error: ‘AlHeadF_C1’ was not declared in this scope
+  G4Solid* AlHeadF_C1= new G4SubtractionSolid("AlC1",AlHeadF_B1S,AlHeadF_B2S,0,G4ThreeVector((AlHeadF_B1_SizeX- AlHeadF_B2_SizeX)/2.,0,0.));
+           ^~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:178:11: error: ‘AlHeadF_C2’ was not declared in this scope
+  G4Solid* AlHeadF_C2= new G4SubtractionSolid("AlC2",AlHeadF_C1,AlHeadF_B3S,0,G4ThreeVector(AlHeadF_B1_SizeX/2-AlHeadF_B2_SizeX-AlHeadF_B3_sizeX/2.,0,0.));
+           ^~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:178:128: error: ‘AlHeadF_B3_sizeX’ was not declared in this scope
+  G4Solid* AlHeadF_C2= new G4SubtractionSolid("AlC2",AlHeadF_C1,AlHeadF_B3S,0,G4ThreeVector(AlHeadF_B1_SizeX/2-AlHeadF_B2_SizeX-AlHeadF_B3_sizeX/2.,0,0.));
+                                                                                                                                ^~~~~~~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:180:71: error: ‘AlHeadF_B4S’ was not declared in this scope
+  G4VSolid *AlStaveHeadFS= new G4UnionSolid("AlStaveHeadFS",AlHeadF_C2,AlHeadF_B4S,0,G4ThreeVector(-AlHeadF_B1_sizeX/2-AlHeadF_B4_SizeX/2.,0,0));
+                                                                       ^~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:180:100: error: ‘AlHeadF_B1_sizeX’ was not declared in this scope
+  G4VSolid *AlStaveHeadFS= new G4UnionSolid("AlStaveHeadFS",AlHeadF_C2,AlHeadF_B4S,0,G4ThreeVector(-AlHeadF_B1_sizeX/2-AlHeadF_B4_SizeX/2.,0,0));
+                                                                                                    ^~~~~~~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:183:126: error: no matching function for call to ‘G4LogicalVolume::G4LogicalVolume(const char [15], G4Material*, G4VSolid*&)’
+  G4LogicalVolume* AlStaveHeadFLV= new G4LogicalVolume("AlStaveHeadFLV",G4Material::GetMaterial("AlMixMaterial"),AlStaveHeadFS);
+                                                                                                                              ^
+In file included from HEPD2MCDetectorConstruction_Tracker.cc:9:0:
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:386:5: note: candidate: G4LogicalVolume::G4LogicalVolume(const G4LogicalVolume&)
+     G4LogicalVolume(const G4LogicalVolume&);
+     ^~~~~~~~~~~~~~~
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:386:5: note:   candidate expects 1 argument, 3 provided
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:342:5: note: candidate: G4LogicalVolume::G4LogicalVolume(__void__&)
+     G4LogicalVolume(__void__&);
+     ^~~~~~~~~~~~~~~
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:342:5: note:   candidate expects 1 argument, 3 provided
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:193:5: note: candidate: G4LogicalVolume::G4LogicalVolume(G4VSolid*, G4Material*, const G4String&, G4FieldManager*, G4VSensitiveDetector*, G4UserLimits*, G4bool)
+     G4LogicalVolume(G4VSolid* pSolid,
+     ^~~~~~~~~~~~~~~
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:193:5: note:   no known conversion for argument 1 from ‘const char [15]’ to ‘G4VSolid*’
+HEPD2MCDetectorConstruction_Tracker.cc:171:11: warning: unused variable ‘AlHeadF_B4_SizeY’ [-Wunused-variable]
+  G4double AlHeadF_B4_SizeY=TrackerDimDB::GetMeas("AlHeadF_B4_SizeY");
+           ^~~~~~~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:172:11: warning: unused variable ‘AlHeadF_B4_SizeZ’ [-Wunused-variable]
+  G4double AlHeadF_B4_SizeZ=TrackerDimDB::GetMeas("AlHeadF_B4_SizeZ");
+           ^~~~~~~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc: In function ‘G4LogicalVolume* GetAlStaveHeadBLV()’:
+HEPD2MCDetectorConstruction_Tracker.cc:201:60: error: ‘AlHeadB_B1S’ was not declared in this scope
+  G4VSolid *AlStaveHeadBS= new G4UnionSolid("AlStaveHeadBS",AlHeadB_B1S,AlHeadB_B2S,0,G4ThreeVector(-AlHeadB_B1_sizeX/2-AlHeadB_B2_SizeX/2.,0,-(AlHeadB_B1_SizeZ/2-AlHeadB_B2_SizeZ/2)));
+                                                            ^~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:201:72: error: ‘AlHeadB_B2S’ was not declared in this scope
+  G4VSolid *AlStaveHeadBS= new G4UnionSolid("AlStaveHeadBS",AlHeadB_B1S,AlHeadB_B2S,0,G4ThreeVector(-AlHeadB_B1_sizeX/2-AlHeadB_B2_SizeX/2.,0,-(AlHeadB_B1_SizeZ/2-AlHeadB_B2_SizeZ/2)));
+                                                                        ^~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:201:101: error: ‘AlHeadB_B1_sizeX’ was not declared in this scope
+  G4VSolid *AlStaveHeadBS= new G4UnionSolid("AlStaveHeadBS",AlHeadB_B1S,AlHeadB_B2S,0,G4ThreeVector(-AlHeadB_B1_sizeX/2-AlHeadB_B2_SizeX/2.,0,-(AlHeadB_B1_SizeZ/2-AlHeadB_B2_SizeZ/2)));
+                                                                                                     ^~~~~~~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:204:126: error: no matching function for call to ‘G4LogicalVolume::G4LogicalVolume(const char [15], G4Material*, G4VSolid*&)’
+  G4LogicalVolume* AlStaveHeadBLV= new G4LogicalVolume("AlStaveHeadBLV",G4Material::GetMaterial("AlMixMaterial"),AlStaveHeadBS);
+                                                                                                                              ^
+In file included from HEPD2MCDetectorConstruction_Tracker.cc:9:0:
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:386:5: note: candidate: G4LogicalVolume::G4LogicalVolume(const G4LogicalVolume&)
+     G4LogicalVolume(const G4LogicalVolume&);
+     ^~~~~~~~~~~~~~~
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:386:5: note:   candidate expects 1 argument, 3 provided
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:342:5: note: candidate: G4LogicalVolume::G4LogicalVolume(__void__&)
+     G4LogicalVolume(__void__&);
+     ^~~~~~~~~~~~~~~
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:342:5: note:   candidate expects 1 argument, 3 provided
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:193:5: note: candidate: G4LogicalVolume::G4LogicalVolume(G4VSolid*, G4Material*, const G4String&, G4FieldManager*, G4VSensitiveDetector*, G4UserLimits*, G4bool)
+     G4LogicalVolume(G4VSolid* pSolid,
+     ^~~~~~~~~~~~~~~
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:193:5: note:   no known conversion for argument 1 from ‘const char [15]’ to ‘G4VSolid*’
+HEPD2MCDetectorConstruction_Tracker.cc:191:11: warning: unused variable ‘AlHeadB_B1_SizeX’ [-Wunused-variable]
+  G4double AlHeadB_B1_SizeX=TrackerDimDB::GetMeas("AlHeadB_B1_SizeX");
+           ^~~~~~~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:192:11: warning: unused variable ‘AlHeadB_B1_SizeY’ [-Wunused-variable]
+  G4double AlHeadB_B1_SizeY=TrackerDimDB::GetMeas("AlHeadB_B1_SizeY");
+           ^~~~~~~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:197:11: warning: unused variable ‘AlHeadB_B2_SizeY’ [-Wunused-variable]
+  G4double AlHeadB_B2_SizeY=TrackerDimDB::GetMeas("AlHeadB_B2_SizeY");
+           ^~~~~~~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc: In function ‘G4LogicalVolume* GetAlStaveContLV()’:
+HEPD2MCDetectorConstruction_Tracker.cc:218:155: error: no matching function for call to ‘TrackerDimDB::GetMeas(const char [17], double)’
+  G4double AlStaveContX=TrackerDimDB::GetMeas("AlHeadF_B1_SizeX")+TrackerDimDB::GetMeas("AlHeadB_B1_SizeZ")+TrackerDimDB::GetMeas("AlColdPlateSizeX",196*mm);;
+                                                                                                                                                           ^
+In file included from HEPD2MCDetectorConstruction_Tracker.cc:29:0:
+../include/HEPD2MCTrackerDimDB.hh:16:18: note: candidate: static double TrackerDimDB::GetMeas(const char*)
+  static double   GetMeas(const char* name) ;
+                  ^~~~~~~
+../include/HEPD2MCTrackerDimDB.hh:16:18: note:   candidate expects 1 argument, 2 provided
+HEPD2MCDetectorConstruction_Tracker.cc:223:95: error: cannot convert ‘G4Box’ to ‘G4VSolid*’ in initialization
+  G4VSolid * AlStaveContS   = G4Box("AlStaveContS",AlStaveContX/2,AlStaveContY/2,AlStaveContZ/2);
+                                                                                               ^
+HEPD2MCDetectorConstruction_Tracker.cc:225:124: error: no matching function for call to ‘G4LogicalVolume::G4LogicalVolume(const char [14], G4Material*, G4VSolid*&)’
+  G4LogicalVolume * AlStaveContLV  = G4LogicalVolume("AlStaveContLV",G4Material::GetMaterial("defaultMaterial"),AlStaveContS);
+                                                                                                                            ^
+In file included from HEPD2MCDetectorConstruction_Tracker.cc:9:0:
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:386:5: note: candidate: G4LogicalVolume::G4LogicalVolume(const G4LogicalVolume&)
+     G4LogicalVolume(const G4LogicalVolume&);
+     ^~~~~~~~~~~~~~~
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:386:5: note:   candidate expects 1 argument, 3 provided
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:342:5: note: candidate: G4LogicalVolume::G4LogicalVolume(__void__&)
+     G4LogicalVolume(__void__&);
+     ^~~~~~~~~~~~~~~
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:342:5: note:   candidate expects 1 argument, 3 provided
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:193:5: note: candidate: G4LogicalVolume::G4LogicalVolume(G4VSolid*, G4Material*, const G4String&, G4FieldManager*, G4VSensitiveDetector*, G4UserLimits*, G4bool)
+     G4LogicalVolume(G4VSolid* pSolid,
+     ^~~~~~~~~~~~~~~
+/home/pzuccon/work/limadou/Geant4-10.01-p03/bin/../include/Geant4/G4LogicalVolume.hh:193:5: note:   no known conversion for argument 1 from ‘const char [14]’ to ‘G4VSolid*’
+HEPD2MCDetectorConstruction_Tracker.cc:234:2: error: expected ‘,’ or ‘;’ before ‘new’
+  new G4PVPlacement(0,G4ThreeVector(-AlStaveContX/2+(TrackerDimDB::GetMeas("AlHeadF_B1_SizeX")+TrackerDimDB::GetMeas("AlHeadF_B4_SizeX"))/2.,0,0),
+  ^~~
+HEPD2MCDetectorConstruction_Tracker.cc:238:62: error: ‘fCheckOverlaps’ was not declared in this scope
+        AlStaveContLV,"AlStaveHeadBPV",AlStaveHeadBLV,false,0,fCheckOverlaps);
+                                                              ^~~~~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:245:2: error: ‘G4doule’ was not declared in this scope
+  G4doule OffSensX=;
+  ^~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:249:36: error: ‘OffSensX’ was not declared in this scope
+  new G4PVPlacement(0,G4ThreeVector(OffSensX,0,OffSensZ),AlStaveContLV,"AlSensorsPV",AlSensorStaveLV,false,0,fCheckOverlaps);
+                                    ^~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:254:10: error: expected ‘;’ before ‘OffFpcX’
+  G4doule OffFpcX=OffColdX+((G4Box*)AlColdPlateLV->GetSolid())->GetXHalfLength();
+          ^~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:257:36: error: ‘OffFpcX’ was not declared in this scope
+  new G4PVPlacement(0,G4ThreeVector(OffFpcX,0,OffFpcZ),AlStaveContLV,"AlFpcPV",AlFpcLV,false,0,fCheckOverlaps);
+                                    ^~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:229:19: warning: unused variable ‘AlStaveHeadFLV’ [-Wunused-variable]
+  G4LogicalVolume* AlStaveHeadFLV= GetAlStaveHeadFLV();
+                   ^~~~~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc: In function ‘G4LogicalVolume* GetAlTower()’:
+HEPD2MCDetectorConstruction_Tracker.cc:272:2: error: ‘G4Solid’ was not declared in this scope
+  G4Solid * AlTowerS= new G4Box("AlTowerS",SX,SY,3*SZ);
+  ^~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:272:12: error: ‘AlTowerS’ was not declared in this scope
+  G4Solid * AlTowerS= new G4Box("AlTowerS",SX,SY,3*SZ);
+            ^~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:275:85: error: ‘fCheckOverlaps’ was not declared in this scope
+  new G4PVPlacement(0,G4ThreeVector(0,0,-2*SZ),staveLV,"AStaveCont0",staveLV,false,0,fCheckOverlaps);
+                                                                                     ^~~~~~~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:279:9: error: ‘AlTowerLV’ was not declared in this scope
+  return AlTowerLV;
+         ^~~~~~~~~
+HEPD2MCDetectorConstruction_Tracker.cc:273:20: warning: unused variable ‘AlToverLV’ [-Wunused-variable]
+  G4LogicalVolume * AlToverLV= new G4LogicalVolume("AlTowerLV",G4Material::GetMaterial("defaultMaterial"),AlTowerS);
+                    ^~~~~~~~~

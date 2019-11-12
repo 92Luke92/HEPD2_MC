@@ -23,6 +23,11 @@ set(CMAKE_MODULE_PATH
     ${PROJECT_SOURCE_DIR}/cmake/Modules
     ${CMAKE_MODULE_PATH})
 
+  set(CMAKE_CXX_FLAGS_INIT "-Wno-unused-variable")
+  set(CMAKE_CXX_FLAGS_DEBUG_INIT "-g -Wno-unused-variable")
+  set(CMAKE_CXX_FLAGS_RELEASE_INIT "-O2 -Wno-unused-variable")
+  set(CMAKE_CXX_FLAGS_MINSIZEREL_INIT "-Os -DNDEBUG")
+  set(CMAKE_CXX_FLAGS_RELWITHDEBINFO_INIT "-O2 -g")
 
 
 

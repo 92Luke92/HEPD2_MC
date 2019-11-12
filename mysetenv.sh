@@ -13,7 +13,7 @@ cmake --version
 
 # ROOT
 echo "Exporting ROOT vars"
-/usr/local/bin/thisroot.sh
+#/usr/local/bin/thisroot.sh
 #export ROOTSYS=/cvmfs/sft.cern.ch/lcg/app/releases/ROOT/6.14.04/x86_64-centos7-gcc48-opt/root
 #export PATH=$ROOTSYS/bin:$PATH
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ROOTSYS/lib
@@ -21,6 +21,7 @@ echo "Exporting ROOT vars"
 #  export ROOT_INCLUDE_PATH=/cvmfs/ams.cern.ch/Offline/dbar/public/release_v5/AMS_vdev_190318/include/
 #fi
 echo "ROOT version" `root-config --version`
+export LD_LIBRARY_PATH=$PWD/../VGM/lib64/:$LD_LIBRARY_PATH
 export G4SYSTEM=Linux-g++
 export G4VIS_USE_OPENGLX=1
 export G4VIS_USE_RAYTRACERX=1

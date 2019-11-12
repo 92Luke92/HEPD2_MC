@@ -1,0 +1,1505 @@
+
+*************************************************************
+ Geant4 version Name: geant4-10-01-patch-03    (5-February-2016)
+                      Copyright : Geant4 Collaboration
+                      Reference : NIM A 506 (2003), 250-303
+                            WWW : http://cern.ch/geant4
+*************************************************************
+
+Using Root
+Checking overlaps for volume Det ... OK! 
+Checking overlaps for volume Blanket ... OK! 
+Checking overlaps for volume WindowContainer ... OK! 
+Checking overlaps for volume WindowOut ... OK! 
+Checking overlaps for volume WindowIn ... OK! 
+Checking overlaps for volume WallHoneyComb ... OK! 
+Checking overlaps for volume WallExternalOut ... OK! 
+Checking overlaps for volume WallExternalIn ... OK! 
+Checking overlaps for volume AlStaveHeadFPV ... OK! 
+Checking overlaps for volume AlStaveHeadBPV ... OK! 
+Checking overlaps for volume AlStaveColdPlatePV ... 
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : GeomVol1002
+      issued by : G4PVPlacement::CheckOverlaps()
+Overlap with volume already placed !
+          Overlap is detected for volume AlStaveColdPlatePV
+          with AlStaveHeadBPV volume's
+          local point (-8.55904,0.42693,2.28), overlapping by at least: 420 um 
+NOTE: Reached maximum fixed number -1- of overlaps reports for this volume !
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+Checking overlaps for volume AlpActive ... OK! 
+Checking overlaps for volume AlSensorStave ... OK! 
+Checking overlaps for volume AlSensorStave ... OK! 
+Checking overlaps for volume AlSensorStave ... OK! 
+Checking overlaps for volume AlSensorStave ... OK! 
+Checking overlaps for volume AlSensorStave ... OK! 
+Checking overlaps for volume AlSensorStave ... OK! 
+Checking overlaps for volume AlSensorStave ... OK! 
+Checking overlaps for volume AlSensorStave ... OK! 
+Checking overlaps for volume AlSensorStave ... OK! 
+Checking overlaps for volume AlSensorStave ... OK! 
+Checking overlaps for volume AlSensorStave ... OK! 
+Checking overlaps for volume AlSensorsPV ... OK! 
+Checking overlaps for volume FPC ... OK! 
+Checking overlaps for volume FPC ... OK! 
+Checking overlaps for volume FPC ... OK! 
+Checking overlaps for volume AlFpcPV ... OK! 
+Checking overlaps for volume AStaveCont0 ... OK! 
+Checking overlaps for volume AStaveCont1 ... OK! 
+Checking overlaps for volume AStaveCont2 ... OK! 
+Checking overlaps for volume AlTower0 ... OK! 
+Checking overlaps for volume AlTower1 ... OK! 
+Checking overlaps for volume AlTower2 ... OK! 
+Checking overlaps for volume AlTower3 ... OK! 
+Checking overlaps for volume AlTower4 ... OK! 
+Checking overlaps for volume AlpCont ... OK! 
+Checking overlaps for volume T1Cont ... OK! 
+Checking overlaps for volume triggerCont1 ... OK! 
+Checking overlaps for volume T1_1 ... OK! 
+Checking overlaps for volume T1_2 ... OK! 
+Checking overlaps for volume T1_3 ... OK! 
+Checking overlaps for volume T1_4 ... OK! 
+Checking overlaps for volume T1_5 ... OK! 
+Checking overlaps for volume Bar1 ... OK! 
+Checking overlaps for volume PoronBeforeT1 ... OK! 
+Checking overlaps for volume PoronAfterT1 ... OK! 
+Checking overlaps for volume WrappingBeforeT1 ... OK! 
+Checking overlaps for volume WrappingAfterT1 ... OK! 
+Checking overlaps for volume CompPlaneBeforeT1 ... OK! 
+Checking overlaps for volume CompPlaneAfterT1 ... OK! 
+Checking overlaps for volume FrameT1 ... OK! 
+Checking overlaps for volume T1Ribs ... OK! 
+Checking overlaps for volume T1Ribs ... OK! 
+Checking overlaps for volume T1Ribs ... OK! 
+Checking overlaps for volume T1Ribs ... OK! 
+Checking overlaps for volume LightGuideT1_1 ... OK! 
+Checking overlaps for volume LightGuideT1_2 ... OK! 
+Checking overlaps for volume T2Cont ... OK! 
+Checking overlaps for volume triggerCont2 ... OK! 
+Checking overlaps for volume T2_1 ... OK! 
+Checking overlaps for volume T2_2 ... OK! 
+Checking overlaps for volume T2_3 ... OK! 
+Checking overlaps for volume T2_4 ... OK! 
+Checking overlaps for volume T2_5 ... OK! 
+Checking overlaps for volume Bar2 ... OK! 
+Checking overlaps for volume PoronBeforeT2 ... OK! 
+Checking overlaps for volume PoronAfterT2 ... OK! 
+Checking overlaps for volume WrappingBeforeT2 ... OK! 
+Checking overlaps for volume WrappingAfterT2 ... OK! 
+Checking overlaps for volume CompPlaneBeforeT2 ... OK! 
+Checking overlaps for volume CompPlaneAfterT2 ... OK! 
+Checking overlaps for volume T2Ribs ... OK! 
+Checking overlaps for volume T2Ribs ... OK! 
+Checking overlaps for volume T2Ribs ... OK! 
+Checking overlaps for volume T2Ribs ... OK! 
+Checking overlaps for volume Calorimeter ... OK! 
+Checking overlaps for volume Calorimeter_Block1 ... OK! 
+Checking overlaps for volume PCompPlane1_Block1 ... OK! 
+Checking overlaps for volume PCompPlane2_Block1 ... OK! 
+Checking overlaps for volume PBoxdx1_Block1 ... OK! 
+Checking overlaps for volume PBoxsx2_Block1 ... OK! 
+Checking overlaps for volume PBoxdx3_Block1 ... OK! 
+Checking overlaps for volume PdxPoron ... OK! 
+Checking overlaps for volume PsxPoron ... OK! 
+Checking overlaps for volume PdxWrapping1 ... OK! 
+Checking overlaps for volume PdxWrapping2 ... OK! 
+Checking overlaps for volume PsxWrapping1 ... OK! 
+Checking overlaps for volume PsxWrapping2 ... OK! 
+Checking overlaps for volume Planedx ... OK! 
+Checking overlaps for volume Planesx ... OK! 
+Checking overlaps for volume PoronEndBlock1 ... OK! 
+Checking overlaps for volume Calorimeter_Block2 ... OK! 
+Checking overlaps for volume PCompPlane1_Block2 ... OK! 
+Checking overlaps for volume PCompPlane2_Block2 ... OK! 
+Checking overlaps for volume PBoxdx1_Block2 ... OK! 
+Checking overlaps for volume PBoxsx2_Block2 ... OK! 
+Checking overlaps for volume PBoxdx3_Block2 ... OK! 
+Checking overlaps for volume PBoxsx4_Block2 ... OK! 
+Checking overlaps for volume PoronEndBlock2 ... OK! 
+Checking overlaps for volume Calorimeter_Block3 ... OK! 
+Checking overlaps for volume PCompPlane1_Block3 ... OK! 
+Checking overlaps for volume PCompPlane2_Block3 ... OK! 
+Checking overlaps for volume PBoxsx1_Block3 ... OK! 
+Checking overlaps for volume PBoxdx2_Block3 ... OK! 
+Checking overlaps for volume PBoxsx3_Block3 ... OK! 
+Checking overlaps for volume PBoxdx4_Block3 ... OK! 
+Checking overlaps for volume PoronEndBlock3 ... OK! 
+Checking overlaps for volume LysoCover ... OK! 
+Checking overlaps for volume CrystalCont1 ... OK! 
+Checking overlaps for volume BarCont1_1 ... OK! 
+Checking overlaps for volume BarCont2_1 ... OK! 
+Checking overlaps for volume BarCont3_1 ... OK! 
+Checking overlaps for volume Crystal1 ... OK! 
+Checking overlaps for volume CWrappinglat1 ... OK! 
+Checking overlaps for volume CWrappinglat2 ... OK! 
+Checking overlaps for volume CWrapping1 ... OK! 
+Checking overlaps for volume CWrapping2 ... OK! 
+Checking overlaps for volume CScotchTapelat1_1 ... OK! 
+Checking overlaps for volume CScotchTapelat2_1 ... OK! 
+Checking overlaps for volume CScotchTape1 ... OK! 
+Checking overlaps for volume CScotchTape2 ... OK! 
+Checking overlaps for volume CScotchTape3 ... OK! 
+Checking overlaps for volume CScotchTape4 ... OK! 
+Checking overlaps for volume CrystalCont2 ... OK! 
+Checking overlaps for volume BarCont1_2 ... OK! 
+Checking overlaps for volume BarCont2_2 ... OK! 
+Checking overlaps for volume BarCont3_2 ... OK! 
+Checking overlaps for volume Crystal2 ... OK! 
+Checking overlaps for volume CWrappinglat1 ... OK! 
+Checking overlaps for volume CWrappinglat2 ... OK! 
+Checking overlaps for volume CWrapping1 ... OK! 
+Checking overlaps for volume CWrapping2 ... OK! 
+Checking overlaps for volume CScotchTapelat1_2 ... OK! 
+Checking overlaps for volume CScotchTapelat2_2 ... OK! 
+Checking overlaps for volume CScotchTape1 ... OK! 
+Checking overlaps for volume CScotchTape2 ... OK! 
+Checking overlaps for volume CScotchTape3 ... OK! 
+Checking overlaps for volume CScotchTape4 ... OK! 
+Checking overlaps for volume VetoBotCont ... OK! 
+Checking overlaps for volume RearVetoBot ... OK! 
+Checking overlaps for volume VetoBotCover ... OK! 
+Checking overlaps for volume VetoBotPoron ... OK! 
+Checking overlaps for volume VetoBotWrapping ... OK! 
+Checking overlaps for volume Vetob ... OK! 
+Checking overlaps for volume VetoLatContainer1 ... OK! 
+Checking overlaps for volume VetoLatContainer2 ... OK! 
+Checking overlaps for volume VetoLatContainer3 ... OK! 
+Checking overlaps for volume VetoLatContainer4 ... OK! 
+Checking overlaps for volume VetoLatCover ... OK! 
+Checking overlaps for volume VetoLatPoronInt ... OK! 
+Checking overlaps for volume VetoLatPoronExt ... OK! 
+Checking overlaps for volume VetoLatWrappingInt ... OK! 
+Checking overlaps for volume VetoLatWrappingExt ... OK! 
+Checking overlaps for volume VetoLat ... OK! 
+Checking overlaps for volume PmtT1_1 ... OK! 
+Checking overlaps for volume PmtT1_2 ... OK! 
+Checking overlaps for volume PmtT2_1 ... OK! 
+Checking overlaps for volume PmtT2_2 ... OK! 
+Checking overlaps for volume PmtPdx_1 ... OK! 
+Checking overlaps for volume PmtPdx_2 ... OK! 
+Checking overlaps for volume PmtPsx_1 ... OK! 
+Checking overlaps for volume PmtPsx_2 ... OK! 
+Checking overlaps for volume PmtVLat_1 ... OK! 
+Checking overlaps for volume PmtVLat_2 ... OK! 
+Checking overlaps for volume PmtVBot_1 ... OK! 
+Checking overlaps for volume PmtVBot_2 ... OK! 
+ AddDiscreteProcess to OpticalPhoton 
+Info in <TGeoManager::TGeoManager>: Geometry VGM Root geometry, VGM Root geometry created
+Info in <TGeoManager::SetTopVolume>: Top volume is World. Master volume is World
+Info in <TGeoNavigator::BuildCache>: --- Maximum geometry depth set to 100
+Info in <TGeoManager::CheckGeometry>: Fixing runtime shapes...
+Info in <TGeoManager::CheckGeometry>: ...Nothing to fix
+Info in <TGeoManager::CloseGeometry>: Counting nodes...
+Info in <TGeoManager::Voxelize>: Voxelizing...
+Info in <TGeoManager::CloseGeometry>: Building cache...
+Info in <TGeoManager::CountLevels>: max level = 7, max placements = 14
+Info in <TGeoManager::CloseGeometry>: 785 nodes/ 77 volume UID's in VGM Root geometry
+Info in <TGeoManager::CloseGeometry>: ----------------modeler ready----------------
+----------------------
+
+conv:   for  gamma    SubType= 14  BuildTable= 1
+      Lambda table from 1.022 MeV to 10 TeV, 20 bins per decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        BetheHeitler :  Emin=        0 eV    Emax=       80 GeV
+     BetheHeitlerLPM :  Emin=       80 GeV   Emax=       10 TeV
+
+compt:   for  gamma    SubType= 13  BuildTable= 1
+      Lambda table from 100 eV  to 1 MeV, 7 bins per decade, spline: 1
+      LambdaPrime table from 1 MeV to 10 TeV in 49 bins 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+       Klein-Nishina :  Emin=        0 eV    Emax=       10 TeV
+
+phot:   for  gamma    SubType= 12  BuildTable= 0
+      LambdaPrime table from 200 keV to 10 TeV in 54 bins 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+       PhotoElectric :  Emin=        0 eV    Emax=       10 TeV   AngularGenSauterGavrila
+
+msc:   for e-    SubType= 10
+      RangeFactor= 0.04, stepLimitType: 1, latDisplacement: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+eIoni:   for  e-    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      finalRange(mm)= 1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        MollerBhabha :  Emin=        0 eV    Emax=       10 TeV
+
+eBrem:   for  e-    SubType= 3
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      LPM flag: 1 for E > 1 GeV
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+             eBremSB :  Emin=        0 eV    Emax=        1 GeV   DipBustGen
+            eBremLPM :  Emin=        1 GeV   Emax=       10 TeV   DipBustGen
+
+msc:   for e+    SubType= 10
+      RangeFactor= 0.04, stepLimitType: 1, latDisplacement: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+eIoni:   for  e+    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      finalRange(mm)= 1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+        MollerBhabha :  Emin=        0 eV    Emax=       10 TeV
+
+eBrem:   for  e+    SubType= 3
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      LPM flag: 1 for E > 1 GeV
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+             eBremSB :  Emin=        0 eV    Emax=        1 GeV   DipBustGen
+            eBremLPM :  Emin=        1 GeV   Emax=       10 TeV   DipBustGen
+
+annihil:   for  e+, integral: 1     SubType= 5  BuildTable= 0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            eplus2gg :  Emin=        0 eV    Emax=       10 TeV
+
+msc:   for proton    SubType= 10
+      RangeFactor= 0.2, stepLimitType: 0, latDisplacement: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+hIoni:   for  proton    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      finalRange(mm)= 0.1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg :  Emin=        0 eV    Emax=        2 MeV
+          BetheBloch :  Emin=        2 MeV   Emax=       10 TeV
+
+msc:   for GenericIon    SubType= 10
+      RangeFactor= 0.2, stepLimitType: 0, latDisplacement: 0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc :  Emin=        0 eV    Emax=       10 TeV
+
+hIoni:   for  GenericIon    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      finalRange(mm)= 0.1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg :  Emin=        0 eV    Emax=        2 MeV
+          BetheBloch :  Emin=        2 MeV   Emax=       10 TeV
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1440)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1440)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1520)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1520)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1535)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1535)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1650)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1650)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1675)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1675)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1680)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1680)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1700)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1700)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1710)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1710)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1720)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1720)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1900)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1900)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1990)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(1990)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(2090)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(2090)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(2190)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(2190)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(2220)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(2220)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(2250)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(N(2250)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a0(1450)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a0(1450)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a0(1450)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a0(980)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a0(980)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a0(980)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a1(1260)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a1(1260)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a1(1260)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a2(1320)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a2(1320)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(a2(1320)0) skipped...
+
+msc:   for alpha    SubType= 10
+      RangeFactor= 0.2, stepLimitType: 0, latDisplacement: 0
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+hIoni:   for  alpha    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      finalRange(mm)= 0.1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg :  Emin=        0 eV    Emax=   7.9452 MeV
+          BetheBloch :  Emin=   7.9452 MeV   Emax=       10 TeV
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1440)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1440)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1520)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1520)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1535)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1535)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1650)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1650)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1675)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1675)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1680)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1680)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1700)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1700)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1710)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1710)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1720)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1720)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1900)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1900)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1990)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(1990)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(2090)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(2090)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(2190)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(2190)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(2220)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(2220)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(2250)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_N(2250)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_b_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_c_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_d_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_dd1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1600)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1600)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1600)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1600)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1620)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1620)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1620)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1620)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1700)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1700)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1700)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1700)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1900)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1900)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1900)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1900)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1905)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1905)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1905)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1905)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1910)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1910)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1910)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1910)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1920)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1920)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1920)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1920)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1930)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1930)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1930)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1930)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1950)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1950)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1950)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta(1950)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_delta0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k(1460)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k0_star(1430)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k1(1270)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k1(1400)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k2(1770)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k2_star(1430)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k2_star(1980)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k3_star(1780)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k_star(1410)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k_star(1680)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_k_star0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1405)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1520)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1600)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1670)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1690)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1800)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1810)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1820)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1830)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(1890)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(2100)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_lambda(2110)) skipped...
+
+msc:   for anti_proton    SubType= 10
+      RangeFactor= 0.2, stepLimitType: 0, latDisplacement: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+hIoni:   for  anti_proton    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      finalRange(mm)= 0.1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO :  Emin=        0 eV    Emax=        2 MeV
+          BetheBloch :  Emin=        2 MeV   Emax=       10 TeV
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_s_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sd0_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sd1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1385)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1385)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1385)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1660)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1660)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1660)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1670)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1670)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1670)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1750)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1750)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1750)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1775)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1775)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1775)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1915)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1915)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1915)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1940)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1940)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(1940)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(2030)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(2030)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_sigma(2030)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_ss1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_su0_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_su1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_t_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_u_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_ud0_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_ud1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_uu1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(1530)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(1530)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(1690)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(1690)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(1820)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(1820)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(1950)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(1950)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(2030)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(anti_xi(2030)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(b1(1235)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(b1(1235)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(b1(1235)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(b_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(c_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(d_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(dd1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1600)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1600)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1600)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1600)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1620)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1620)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1620)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1620)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1700)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1700)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1700)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1700)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1900)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1900)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1900)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1900)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1905)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1905)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1905)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1905)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1910)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1910)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1910)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1910)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1920)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1920)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1920)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1920)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1930)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1930)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1930)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1930)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1950)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1950)++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1950)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta(1950)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta++) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(delta0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(eta(1295)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(eta(1405)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(eta(1475)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(eta2(1645)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(eta2(1870)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f0(1370)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f0(1500)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f0(1710)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f0(500)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f0(980)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f1(1285)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f1(1420)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f2(1270)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f2(1810)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f2(2010)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(f2_prime(1525)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(gluon) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(h1(1170)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(h1(1380)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k(1460)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k(1460)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k(1460)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k0_star(1430)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k0_star(1430)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k0_star(1430)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k1(1270)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k1(1270)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k1(1270)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k1(1400)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k1(1400)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k1(1400)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2(1770)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2(1770)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2(1770)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2_star(1430)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2_star(1430)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2_star(1430)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2_star(1980)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2_star(1980)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k2_star(1980)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k3_star(1780)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k3_star(1780)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k3_star(1780)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star(1410)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star(1410)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star(1410)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star(1680)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star(1680)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star(1680)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(k_star0) skipped...
+
+msc:   for kaon+    SubType= 10
+      RangeFactor= 0.2, stepLimitType: 0, latDisplacement: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+hIoni:   for  kaon+    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      finalRange(mm)= 0.1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg :  Emin=        0 eV    Emax=  1.05231 MeV
+          BetheBloch :  Emin=  1.05231 MeV   Emax=       10 TeV
+
+msc:   for kaon-    SubType= 10
+      RangeFactor= 0.2, stepLimitType: 0, latDisplacement: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+hIoni:   for  kaon-    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      finalRange(mm)= 0.1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO :  Emin=        0 eV    Emax=  1.05231 MeV
+          BetheBloch :  Emin=  1.05231 MeV   Emax=       10 TeV
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1405)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1520)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1600)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1670)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1690)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1800)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1810)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1820)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1830)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(1890)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(2100)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(lambda(2110)) skipped...
+
+msc:   for mu+    SubType= 10
+      RangeFactor= 0.2, step limit type: 0, lateralDisplacement: 1, polarAngleLimit(deg)= 180
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+muIoni:   for  mu+    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      finalRange(mm)= 1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg :  Emin=        0 eV    Emax=      200 keV
+          BetheBloch :  Emin=      200 keV   Emax=        1 GeV
+        MuBetheBloch :  Emin=        1 GeV   Emax=       10 TeV
+
+muBrems:   for  mu+    SubType= 3
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+              MuBrem :  Emin=        0 eV    Emax=       10 TeV
+
+muPairProd:   for  mu+    SubType= 4
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      Sampling table 17x1001; from 1 GeV to 10 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+          muPairProd :  Emin=        0 eV    Emax=       10 TeV
+
+msc:   for mu-    SubType= 10
+      RangeFactor= 0.2, step limit type: 0, lateralDisplacement: 1, polarAngleLimit(deg)= 180
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+muIoni:   for  mu-    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      finalRange(mm)= 1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO :  Emin=        0 eV    Emax=      200 keV
+          BetheBloch :  Emin=      200 keV   Emax=        1 GeV
+        MuBetheBloch :  Emin=        1 GeV   Emax=       10 TeV
+
+muBrems:   for  mu-    SubType= 3
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+              MuBrem :  Emin=        0 eV    Emax=       10 TeV
+
+muPairProd:   for  mu-    SubType= 4
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      Sampling table 17x1001; from 1 GeV to 10 TeV 
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+          muPairProd :  Emin=        0 eV    Emax=       10 TeV
+NeutronHP: /Capture file for Z = 6, A = 12 is not found and NeutronHP will use /home/pzuccon/work/limadou/Geant4-10.01-p03/share/Geant4-10.1.3/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 12 is not found and NeutronHP will use /home/pzuccon/work/limadou/Geant4-10.01-p03/share/Geant4-10.1.3/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Inelastic file for Z = 6, A = 12 is not found and NeutronHP will use /home/pzuccon/work/limadou/Geant4-10.01-p03/share/Geant4-10.1.3/data/G4NDL4.5/Inelastic/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 6, A = 13 is not found and NeutronHP will use /home/pzuccon/work/limadou/Geant4-10.01-p03/share/Geant4-10.1.3/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Elastic file for Z = 6, A = 13 is not found and NeutronHP will use /home/pzuccon/work/limadou/Geant4-10.01-p03/share/Geant4-10.1.3/data/G4NDL4.5/Elastic/CrossSection/6_nat_Carbon
+NeutronHP: /Inelastic file for Z = 6, A = 13 is not found and NeutronHP will use /home/pzuccon/work/limadou/Geant4-10.01-p03/share/Geant4-10.1.3/data/G4NDL4.5/Inelastic/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 8, A = 18 is not found and NeutronHP will use /home/pzuccon/work/limadou/Geant4-10.01-p03/share/Geant4-10.1.3/data/G4NDL4.5/Capture/CrossSection/8_17_Oxygen
+NeutronHP: /Elastic file for Z = 8, A = 18 is not found and NeutronHP will use /home/pzuccon/work/limadou/Geant4-10.01-p03/share/Geant4-10.1.3/data/G4NDL4.5/Elastic/CrossSection/8_17_Oxygen
+NeutronHP: /Inelastic file for Z = 8, A = 18 is not found and NeutronHP will use /home/pzuccon/work/limadou/Geant4-10.01-p03/share/Geant4-10.1.3/data/G4NDL4.5/Inelastic/CrossSection/8_17_Oxygen
+NeutronHP: /Capture file for Z = 6, A = 12 is not found and NeutronHP will use /home/pzuccon/work/limadou/Geant4-10.01-p03/share/Geant4-10.1.3/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 6, A = 13 is not found and NeutronHP will use /home/pzuccon/work/limadou/Geant4-10.01-p03/share/Geant4-10.1.3/data/G4NDL4.5/Capture/CrossSection/6_nat_Carbon
+NeutronHP: /Capture file for Z = 8, A = 18 is not found and NeutronHP will use /home/pzuccon/work/limadou/Geant4-10.01-p03/share/Geant4-10.1.3/data/G4NDL4.5/Capture/CrossSection/8_17_Oxygen
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(omega) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(omega(1420)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(omega(1650)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(omega3(1670)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(phi) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(phi(1680)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(phi3(1850)) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(pi(1300)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(pi(1300)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(pi(1300)0) skipped...
+
+msc:   for pi+    SubType= 10
+      RangeFactor= 0.2, stepLimitType: 0, latDisplacement: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+hIoni:   for  pi+    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      finalRange(mm)= 0.1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+               Bragg :  Emin=        0 eV    Emax=  297.505 keV
+          BetheBloch :  Emin=  297.505 keV   Emax=       10 TeV
+
+msc:   for pi-    SubType= 10
+      RangeFactor= 0.2, stepLimitType: 0, latDisplacement: 1
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            UrbanMsc :  Emin=        0 eV    Emax=       10 TeV  Table with 77 bins Emin=    100 eV    Emax=     10 TeV
+
+hIoni:   for  pi-    SubType= 2
+      dE/dx and range tables from 100 eV  to 10 TeV in 77 bins
+      Lambda tables from threshold to 10 TeV, 7 bins per decade, spline: 1
+      finalRange(mm)= 0.1, dRoverRange= 0.2, integral: 1, fluct: 1, linLossLimit= 0.01
+      ===== EM models for the G4Region  DefaultRegionForTheWorld ======
+            ICRU73QO :  Emin=        0 eV    Emax=  297.505 keV
+          BetheBloch :  Emin=  297.505 keV   Emax=       10 TeV
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(pi2(1670)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(pi2(1670)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(pi2(1670)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho(1450)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho(1450)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho(1450)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho(1700)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho(1700)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho(1700)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho3(1690)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho3(1690)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(rho3(1690)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(s_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sd0_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sd1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1385)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1385)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1385)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1660)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1660)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1660)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1670)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1670)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1670)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1750)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1750)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1750)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1775)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1775)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1775)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1915)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1915)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1915)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1940)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1940)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(1940)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(2030)+) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(2030)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(sigma(2030)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(ss1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(su0_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(su1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(t_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(u_quark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(ud0_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(ud1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(uu1_diquark) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(1530)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(1530)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(1690)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(1690)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(1820)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(1820)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(1950)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(1950)0) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(2030)-) skipped...
+#### G4VUserPhysicsList::BuildPhysicsTable() - BuildPhysicsTable(xi(2030)0) skipped...
+
+====================================================================
+                  HADRONIC PROCESSES SUMMARY (verbose level 1)
+
+---------------------------------------------------
+                           Hadronic Processes for GenericIon
+
+  Process: ionElastic
+        Model:          NNDiffuseElastic: 0 eV  ---> 1 TeV
+     Cr_sctns: Glauber-Gribov nucleus nucleus: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: ionInelastic
+        Model:  Binary Light Ion Cascade: 0 eV  ---> 110 MeV
+        Model:                  QMDModel: 100 MeV ---> 10 GeV
+        Model:                      FTFP: 9.99 GeV ---> 1 TeV
+     Cr_sctns: Glauber-Gribov nucleus nucleus: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for He3
+
+  Process: He3Inelastic
+        Model:  Binary Light Ion Cascade: 0 eV  ---> 110 MeV
+        Model:                  QMDModel: 100 MeV ---> 10 GeV
+        Model:                      FTFP: 9.99 GeV ---> 1 TeV
+     Cr_sctns: Glauber-Gribov nucleus nucleus: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for alpha
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: alphaInelastic
+        Model:  Binary Light Ion Cascade: 0 eV  ---> 110 MeV
+        Model:                  QMDModel: 100 MeV ---> 10 GeV
+        Model:                      FTFP: 9.99 GeV ---> 1 TeV
+     Cr_sctns: Glauber-Gribov nucleus nucleus: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for anti_He3
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
+        Model:              AntiAElastic: 100 MeV ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: anti_He3Inelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for anti_alpha
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
+        Model:              AntiAElastic: 100 MeV ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: anti_alphaInelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for anti_deuteron
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
+        Model:              AntiAElastic: 100 MeV ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: anti_deuteronInelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for anti_neutron
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: anti_neutronInelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for anti_proton
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
+        Model:              AntiAElastic: 100 MeV ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: anti_protonInelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for anti_triton
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100.1 MeV
+        Model:              AntiAElastic: 100 MeV ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: anti_tritonInelastic
+        Model:                      FTFP: 0 eV  ---> 100 TeV
+     Cr_sctns:              AntiAGlauber: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for deuteron
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: dInelastic
+        Model:  Binary Light Ion Cascade: 0 eV  ---> 110 MeV
+        Model:                  QMDModel: 100 MeV ---> 10 GeV
+        Model:                      FTFP: 9.99 GeV ---> 1 TeV
+     Cr_sctns: Glauber-Gribov nucleus nucleus: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for kaon+
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: kaon+Inelastic
+        Model:                      FTFP: 9.5 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 9.9 GeV
+     Cr_sctns:  ChipsKaonPlusInelasticXS: 0 eV  ---> 100 TeV
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for kaon-
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: kaon-Inelastic
+        Model:                      FTFP: 9.5 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 9.9 GeV
+     Cr_sctns: ChipsKaonMinusInelasticXS: 0 eV  ---> 100 TeV
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for lambda
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: lambdaInelastic
+        Model:            BertiniCascade: 0 eV  ---> 6 GeV
+        Model:                      FTFP: 2 GeV ---> 100 TeV
+     Cr_sctns:   ChipsHyperonInelasticXS: 0 eV  ---> 100 TeV
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for neutron
+
+  Process: hadElastic
+        Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: neutronInelastic
+        Model:                      FTFP: 9.5 GeV ---> 100 TeV
+        Model:            BertiniCascade: 19.9 MeV ---> 9.9 GeV
+        Model:        NeutronHPInelastic: 0 eV  ---> 20 MeV
+     Cr_sctns:      NeutronHPInelasticXS: 0 eV  ---> 20 MeV
+     Cr_sctns: JENDLHEInelasticCrossSection: 0 eV  ---> 100 TeV
+     Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
+     Cr_sctns:      NeutronHPInelasticXS: 0 eV  ---> 20 MeV
+     Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+  Process: nCapture
+        Model:          NeutronHPCapture: 0 eV  ---> 20 MeV
+        Model:               nRadCapture: 19.9 MeV ---> 100 TeV
+     Cr_sctns:        NeutronHPCaptureXS: 0 eV  ---> 20 MeV
+     Cr_sctns:        G4NeutronCaptureXS: 0 eV  ---> 100 TeV
+     Cr_sctns:        NeutronHPCaptureXS: 0 eV  ---> 20 MeV
+     Cr_sctns:          GheishaCaptureXS: 0 eV  ---> 100 TeV
+
+  Process: nFission
+        Model:          NeutronHPFission: 0 eV  ---> 20 MeV
+        Model:                G4LFission: 19.9 MeV ---> 2.88022e+295 J  
+     Cr_sctns:        NeutronHPFissionXS: 0 eV  ---> 20 MeV
+     Cr_sctns:          GheishaFissionXS: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for pi+
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 1.0001 GeV
+        Model:           hElasticGlauber: 1 GeV ---> 100 TeV
+     Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: pi+Inelastic
+        Model:                      FTFP: 9.5 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 9.9 GeV
+     Cr_sctns:      G4CrossSectionPairGG: 0 eV  ---> 100 TeV
+                         G4CrossSectionPairGG: G4PiNuclearCrossSection cross sections 
+                           below 91 GeV, Glauber-Gribov above 
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for pi-
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 1.0001 GeV
+        Model:           hElasticGlauber: 1 GeV ---> 100 TeV
+     Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: pi-Inelastic
+        Model:                      FTFP: 9.5 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 9.9 GeV
+     Cr_sctns:      G4CrossSectionPairGG: 0 eV  ---> 100 TeV
+                         G4CrossSectionPairGG: G4PiNuclearCrossSection cross sections 
+                           below 91 GeV, Glauber-Gribov above 
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for proton
+
+  Process: hadElastic
+        Model:             hElasticCHIPS: 0 eV  ---> 100 TeV
+     Cr_sctns:      ChipsProtonElasticXS: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: protonInelastic
+        Model:                      FTFP: 9.5 GeV ---> 100 TeV
+        Model:            BertiniCascade: 0 eV  ---> 9.9 GeV
+     Cr_sctns:       Barashenkov-Glauber: 0 eV  ---> 100 TeV
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+---------------------------------------------------
+                           Hadronic Processes for triton
+
+  Process: hadElastic
+        Model:              hElasticLHEP: 0 eV  ---> 100 TeV
+     Cr_sctns:            GheishaElastic: 0 eV  ---> 100 TeV
+
+  Process: tInelastic
+        Model:  Binary Light Ion Cascade: 0 eV  ---> 110 MeV
+        Model:                  QMDModel: 100 MeV ---> 10 GeV
+        Model:                      FTFP: 9.99 GeV ---> 1 TeV
+     Cr_sctns: Glauber-Gribov nucleus nucleus: 0 eV  ---> 2.88022e+295 J  
+     Cr_sctns:          GheishaInelastic: 0 eV  ---> 100 TeV
+
+================================================================
+
+========= Table of registered couples ==============================
+
+Index : 0     used in the geometry : Yes
+ Material : G4_Galactic
+ Range cuts        :  gamma  1 mm     e-  1 mm     e+  1 mm  proton 1 mm 
+ Energy thresholds :  gamma  990 eV     e-  990 eV     e+  990 eV  proton 100 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 1     used in the geometry : Yes
+ Material : G4_MYLAR
+ Range cuts        :  gamma  1 mm     e-  1 mm     e+  1 mm  proton 1 mm 
+ Energy thresholds :  gamma  3.02067 keV    e-  419.056 keV    e+  405.209 keV proton 100 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 2     used in the geometry : Yes
+ Material : G4_KAPTON
+ Range cuts        :  gamma  1 mm     e-  1 mm     e+  1 mm  proton 1 mm 
+ Energy thresholds :  gamma  2.98035 keV    e-  419.056 keV    e+  405.209 keV proton 100 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 3     used in the geometry : Yes
+ Material : G4_Cu
+ Range cuts        :  gamma  1 mm     e-  1 mm     e+  1 mm  proton 1 mm 
+ Energy thresholds :  gamma  24.7508 keV    e-  1.39534 MeV    e+  1.31345 MeV proton 100 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 4     used in the geometry : Yes
+ Material : G4_Al
+ Range cuts        :  gamma  1 mm     e-  1 mm     e+  1 mm  proton 1 mm 
+ Energy thresholds :  gamma  6.90363 keV    e-  598.345 keV    e+  570.85 keV proton 100 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 5     used in the geometry : Yes
+ Material : AlMixMaterial
+ Range cuts        :  gamma  1 mm     e-  1 mm     e+  1 mm  proton 1 mm 
+ Energy thresholds :  gamma  6.95018 keV    e-  602.38 keV    e+  578.575 keV proton 100 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 6     used in the geometry : Yes
+ Material : CarbonFiberAlpide
+ Range cuts        :  gamma  1 mm     e-  1 mm     e+  1 mm  proton 1 mm 
+ Energy thresholds :  gamma  3.10297 keV    e-  499.06 keV    e+  482.57 keV proton 100 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 7     used in the geometry : Yes
+ Material : G4_Si
+ Range cuts        :  gamma  1 mm     e-  1 mm     e+  1 mm  proton 1 mm 
+ Energy thresholds :  gamma  6.95018 keV    e-  548.291 keV    e+  526.624 keV proton 100 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 8     used in the geometry : Yes
+ Material : GlueMaterial
+ Range cuts        :  gamma  1 mm     e-  1 mm     e+  1 mm  proton 1 mm 
+ Energy thresholds :  gamma  2.50257 keV    e-  333.46 keV    e+  324.616 keV proton 100 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 9     used in the geometry : Yes
+ Material : ScintillatorEJ200
+ Range cuts        :  gamma  1 mm     e-  1 mm     e+  1 mm  proton 1 mm 
+ Energy thresholds :  gamma  2.40367 keV    e-  356.639 keV    e+  344.855 keV proton 100 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 10     used in the geometry : Yes
+ Material : PoronMaterial
+ Range cuts        :  gamma  1 mm     e-  1 mm     e+  1 mm  proton 1 mm 
+ Energy thresholds :  gamma  1.63878 keV    e-  180.909 keV    e+  178.494 keV proton 100 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 11     used in the geometry : Yes
+ Material : LightGuideMat
+ Range cuts        :  gamma  1 mm     e-  1 mm     e+  1 mm  proton 1 mm 
+ Energy thresholds :  gamma  2.40367 keV    e-  356.639 keV    e+  344.855 keV proton 100 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 12     used in the geometry : Yes
+ Material : Aluminium_Opt
+ Range cuts        :  gamma  1 mm     e-  1 mm     e+  1 mm  proton 1 mm 
+ Energy thresholds :  gamma  6.90363 keV    e-  598.345 keV    e+  570.85 keV proton 100 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 13     used in the geometry : Yes
+ Material : CarbonFiberCalo
+ Range cuts        :  gamma  1 mm     e-  1 mm     e+  1 mm  proton 1 mm 
+ Energy thresholds :  gamma  2.92086 keV    e-  442.201 keV    e+  427.59 keV proton 100 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 14     used in the geometry : Yes
+ Material : LYSO
+ Range cuts        :  gamma  1 mm     e-  1 mm     e+  1 mm  proton 1 mm 
+ Energy thresholds :  gamma  66.022 keV    e-  1.05931 MeV    e+  1.00386 MeV proton 100 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+Index : 15     used in the geometry : Yes
+ Material : SiliconeMaterial
+ Range cuts        :  gamma  1 mm     e-  1 mm     e+  1 mm  proton 1 mm 
+ Energy thresholds :  gamma  4.4905 keV    e-  349.521 keV    e+  337.972 keV proton 100 keV
+ Region(s) which use this couple : 
+    DefaultRegionForTheWorld
+
+====================================================================
+
+### Run 0 starts.
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type gen
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type p
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type Alp1Pos
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type Alp2Pos
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type Alp3Pos
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type Alp1Dir
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type Alp2Dir
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type Alp3Dir
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type T1Edep
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type T2Edep
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type PEdep
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type L1Edep
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type L2Edep
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type VEdep
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type phot
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type phot_energy
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type T1Leng
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type T2Leng
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type PLeng
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type L1Leng
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type L2Leng
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+
+-------- WWWW ------- G4Exception-START -------- WWWW -------
+*** G4Exception : Analysis_W002
+      issued by : G4RootNtupleManager::CreateNtupleFromBooking()
+      Unsupported column type VLeng
+*** This is just a warning message. ***
+-------- WWWW -------- G4Exception-END --------- WWWW -------
+
+... open Root analysis file : HEPD2.root - done
+--> Event 0 starts.
+
+*********************************************************************************************************
+* G4Track Information:   Particle = e-,   Track ID = 1,   Parent ID = 0
+*********************************************************************************************************
+
+Step#    X(mm)    Y(mm)    Z(mm) KinE(MeV)  dE(MeV) StepLeng TrackLeng  NextVolume ProcName
+    0        0        0        0        50        0        0         0         Det initStep
+    1        0        0      500        50 1.73e-23      500       500     Blanket Transportation
+    2        0        0      500        50   0.0282      0.2       500         Det Transportation
+    3   -0.501    0.296      629        50 4.47e-24      129       629 WindowContainer Transportation
+    4   -0.505    0.298      630        50 3.81e-26      1.1       630   WindowOut Transportation
+    5   -0.507    0.299      631      49.9   0.0918     0.45       631    WindowIn Transportation
+    6   -0.508     0.31      631      49.5    0.286    0.266       631    WindowIn eBrem
+    7   -0.508     0.31      631      49.4    0.173   0.0841       631 WindowContainer Transportation
+    8   -0.472    0.325      632      49.4 3.81e-26      1.1       632         Det Transportation
+    9     1.76     1.24      701      49.4 2.37e-24     68.5       701 AStaveCont0 Transportation
+   10     1.98     1.33      707      49.4 2.28e-25     6.58       707 AlStaveColdPlatePV Transportation
+   11     1.99     1.33      708      49.3     0.09     0.42       708 AlSensorStave Transportation
+   12     1.99     1.34      708      49.3  0.00762     0.05       708   AlpActive Transportation
+   13     1.99     1.34      708      49.2   0.0198     0.05       708     AlFpcPV Transportation
+   14        2     1.34      708      49.2 1.56e-27    0.045       708         FPC Transportation
+   15        2     1.34      708      49.2  0.00628     0.05       708         FPC Transportation
+   16        2     1.34      708      49.2   0.0443     0.04       708         FPC Transportation
+   17        2     1.34      708      49.2   0.0377     0.14       708     AlFpcPV Transportation
+   18        2     1.34      708      49.2 1.56e-27    0.045       708 AStaveCont0 Transportation
+   19     2.04     1.36      709      49.2 4.09e-26     1.18       709 AStaveCont1 Transportation
+   20     2.24     1.48      716      49.2 2.28e-25     6.58       716 AlStaveColdPlatePV Transportation
+   21     2.25     1.49      716        49    0.123     0.42       716 AlSensorStave Transportation
+   22     2.25     1.49      716        49  0.00403     0.05       716   AlpActive Transportation
+   23     2.25     1.49      716        49   0.0089     0.05       716     AlFpcPV Transportation
+   24     2.25     1.49      716        49 1.56e-27    0.045       716         FPC Transportation
+   25     2.25     1.49      716        49   0.0206     0.05       716         FPC Transportation
+   26     2.25      1.5      716      48.9   0.0734     0.04       716         FPC Transportation
+   27     2.26      1.5      717      48.9   0.0189     0.14       717     AlFpcPV Transportation
+   28     2.26      1.5      717      48.9 1.56e-27    0.045       717 AStaveCont1 Transportation
+   29     2.29      1.5      718      48.9 4.08e-26     1.18       718 AStaveCont2 Transportation
+   30     2.44     1.54      724      48.9 2.28e-25     6.58       724 AlStaveColdPlatePV Transportation
+   31     2.45     1.54      725      48.8    0.135     0.42       725 AlSensorStave Transportation
+   32     2.45     1.54      725      48.8  0.00673     0.05       725   AlpActive Transportation
+   33     2.45     1.54      725      48.7    0.038     0.05       725     AlFpcPV Transportation
+   34     2.45     1.54      725      48.7 1.56e-27    0.045       725         FPC Transportation
+   35     2.45     1.54      725      48.7  0.00439     0.05       725         FPC Transportation
+   36     2.45     1.55      725      48.7    0.039     0.04       725         FPC Transportation
+   37     2.46     1.55      725      48.7   0.0229     0.14       725     AlFpcPV Transportation
+   38     2.46     1.55      725      48.7 1.56e-27    0.045       725 AStaveCont2 Transportation
+   39     2.47     1.54      726      48.7 4.08e-26     1.18       726         Det Transportation
+   40     2.53     1.53      730      48.7 1.27e-25     3.67       730      T1Cont Transportation
+   41     2.62     1.52      737      48.7 2.25e-25      6.5       737 CompPlaneBeforeT1 Transportation
+   42     2.64     1.52      737      48.5    0.147      0.8       737 PoronBeforeT1 Transportation
+   43     2.65     1.53      740      48.4    0.129      2.2       740 WrappingBeforeT1 Transportation
+   44     2.65     1.57      741      48.3   0.0907      1.5       741        Bar1 Transportation
+   45     2.67     1.63      743        48    0.302        2       743 WrappingAfterT1 Transportation
+
+ *** Break *** segmentation violation
+
+
+
+===========================================================
+There was a crash.
+This is the entire stack trace of all threads:
+===========================================================
+#0  0x00007f72370865ba in __GI___waitpid (pid=15497, stat_loc=stat_loc
+entry=0x7fff06bf8240, options=options
+entry=0) at ../sysdeps/unix/sysv/linux/waitpid.c:29
+#1  0x00007f7236fff42b in do_system (line=<optimized out>) at ../sysdeps/posix/system.c:148
+#2  0x00007f72444c04b7 in TUnixSystem::Exec (shellcmd=<optimized out>, this=0x11314a0) at /home/pzuccon/root-6.16.00/core/unix/src/TUnixSystem.cxx:2119
+#3  TUnixSystem::StackTrace (this=0x11314a0) at /home/pzuccon/root-6.16.00/core/unix/src/TUnixSystem.cxx:2413
+#4  0x00007f72444c2c04 in TUnixSystem::DispatchSignals (this=0x11314a0, sig=kSigSegmentationViolation) at /home/pzuccon/root-6.16.00/core/unix/src/TUnixSystem.cxx:3644
+#5  <signal handler called>
+#6  0x000000000044e600 in HEPD2MCEventAction::AddT1Bars (this=0x13ef0a0, de=0.3022769152540361, dl=2.0013298914633593, copynumber=20114544) at /home/pzuccon/work/limadou/HEPD2_MC/include/HEPD2MCEventAction.hh:185
+#7  0x000000000044b8ec in HEPD2MCSteppingAction::UserSteppingAction (this=0x140fb20, step=0x132eb40) at /home/pzuccon/work/limadou/HEPD2_MC/src/HEPD2MCSteppingAction.cc:67
+#8  0x00007f723b51ac35 in G4SteppingManager::Stepping (this=0x132e9a0) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/tracking/src/G4SteppingManager.cc:243
+#9  0x00007f723b524f1d in G4TrackingManager::ProcessOneTrack (this=0x132e960, apValueG4Track=apValueG4Track
+entry=0x77048b0) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/tracking/src/G4TrackingManager.cc:126
+#10 0x00007f723b7587ee in G4EventManager::DoProcessing (this=0x132e8c0, anEvent=<optimized out>) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/event/src/G4EventManager.cc:185
+#11 0x00007f723b7590ac in G4EventManager::ProcessOneEvent (this=<optimized out>, anEvent=<optimized out>) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/event/src/G4EventManager.cc:336
+#12 0x00007f723b9e00b7 in G4RunManager::ProcessOneEvent (this=0x11f8d40, i_event=0) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/run/src/G4RunManager.cc:399
+#13 0x00007f723b9de823 in G4RunManager::DoEventLoop (this=0x11f8d40, n_event=1, macroFile=<optimized out>, n_select=<optimized out>) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/run/src/G4RunManager.cc:367
+#14 0x00007f723b9de61e in G4RunManager::BeamOn (this=0x11f8d40, n_event=1, macroFile=0x0, n_select=-1) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/run/src/G4RunManager.cc:273
+#15 0x00007f723b9f692f in G4RunMessenger::SetNewValue (this=0x13b2a60, command=command
+entry=0x13b2f30, newValue=...) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/run/src/G4RunMessenger.cc:361
+#16 0x00007f7238343d96 in G4UIcommand::DoIt (this=this
+entry=0x13b2f30, parameterList=...) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UIcommand.cc:230
+#17 0x00007f7238357392 in G4UImanager::ApplyCommand (this=0x10fb230, aCmd=<optimized out>) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UImanager.cc:509
+#18 0x00007f7238357a48 in G4UImanager::ApplyCommand (this=<optimized out>, aCmd=...) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UImanager.cc:427
+#19 0x00007f7238334b77 in G4UIbatch::ExecCommand (this=this
+entry=0x27d7300, command=...) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UIbatch.cc:170
+#20 0x00007f7238335dbe in G4UIbatch::SessionStart (this=0x27d7300) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UIbatch.cc:215
+#21 0x00007f7238357d52 in G4UImanager::ExecuteMacroFile (this=this
+entry=0x10fb230, fileName=0x7fff06bfc020 "run1.mac") at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UImanager.cc:282
+#22 0x00007f723834aed6 in G4UIcontrolMessenger::SetNewValue (this=0x10fb660, command=command
+entry=0x10fbeb0, newValue=...) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UIcontrolMessenger.cc:313
+#23 0x00007f7238343d96 in G4UIcommand::DoIt (this=this
+entry=0x10fbeb0, parameterList=...) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UIcommand.cc:230
+#24 0x00007f7238357392 in G4UImanager::ApplyCommand (this=0x10fb230, aCmd=<optimized out>) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UImanager.cc:509
+#25 0x000000000041d90f in main (argc=3, argv=0x7fff06bfc888) at /home/pzuccon/work/limadou/HEPD2_MC/HEPD2_MC.cc:140
+===========================================================
+
+
+The lines below might hint at the cause of the crash.
+You may get help by asking at the ROOT forum http://root.cern.ch/forum
+Only if you are really convinced it is a bug in ROOT then please submit a
+report at http://root.cern.ch/bugs Please post the ENTIRE stack trace
+from above as an attachment in addition to anything else
+that might help us fixing this issue.
+===========================================================
+#6  0x000000000044e600 in HEPD2MCEventAction::AddT1Bars (this=0x13ef0a0, de=0.3022769152540361, dl=2.0013298914633593, copynumber=20114544) at /home/pzuccon/work/limadou/HEPD2_MC/include/HEPD2MCEventAction.hh:185
+#7  0x000000000044b8ec in HEPD2MCSteppingAction::UserSteppingAction (this=0x140fb20, step=0x132eb40) at /home/pzuccon/work/limadou/HEPD2_MC/src/HEPD2MCSteppingAction.cc:67
+#8  0x00007f723b51ac35 in G4SteppingManager::Stepping (this=0x132e9a0) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/tracking/src/G4SteppingManager.cc:243
+#9  0x00007f723b524f1d in G4TrackingManager::ProcessOneTrack (this=0x132e960, apValueG4Track=apValueG4Track
+entry=0x77048b0) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/tracking/src/G4TrackingManager.cc:126
+#10 0x00007f723b7587ee in G4EventManager::DoProcessing (this=0x132e8c0, anEvent=<optimized out>) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/event/src/G4EventManager.cc:185
+#11 0x00007f723b7590ac in G4EventManager::ProcessOneEvent (this=<optimized out>, anEvent=<optimized out>) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/event/src/G4EventManager.cc:336
+#12 0x00007f723b9e00b7 in G4RunManager::ProcessOneEvent (this=0x11f8d40, i_event=0) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/run/src/G4RunManager.cc:399
+#13 0x00007f723b9de823 in G4RunManager::DoEventLoop (this=0x11f8d40, n_event=1, macroFile=<optimized out>, n_select=<optimized out>) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/run/src/G4RunManager.cc:367
+#14 0x00007f723b9de61e in G4RunManager::BeamOn (this=0x11f8d40, n_event=1, macroFile=0x0, n_select=-1) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/run/src/G4RunManager.cc:273
+#15 0x00007f723b9f692f in G4RunMessenger::SetNewValue (this=0x13b2a60, command=command
+entry=0x13b2f30, newValue=...) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/run/src/G4RunMessenger.cc:361
+#16 0x00007f7238343d96 in G4UIcommand::DoIt (this=this
+entry=0x13b2f30, parameterList=...) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UIcommand.cc:230
+#17 0x00007f7238357392 in G4UImanager::ApplyCommand (this=0x10fb230, aCmd=<optimized out>) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UImanager.cc:509
+#18 0x00007f7238357a48 in G4UImanager::ApplyCommand (this=<optimized out>, aCmd=...) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UImanager.cc:427
+#19 0x00007f7238334b77 in G4UIbatch::ExecCommand (this=this
+entry=0x27d7300, command=...) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UIbatch.cc:170
+#20 0x00007f7238335dbe in G4UIbatch::SessionStart (this=0x27d7300) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UIbatch.cc:215
+#21 0x00007f7238357d52 in G4UImanager::ExecuteMacroFile (this=this
+entry=0x10fb230, fileName=0x7fff06bfc020 "run1.mac") at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UImanager.cc:282
+#22 0x00007f723834aed6 in G4UIcontrolMessenger::SetNewValue (this=0x10fb660, command=command
+entry=0x10fbeb0, newValue=...) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UIcontrolMessenger.cc:313
+#23 0x00007f7238343d96 in G4UIcommand::DoIt (this=this
+entry=0x10fbeb0, parameterList=...) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UIcommand.cc:230
+#24 0x00007f7238357392 in G4UImanager::ApplyCommand (this=0x10fb230, aCmd=<optimized out>) at /home/pzuccon/work/limadou/geant4_10_01_p03/source/intercoms/src/G4UImanager.cc:509
+#25 0x000000000041d90f in main (argc=3, argv=0x7fff06bfc888) at /home/pzuccon/work/limadou/HEPD2_MC/HEPD2_MC.cc:140
+===========================================================
+
+
+WARNING - Attempt to delete the physical volume store while geometry closed !
+WARNING - Attempt to delete the logical volume store while geometry closed !
+WARNING - Attempt to delete the solid store while geometry closed !
+WARNING - Attempt to delete the region store while geometry closed !
