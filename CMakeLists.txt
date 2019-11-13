@@ -65,7 +65,7 @@ file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 option(STATIC_BUILD "Build HEPDSW static library" ON)
 STRING(TOUPPER ${STATIC_BUILD} staticbuild)
 STRING(COMPARE EQUAL ${staticbuild} "ON" test_res)
-set(ROOT_LIBRARIES "${ROOT_LIBRARIES} -lGeom  -L${PROJECT_SOURCE_DIR}/../VGM/lib64/ -lClhepVGM -lBaseVGM -lGeant4GM -lRootGM -lXmlVGM")
+set(ROOT_LIBRARIES "${ROOT_LIBRARIES} -lGeom  -L${PROJECT_SOURCE_DIR}/../VGM/lib/ -lClhepVGM -lBaseVGM -lGeant4GM -lRootGM -lXmlVGM")
 if (test_res)
     add_library(hepdsw_lib STATIC ${sources} ${headers})
 
@@ -76,9 +76,9 @@ endif()
 set_target_properties(hepdsw_lib PROPERTIES OUTPUT_NAME "hepdsw")
 target_link_libraries(hepdsw_lib  ${Geant4_LIBRARIES} ${ROOT_LIBRARIES})
 
-#dd the dictionary to the list of source files 
-set(sources ${sources} ${DataFormats_DICTIONARY})  
- 
+#dd the dictionary to the list of source files
+set(sources ${sources} ${DataFormats_DICTIONARY})
+
 #----------------------------------------------------------------------------
 # Add the executable, and link it to the Geant4 libraries
 #

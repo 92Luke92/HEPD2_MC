@@ -673,11 +673,13 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
 
 	// G4LogicalVolume* AlpContLV = new G4LogicalVolume(AlpContS, defaultMaterial, "AlpCont");
   G4LogicalVolume* AlpContLV = GetAlTracker();
-   fAlpContPV = new G4PVPlacement(0, 
-               G4ThreeVector(-ColdPlateShift_X,
-                 0.,
-                 axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+window_dist+(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+3.*GlueFPC_SizeZ+3.*GlueColdPlate_SizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.), 
-               AlpContLV, "AlpCont", detLV, false, 0, fCheckOverlaps);
+  G4RotationMatrix *FHR = new G4RotationMatrix();
+  FHR->rotateX(M_PI * rad);
+  fAlpContPV = new G4PVPlacement(G4Transform3D(*FHR,
+                                 G4ThreeVector(-ColdPlateShift_X-20*mm,
+                                               0.,
+                                               axes + blanket_dist + Blanket_Z + windowOut_Z + windowIn_Z + window_dist + (CuSupportSizeZ + FPCSizeZ + 3. * alpideSizeZ + 3. * GlueFPC_SizeZ + 3. * GlueColdPlate_SizeZ + 2. * alpideGap + ColdPlateSizeZ + AlpRibsZ) / 2.)),
+                                 AlpContLV, "AlpCont", detLV, false, 0, fCheckOverlaps);
    
 	// fAlpContPV = new G4PVPlacement(0, 
 	// 			       G4ThreeVector(-ColdPlateShift_X,
