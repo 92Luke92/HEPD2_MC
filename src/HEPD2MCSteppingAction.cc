@@ -30,7 +30,7 @@ void HEPD2MCSteppingAction::UserSteppingAction(const G4Step* step)
   
   //energy deposit
   G4double edep = step->GetTotalEnergyDeposit();
-    
+  
   //step length
   G4double stepLength = 0.;
   if ( step->GetTrack()->GetDefinition()->GetPDGCharge() != 0.)
