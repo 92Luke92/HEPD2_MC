@@ -71,10 +71,15 @@ HEPD2MCRunAction::HEPD2MCRunAction(HEPD2MCEventAction* eventAction)
   analysisManager->CreateNtupleDColumn("L2Leng", fEventAction->GetVL2Leng());
   analysisManager->CreateNtupleDColumn("VLeng", fEventAction->GetVVLeng());
   
+  analysisManager->CreateNtupleDColumn("EGammaKin");
+  
   analysisManager->CreateNtupleDColumn("EBeforeT1");
   analysisManager->CreateNtupleDColumn("EBeforeT2");
   analysisManager->CreateNtupleDColumn("EBeforeP1");
-  
+
+  analysisManager->CreateNtupleDColumn("WinPos",fEventAction->GetWinPos());
+  analysisManager->CreateNtupleDColumn("WinDir", fEventAction->GetWinDir());
+
   analysisManager->FinishNtuple();
 }
 
