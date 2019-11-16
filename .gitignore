@@ -1,2 +1,9 @@
 build/
 *~
+mysel.C
+mysel.h
+HEPD2.root
+install/bin/HEPD2_MC
+G4History.macro
+geom.root
+HEPD2.root
