@@ -38,10 +38,15 @@ public:
   void AddAlp(G4double de, G4double dl, G4int copynumber, G4double X, G4double Y, G4double Z);
   
   void AddAlpMSC(G4int copynumber, G4double theta, G4double phi);
+  void AddAlpMSCPre(G4int copynumber, G4double theta, G4double phi);
   void AddEBeforeT1(G4double E);
   void AddEBeforeT2(G4double E);
   void AddEBeforeP1(G4double E);
   
+  void AddGammaKin(G4double E);
+  
+  void AddWin(G4double X, G4double Y, G4double Z, G4double theta, G4double phi);
+
   std::vector<G4double>& GetVgen() {return fVgen;}
   std::vector<G4double>& GetVp() {return fVp;}
   std::vector<G4double>& GetVT1Edep() {return fVT1Edep;}
@@ -65,7 +70,10 @@ public:
   std::vector<G4double>& GetAlp1Dir() {return fVAlp1Dir;}
   std::vector<G4double>& GetAlp2Dir() {return fVAlp2Dir;}
   std::vector<G4double>& GetAlp3Dir() {return fVAlp3Dir;}
-  
+
+  std::vector<G4double> &GetWinPos() { return fVWinPos; }
+  std::vector<G4double> &GetWinDir() { return fVWinDir; }
+
   void AddPhot(G4int pmtID);
   void AddPhotEnergy(G4int pmtID, G4double E);
   std::vector<G4int>& GetPhot() {return fVphot;}
@@ -91,10 +99,13 @@ private:
   std::vector<G4double> fVL1Leng;
   std::vector<G4double> fVL2Leng;
   std::vector<G4double> fVVLeng;
-  
-  G4double  fTA[3];
-  G4double  fTT1[NBARS];
-  G4double  fTT2[NBARS];
+  std::vector<G4double> fVWinPos;
+  std::vector<G4double> fVWinDir;
+  G4double fWinDir[2], fWinPos[3];
+
+  G4double fTA[3];
+  G4double  fTT1[NBARST1];
+  G4double  fTT2[NBARST2];
   G4double  fTP[NCALOPLANES];
   G4double  fTC1[NCRYSTALS];
   G4double  fTC2[NCRYSTALS];
@@ -106,8 +117,8 @@ private:
   G4double fPhotEnergy[NPMTS];
   
   G4double  fEA[3];
-  G4double  fET1[NBARS];
-  G4double  fET2[NBARS];
+  G4double  fET1[NBARST1];
+  G4double  fET2[NBARST2];
   G4double  fEP[NCALOPLANES];
   G4double  fEC1[NCRYSTALS];
   G4double  fEC2[NCRYSTALS];
@@ -123,7 +134,9 @@ private:
   std::vector<G4double> fVAlp1Dir;
   std::vector<G4double> fVAlp2Dir;
   std::vector<G4double> fVAlp3Dir;
-  G4double fAlp1Dir[2], fAlp2Dir[2], fAlp3Dir[2];
+  G4double fAlp1Dir[4], fAlp2Dir[4], fAlp3Dir[4];
+  
+  G4double fGammaKin;
   
   G4double fEBeforeT1;
   G4double fEBeforeT2;
@@ -159,6 +172,17 @@ inline void HEPD2MCEventAction::AddAlp(G4double de, G4double dl, G4int copynumbe
   
 }
 
+inline void HEPD2MCEventAction::AddWin(G4double X, G4double Y, G4double Z, G4double theta, G4double phi)
+{
+  fWinPos[0] = X;
+  fWinPos[1] = Y;
+  fWinPos[2] = Z;
+  fWinDir[0] = theta;
+  fWinDir[1] = phi;
+}
+
+
+
 inline void HEPD2MCEventAction::AddAlpMSC(G4int copynumber, G4double theta, G4double phi)
 {
   G4int nplane = copynumber;
@@ -179,6 +203,30 @@ inline void HEPD2MCEventAction::AddAlpMSC(G4int copynumber, G4double theta, G4do
   }
   
 }
+
+inline void HEPD2MCEventAction::AddAlpMSCPre(G4int copynumber, G4double theta, G4double phi)
+{
+  G4int nplane = copynumber;
+
+  if (nplane == 0)
+  {
+    fAlp1Dir[2] = theta;
+    fAlp1Dir[3] = phi;
+  }
+
+  if (nplane == 1)
+  {
+    fAlp2Dir[2] = theta;
+    fAlp2Dir[3] = phi;
+  }
+
+  if (nplane == 2)
+  {
+    fAlp3Dir[2] = theta;
+    fAlp3Dir[3] = phi;
+  }
+}
+
 
 inline void HEPD2MCEventAction::AddT1Bars(G4double de, G4double dl, G4int copynumber)
 {
@@ -236,6 +284,11 @@ inline void HEPD2MCEventAction::AddEBeforeT2(G4double E)
 inline void HEPD2MCEventAction::AddEBeforeP1(G4double E)
 {
   fEBeforeP1 = E;
+}
+
+inline void HEPD2MCEventAction::AddGammaKin(G4double E)
+{
+  fGammaKin += E;
 }
 
 inline void HEPD2MCEventAction::AddPhot(G4int pmtID)

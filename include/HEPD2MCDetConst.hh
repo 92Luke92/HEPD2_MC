@@ -7,25 +7,23 @@
 
 #ifndef HEPD2MC_CONST
 #define HEPD2MC_CONST
-#include "G4SystemOfUnits.hh"
 
 //all measurements must be in MILLIMETERS
 
 //AXES
-const double AXESBLANKET_DIST = 10.*cm; //distance between origin of axes and blanket
+const double AXESBLANKET_DIST = 10.; //distance between origin of axes and blanket
 
 //THERMAL BLANKET
-const double BLANKET_SIZEX = 258.*mm; //horizontal width of blanket
-const double BLANKET_SIZEY = 236.*mm; //vertical width of blanket
-const double BLANKET_SIZEZ = 0.068 *cm; //thickness of blanket
-const double BLANKETWINDOW_DIST = 13.*cm; //distance between blanket and window
+const double BLANKET_SIZEX = 258.; //horizontal width of blanket
+const double BLANKET_SIZEY = 236.; //vertical width of blanket
+const double BLANKET_SIZEZ = 0.068; //thickness of blanket
+const double BLANKETWINDOW_DIST = 13.; //distance between blanket and window
 
 //WINDOW
 const double WINDOW_SIZEX = BLANKET_SIZEX; //horizontal width of window
 const double WINDOW_SIZEY = BLANKET_SIZEY; //vertical width of window
-const double WINDOWOUT_THICKNESS = 0.045*cm; //thickness of window out plane
-const double WINDOWIN_THICKNESS = 0.035*cm; //thickness of window in plane
-const double WINDOWALPIDE_DIST = 7.*cm; //distance between window and first alpide plane
+const double WINDOWOUT_THICKNESS = 0.045; //thickness of window out plane
+const double WINDOWIN_THICKNESS = 0.035; //thickness of window in plane
 
 //WALLHONEYCOMB
 const double WALLHONEYCOMB_SIZEX = 348.; //horizontal width of honeycomb wall
@@ -33,23 +31,29 @@ const double WALLHONEYCOMB_SIZEY = 486.; //vertical width of honeycomb wall
 const double WALLHONEYCOMB_THICKNESS = 2.; //thickness of honeycomb wall
 const double WALLEXTERNAL_THICKNESS = 0.5; //thickness of external wall
 
+//PLATE KAPTON
+const double KPLATE_SIZEZ = 0.15; //thickness of plate in kapton before and after alpide
+const double KPLATEWALL_GAP = 33.; //distance between plate before alpide and wall honeycomb
+const double KPLATECOLDPLATE_GAP = 10.8; //distance between plate before alpide and coldplate of the 1st alpide stave
+const double KPLATEFPC_GAP = 4.5; //distance between plate after alpide and last fpc alpide stave
+
 //ALPIDE
 const int NALPIDEX = 5; //number of horizontal alpide sensors
 const int NALPIDEY = 10; //number of vertical alpide sensors
-const double ALPIDE_SIZEX = 30.*mm; //horizontal width of one alpide sensor
-const double ALPIDE_SIZEY = 15.*mm; //vertical width of one alpide sensor
-const double ALPIDE_SIZEZ = 0.05 *mm; //thickness of one alpide sensor
+const double ALPIDE_SIZEX = 30.; //horizontal width of one alpide sensor
+const double ALPIDE_SIZEY = 15.; //vertical width of one alpide sensor
+const double ALPIDE_SIZEZ = 0.05; //thickness of one alpide sensor
 const double ALPIDEACTIVE_SIZEX = 29.94; //horizontal width of one alpide active sensor
 const double ALPIDEACTIVE_SIZEY = 13.76; //vertical width of one alpide active sensor
 const double ALPIDEACTIVE_SIZEZ = 0.05; //thickness of one alpide active sensor
-const double ALPIDE_GAP = 8.38; //distance between two alpide sensors
-const double ALPIDETRIG_DIST = 18.; //distance between last alpide sensor and first trigger plane
+const double ALPIDE_GAP = 8.5; //distance between two alpide sensors
+const double ALPIDETRIG_DIST = 16.2; //distance between last alpide sensor and first trigger plane
 const double ALPIDE_GAPY = 0.63; //half distance between ribs of two adjacent towers of alpide
 const double ALPCHIP_GAP = 0.15; //distance between two chips of the same stave
 
 //ALPIDE RIBS
-const double ALPRIBS_SIZEX = 190.*mm;
-const double ALPRIBS_SIZEY = 1.9;
+const double ALPRIBS_SIZEX = 196.;
+const double ALPRIBS_SIZEY = 2.;
 const double ALPRIBS_SIZEZ = 7.;
 
 //CU SUPPORT ALPIDE
@@ -81,27 +85,25 @@ const double ALPINTERFACE_SIZEY = 222.;
 const double ALPINTERFACE_THICKNESS = 4.;
 
 //TRIGGER
-const int NBARS = 5; //number of bars per trigger plane
-const double TRIGGER_GAP = 11.; //distance between the two trigger planes
-const double TRIGPLANE_DIST = 14.; //distance between trigger planes and calo tower
-const double BARS_GAP = 4.86; //distance between two bars of the same trigger plane
+const int NBARST1 = 5; //number of bars per trigger plane T1
+const int NBARST2 = 4; //number of bars per trigger plane T2
+const double TRIGGER_GAP = 18.8; //distance between the two trigger planes (14.5)
+const double TRIGPLANE_DIST = 15.; //distance between trigger planes and calo tower
+const double BARS_GAP = 1.9; //distance between two bars of the same trigger plane
 
 //T1
 const double TRIGGER1_THICKNESS = 2.; //thickness of first trigger plane
-const double TRIGGER1_SIZEX = 152.; //horizontal width of the 1st trigger plane
-const double TRIGGER1_SIZEY = 175.; //vertical width of the 1st trigger plane
-
-//T1 PORON
-const double T1PORON_THICKNESS = 2.2; //thickness of poron before and after T1 bars
+const double TRIGGER1_SIZEX = 154.; //horizontal width of the 1st trigger plane
+const double TRIGGER1_SIZEY = 176.3; //vertical width of the 1st trigger plane
 
 //T2 PORON
 const double T2PORON_THICKNESS = 0.7; //thickness of poron before and after T1 bars
 
 //T1 WRAPPING
-const double T1WRAPPING_THICKNESS = 1.5; //thickness of wrapping per side for T1 bars
+const double T1WRAPPING_THICKNESS = 0.25; //thickness of wrapping per side for T1 bars
 
 //T2 WRAPPING
-const double T2WRAPPING_THICKNESS = 1.5; //thickness of wrapping per side for T2 bars
+const double T2WRAPPING_THICKNESS = 0.25; //thickness of wrapping per side for T2 bars
 
 //T1 FRAME SUPPORT
 const double FRAMET1_SIZEX = 4.; //X dimension of T1 frame 
@@ -114,26 +116,27 @@ const int LGEXIT_X = 8.; //x coordinate of light guide surface coupling with PMT
 const int LGEXIT_Y = 8.; //y coordinate of light guide surface coupling with PMT
 const int LG_HEIGHT = 20.; //height of light guide
 
-//T1 RIBS
-const double T1RIBS_SIZEX = TRIGGER1_SIZEX+2*LG_HEIGHT; //X dimension of T1 support ribs
-const double T1RIBS_SIZEY = 1.; //Y dimension of T1 support ribs
-const double T1RIBS_SIZEZ = 2.*T1PORON_THICKNESS + 2.*T1WRAPPING_THICKNESS + TRIGGER1_THICKNESS; //Z dimension of T1 support ribs
-
 //T2
 const double TRIGGER2_THICKNESS = 8.; //thickness of second trigger plane
-const double TRIGGER2_SIZEX = 170.; //horizontal width of the 2nd trigger plane
+const double TRIGGER2_SIZEX = 150.; //horizontal width of the 2nd trigger plane
 const double TRIGGER2_SIZEY = 150.; //vertical width of the 2nd trigger plane
 
 //TRIGGER COMP PLANE T1
-const double T1COMP_THICKNESS = 0.8; //thickness of the carbon fiber plane, positioned before T1, after T1, before T2 and after T2
+const double T1COMP_THICKNESS = 0.8; //thickness of the carbon fiber plane, positioned before T1 and after T1
+const double T1COMP_DIST = 3.; //distance between the comp plane and the bar
+
+//T1 RIBS
+const double T1RIBS_SIZEX = TRIGGER1_SIZEX+2*LG_HEIGHT; //X dimension of T1 support ribs
+const double T1RIBS_SIZEY = 1.; //Y dimension of T1 support ribs
+const double T1RIBS_SIZEZ = 2.*T1WRAPPING_THICKNESS + TRIGGER1_THICKNESS + 2.*T1COMP_DIST; //Z dimension of T1 support ribs
 
 //TRIGGER COMP PLANE T2
-const double T2COMP_THICKNESS = 0.8; //thickness of the carbon fiber plane, positioned before T1, after T1, before T2 and after T2
+const double T2COMP_THICKNESS = 0.8; //thickness of the carbon fiber plane, positioned before T2 and after T2
 
 //T2 RIBS
-const double T2RIBS_SIZEX = 1.; //X dimension of T1 support ribs
-const double T2RIBS_SIZEY = TRIGGER2_SIZEY; //Y dimension of T1 support ribs
-const double T2RIBS_SIZEZ = 12.; //Z dimension of T1 support ribs
+const double T2RIBS_SIZEX = 1.; //X dimension of T2 support ribs
+const double T2RIBS_SIZEY = TRIGGER2_SIZEY; //Y dimension of T2 support ribs
+const double T2RIBS_SIZEZ = TRIGGER2_THICKNESS+2.*T2WRAPPING_THICKNESS + 2.*T2PORON_THICKNESS; //Z dimension of T2 support ribs
 
 //CALORIMETER
 const int NCALOPLANES_BLOCK1 = 3;
@@ -147,14 +150,14 @@ const double DIST_CALOBLOCKS = 8.; //distance between two calo blocks
 
 const double PCOMPPLANE_THICKNESS = 1.;
 const double PPORON_THICKNESS = 0.7;
-const double PWRAPPING_THICKNESS = 1.5;
+const double PWRAPPING_THICKNESS = 0.25;
 
 //CRYSTALS
 const int NCRYSTALS = 3; //number of bar crystals per plane
 const double CRYSTAL_THICKNESS = 25.; //thickness of one crystal
 const double CRYSTAL_SIZEX = 50.; //horizontal width of a crystal
 const double CRYSTAL_SIZEY = 150.; //vertical width of a crystal
-const double CWRAPPING_THICKNESS = 1.5; //thickness of a lyso wrapping
+const double CWRAPPING_THICKNESS = 0.25; //thickness of a lyso wrapping
 const double SCOTCHTAPE_THICKNESS = 0.8; //thickness of a scotch tape
 const double SCOTCHTAPE_SIZEY = 20.; //horizontal width of a scotch tape
 const double SCOTCHTAPE_DIST = 6.; //distance between 2 scotch tapes on the same crystal
@@ -171,14 +174,14 @@ const double DIST_LASTPLANE_LYSOCOVER = 4.;
 
 //VETO LATERAL
 const double VETOLATCONT_X = 222.;
-const double VETOLATCONT_Y = 305.;
+const double VETOLATCONT_Y = 274.;
 const double VETO_THICKNESS = 8.; //thickness of veto
 const double VETO_HOLEX = 15.1;
 const double VETO_HOLEY = 46.1;
 const double VETOLAT_X = 198.;
-const double VETOLAT_Y = 283.;
+const double VETOLAT_Y = 250.;
 const double VPORON_THICKNESS = 3.;
-const double VWRAPPING_THICKNESS = 1.5;
+const double VWRAPPING_THICKNESS = 0.25;
 const double VETOLATCOVER_THICKNESS = 1.;
 
 //VETO BOTTOM

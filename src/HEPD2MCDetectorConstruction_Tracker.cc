@@ -191,14 +191,14 @@ G4LogicalVolume* GetAlFpcLV(){
 	// Stack is from below: Glue Copper Plastic
 	// GLUE
 	new G4PVPlacement(0,G4ThreeVector(0,0,+(-AlFpcSizeZ+AlFpcGlueZ)/2),
-			FpcGlueLV,"FPC",FpcLV,false,0,fCheckOverlaps);
+			FpcGlueLV,"FPCGlue",FpcLV,false,0,fCheckOverlaps);
 	// Copper
 	new G4PVPlacement(0,G4ThreeVector(0,0,-AlFpcSizeZ/2.+AlFpcGlueZ+AlCopperZ/2.),
-			FpcCopperLV,"FPC",FpcLV,false,0,fCheckOverlaps);
+			FpcCopperLV,"FPCCopper",FpcLV,false,0,fCheckOverlaps);
 	
 	// Plastic
 	new G4PVPlacement(0,G4ThreeVector(0,0,-AlFpcSizeZ/2.+(AlCopperZ+AlFpcGlueZ)+AlFpcPlasticZ/2),
-			FpcPlasticLV,"FPC",FpcLV,false,0,fCheckOverlaps);
+			FpcPlasticLV,"FPCPlastic",FpcLV,false,0,fCheckOverlaps);
 	
     // Visibility
     //  G4VisAttributes* attGreen = new G4VisAttributes(G4Colour::Green());

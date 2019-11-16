@@ -49,8 +49,11 @@ private:
   G4VPhysicalVolume* fWallExternalOutPV;
   G4VPhysicalVolume* fWallExternalInPV;
   
+  G4VPhysicalVolume* fKPlateBeforePV;
+  G4VPhysicalVolume* fKPlateAfterPV;
+  
   G4VPhysicalVolume* fAlpContPV;
-  G4VPhysicalVolume* fAlpTowerPV[5];
+  G4VPhysicalVolume* fAlpTowerPV;
   G4VPhysicalVolume* fAlpDoublePV;
   G4VPhysicalVolume* fAlp1PV;
   G4VPhysicalVolume* fAlp2PV;
@@ -90,8 +93,6 @@ private:
   G4VPhysicalVolume* ftrigger1_4PV;
   G4VPhysicalVolume* ftrigger1_5PV;
   G4VPhysicalVolume* fTBars1PV;
-  G4VPhysicalVolume* fPoronBeforeT1PV;
-  G4VPhysicalVolume* fPoronAfterT1PV;
   G4VPhysicalVolume* fWrappingBeforeT1PV;
   G4VPhysicalVolume* fWrappingAfterT1PV;
   G4VPhysicalVolume* fCompPlaneBeforeT1PV;
@@ -106,7 +107,6 @@ private:
   G4VPhysicalVolume* ftrigger2_2PV;
   G4VPhysicalVolume* ftrigger2_3PV;
   G4VPhysicalVolume* ftrigger2_4PV;
-  G4VPhysicalVolume* ftrigger2_5PV;
   G4VPhysicalVolume* fTBars2PV;
   G4VPhysicalVolume* fPoronBeforeT2PV;
   G4VPhysicalVolume* fPoronAfterT2PV;

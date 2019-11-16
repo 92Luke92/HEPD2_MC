@@ -41,13 +41,17 @@ HEPD2MCEventAction::HEPD2MCEventAction()
    fEVL{0},
    fEVB(0),
    
-   fAlp1Pos{0},
-   fAlp2Pos{0},
-   fAlp3Pos{0},
+   fAlp1Pos{-999.},
+   fAlp2Pos{-999.},
+   fAlp3Pos{-999.},
    
-   fAlp1Dir{0},
-   fAlp2Dir{0},
-   fAlp3Dir{0},
+   fAlp1Dir{-999.},
+   fAlp2Dir{-999.},
+   fAlp3Dir{-999.},
+   fWinPos{-9999.},
+   fWinDir{-9999.},
+
+   fGammaKin(0),
    
    fEBeforeT1(0),
    fEBeforeT2(0),
@@ -70,21 +74,25 @@ void HEPD2MCEventAction::BeginOfEventAction(const G4Event* /*event*/)
   fVL1Edep = {0.};
   fVL2Edep = {0.};
   
-  for (int i=0; i<3; i++) fAlp1Pos[i] = 0.;
-  for (int i=0; i<3; i++) fAlp2Pos[i] = 0.;
-  for (int i=0; i<3; i++) fAlp3Pos[i] = 0.;
+  for (int i=0; i<3; i++) fAlp1Pos[i] = -990.;
+  for (int i=0; i<3; i++) fAlp2Pos[i] = -990.;
+  for (int i=0; i<3; i++) fAlp3Pos[i] = -990.;
   
-  for (int i=0; i<2; i++) fAlp1Dir[i] = 0.;
-  for (int i=0; i<2; i++) fAlp2Dir[i] = 0.;
-  for (int i=0; i<2; i++) fAlp3Dir[i] = 0.;
-  
+  for (int i=0; i<4; i++) fAlp1Dir[i] = -9990.;
+  for (int i=0; i<4; i++) fAlp2Dir[i] = -9990.;
+  for (int i=0; i<4; i++) fAlp3Dir[i] = -9990.;
+  for (int ii=0; ii<3;ii++) fWinPos[ii] = -9999.;
+  for (int ii = 0; ii < 2; ii++) fWinDir[ii] = -9999.;
+
+  fGammaKin = 0.;
+
   fEBeforeT1 = 0.;
   fEBeforeT2 = 0.;
   fEBeforeP1 = 0.;
   
   for (int i=0; i<3; i++) fEA[i] = 0.;
-  for (int i = 0 ; i < NBARS ; i++) fET1[i]  = 0.;
-  for (int i = 0 ; i < NBARS ; i++) fET2[i]  = 0.;
+  for (int i = 0 ; i < NBARST1 ; i++) fET1[i]  = 0.;
+  for (int i = 0 ; i < NBARST2 ; i++) fET2[i]  = 0.;
   for (int i = 0 ; i < NCALOPLANES ; i++) fEP[i]=0.;
   for (int i = 0 ; i < NCRYSTALS ; i++) fEC1[i]=0.;
   for (int i = 0 ; i < NCRYSTALS ; i++) fEC2[i]=0.;
@@ -95,8 +103,8 @@ void HEPD2MCEventAction::BeginOfEventAction(const G4Event* /*event*/)
   for (int i=0; i<NPMTS; i++) fPhotEnergy[i] = 0;
   
   for (int i=0; i<3; i++) fTA[i] = 0.;
-  for (int i = 0 ; i < NBARS ; i++) fTT1[i]  = 0.;
-  for (int i = 0 ; i < NBARS ; i++) fTT2[i]  = 0.;
+  for (int i = 0 ; i < NBARST1 ; i++) fTT1[i]  = 0.;
+  for (int i = 0 ; i < NBARST2 ; i++) fTT2[i]  = 0.;
   for (int i = 0 ; i < NCALOPLANES ; i++) fTP[i]=0.;
   for (int i = 0 ; i < NCRYSTALS ; i++) fTC1[i]=0.;
   for (int i = 0 ; i < NCRYSTALS ; i++) fTC2[i]=0.;
@@ -153,15 +161,19 @@ void HEPD2MCEventAction::EndOfEventAction(const G4Event* event)
   fVAlp1Pos = {fAlp1Pos[0], fAlp1Pos[1], fAlp1Pos[2]};
   fVAlp2Pos = {fAlp2Pos[0], fAlp2Pos[1], fAlp2Pos[2]};
   fVAlp3Pos = {fAlp3Pos[0], fAlp3Pos[1], fAlp3Pos[2]};
-  
-  fVAlp1Dir = {fAlp1Dir[0], fAlp1Dir[1]};
-  fVAlp2Dir = {fAlp2Dir[0], fAlp2Dir[1]};
-  fVAlp3Dir = {fAlp3Dir[0], fAlp3Dir[1]};
-  
-  if(NBARS!=5) G4cout << "WARNING: NBARS is " << NBARS << ". Modify code in EventAction" << G4endl;
+
+  fVAlp1Dir = {fAlp1Dir[0], fAlp1Dir[1], fAlp1Dir[2], fAlp1Dir[3]};
+  fVAlp2Dir = {fAlp2Dir[0], fAlp2Dir[1], fAlp2Dir[2], fAlp2Dir[3]};
+  fVAlp3Dir = {fAlp3Dir[0], fAlp3Dir[1], fAlp3Dir[2], fAlp3Dir[3]};
+
+  fVWinPos = { fWinPos[0], fWinPos[1],fWinPos[2]};
+  fVWinDir = { fWinDir[0], fWinDir[1]};
+
+  if(NBARST1!=5) G4cout << "WARNING: NBARST1 is " << NBARST1 << ". Modify code in EventAction" << G4endl;
+  if(NBARST2!=4) G4cout << "WARNING: NBARST2 is " << NBARST2 << ". Modify code in EventAction" << G4endl;
   fVT1Edep = {fET1[0], fET1[1], fET1[2], fET1[3], fET1[4]};
-  fVT2Edep = {fET2[0], fET2[1], fET2[2], fET2[3], fET2[4]};
-  G4double TRIGEdep = fET1[0]+fET1[1]+fET1[2]+fET1[3]+fET1[4]+fET2[0]+fET2[1]+fET2[2]+fET2[3]+fET2[4];
+  fVT2Edep = {fET2[0], fET2[1], fET2[2], fET2[3]};
+  G4double TRIGEdep = fET1[0]+fET1[1]+fET1[2]+fET1[3]+fET1[4]+fET2[0]+fET2[1]+fET2[2]+fET2[3];
   analysisManager->FillNtupleDColumn(7, TRIGEdep);
   
   if(NCALOPLANES!=11) G4cout << "WARNING: N planes is " << NCALOPLANES << ". Modify code in EventAction" << G4endl;
@@ -220,9 +232,10 @@ void HEPD2MCEventAction::EndOfEventAction(const G4Event* event)
   Alp3Leng += fTA[2];
   analysisManager->FillNtupleDColumn(13, Alp3Leng);
   
-  if(NBARS!=5) G4cout << "WARNING: NBARS is " << NBARS << ". Modify code in EventAction" << G4endl;
+  if(NBARST1!=5) G4cout << "WARNING: NBARST1 is " << NBARST1 << ". Modify code in EventAction" << G4endl;
+  if(NBARST2!=4) G4cout << "WARNING: NBARST2 is " << NBARST2 << ". Modify code in EventAction" << G4endl;
   fVT1Leng = {fTT1[0], fTT1[1], fTT1[2], fTT1[3], fTT1[4]};
-  fVT2Leng = {fTT2[0], fTT2[1], fTT2[2], fTT2[3], fTT2[4]};
+  fVT2Leng = {fTT2[0], fTT2[1], fTT2[2], fTT2[3]};
   
   if(NCALOPLANES!=11) G4cout << "WARNING: N planes is " << NCALOPLANES << ". Modify code in EventAction" << G4endl;
   fVPLeng = {fTP[0], fTP[1], fTP[2], fTP[3], fTP[4], fTP[5], fTP[6], fTP[7], fTP[8], fTP[9], fTP[10]};
@@ -233,9 +246,11 @@ void HEPD2MCEventAction::EndOfEventAction(const G4Event* event)
   
   fVVLeng = {fTVL[0], fTVL[1], fTVL[2], fTVL[3], fTVB};
   
-  analysisManager->FillNtupleDColumn(14, fEBeforeT1);
-  analysisManager->FillNtupleDColumn(15, fEBeforeT2);
-  analysisManager->FillNtupleDColumn(16, fEBeforeP1);
+  analysisManager->FillNtupleDColumn(14, fGammaKin);
+  
+  analysisManager->FillNtupleDColumn(15, fEBeforeT1);
+  analysisManager->FillNtupleDColumn(16, fEBeforeT2);
+  analysisManager->FillNtupleDColumn(17, fEBeforeP1);
   
   analysisManager->AddNtupleRow();
   
