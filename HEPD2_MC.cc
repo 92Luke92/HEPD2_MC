@@ -27,11 +27,11 @@
 #include "G4UIExecutive.hh"
 
 
-
-#include "Geant4GM/volumes/Factory.h"
-#include "RootGM/volumes/Factory.h"
-#include "TGeoManager.h"
-#include "TFile.h"
+// VGM PZ
+// #include "Geant4GM/volumes/Factory.h"
+// #include "RootGM/volumes/Factory.h"
+// #include "TGeoManager.h"
+// #include "TFile.h"
 
 
 //....oooOO0OOooo........oooOO0OOooo........oooOO0OOooo........oooOO0OOooo......
@@ -109,21 +109,22 @@ int main(int argc,char** argv)
 
   runManager->Initialize();
 
-  // Import Geant4 geometry to VGM                       
- TFile* ff=new TFile("geom.root","RECREATE");
- Geant4GM::Factory g4Factory;
- g4Factory.Import(detConstruction->mother);
- printf("----------------------\n");
-      // where physiWorld is of G4VPhysicalVolume* type 
+//   VGM PZ
+//   // Import Geant4 geometry to VGM                       
+//  TFile* ff=new TFile("geom.root","RECREATE");
+//  Geant4GM::Factory g4Factory;
+//  g4Factory.Import(detConstruction->mother);
+//  printf("----------------------\n");
+//       // where physiWorld is of G4VPhysicalVolume* type 
 
- // Export VGM geometry to Root                         
- RootGM::Factory rtFactory;
- g4Factory.Export(&rtFactory);
+//  // Export VGM geometry to Root                         
+//  RootGM::Factory rtFactory;
+//  g4Factory.Export(&rtFactory);
 
-        gGeoManager->CloseGeometry();
-        gGeoManager->Write();
-        ff->Write();
-        ff->Close();
+//         gGeoManager->CloseGeometry();
+//         gGeoManager->Write();
+//         ff->Write();
+//         ff->Close();
 
 
 

@@ -2,7 +2,35 @@
 # Setup the project
 #
 cmake_minimum_required(VERSION 3.1...3.15)
-project(HEPD2_MC)
+project(HEPD2_MC
+        VERSION 0.2
+        DESCRIPTION "HEPD2 Geant 4 Monte Carlo simulation"
+        LANGUAGES CXX)
+
+if(CMAKE_PROJECT_NAME STREQUAL PROJECT_NAME)
+
+# Optionally set things like CMAKE_CXX_STANDARD, CMAKE_POSITION_INDEPENDENT_CODE here
+
+# Let's ensure -std=c++xx instead of -std=g++xx
+    set(CMAKE_CXX_EXTENSIONS OFF)
+
+    # Let's nicely support folders in IDE's
+    set_property(GLOBAL PROPERTY USE_FOLDERS ON)
+
+    # Testing only available if this is the main app
+    # Note this needs to be done in the main CMakeLists
+    # since it calls enable_testing, which must be in the
+    # main CMakeLists.
+    include(CTest)
+  
+endif()
+    
+#----------------------------------------------------------------------------
+# Locate sources and headers for this project
+# NB: headers are included so they will show up in IDEs
+#
+file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
+file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 
 #----------------------------------------------------------------------------
 # Find Geant4 package, activating all available UI and Vis drivers by default
@@ -39,33 +67,14 @@ include(${Geant4_USE_FILE})
 include_directories(${PROJECT_SOURCE_DIR}/include)
 
 
-#------ Include ROOT
 
-include(FindROOT)
-if(ROOT_FOUND)
-        MESSAGE( STATUS "HEPDSW will be compiled with ROOT.")
-	set(VGM_INCLUDE "${PROJECT_SOURCE_DIR}/../VGM/include")
-        include_directories(${ROOT_INCLUDE_DIR} ${VGM_INCLUDE} )
-        set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -g -DUSE_ANALYSIS_ROOT -Wno-unused-variable")
-        set(EXTRA_LIBRARIES "${EXTRA_LIBRARIES} ${ROOT_LIBRARIES} -lGeom")
-        set (HEPDSW_BUILTWITH_ROOT "yes")
-else()
-        MESSAGE(FATAL_ERROR "ROOT installation not found!Installation interrupted!")
-endif()
 
-#----------------------------------------------------------------------------
-# Locate sources and headers for this project
-# NB: headers are included so they will show up in IDEs
-#
-file(GLOB sources ${PROJECT_SOURCE_DIR}/src/*.cc)
-file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 
 #----------------------------------------------------------------------------
 # HEPDSW library
 option(STATIC_BUILD "Build HEPDSW static library" ON)
 STRING(TOUPPER ${STATIC_BUILD} staticbuild)
 STRING(COMPARE EQUAL ${staticbuild} "ON" test_res)
-set(ROOT_LIBRARIES "${ROOT_LIBRARIES} -lGeom  -L${PROJECT_SOURCE_DIR}/../VGM/lib64/ -lClhepVGM -lBaseVGM -lGeant4GM -lRootGM -lXmlVGM")
 if (test_res)
     add_library(hepdsw_lib STATIC ${sources} ${headers})
 
@@ -74,7 +83,7 @@ else()
 
 endif()
 set_target_properties(hepdsw_lib PROPERTIES OUTPUT_NAME "hepdsw")
-target_link_libraries(hepdsw_lib  ${Geant4_LIBRARIES} ${ROOT_LIBRARIES})
+target_link_libraries(hepdsw_lib  ${Geant4_LIBRARIES} )
 
 #dd the dictionary to the list of source files
 set(sources ${sources} ${DataFormats_DICTIONARY})
@@ -83,7 +92,7 @@ set(sources ${sources} ${DataFormats_DICTIONARY})
 # Add the executable, and link it to the Geant4 libraries
 #
 add_executable(HEPD2_MC HEPD2_MC.cc ${sources} ${headers})
-target_link_libraries(HEPD2_MC ${Geant4_LIBRARIES} ${ROOT_LIBRARIES})
+target_link_libraries(HEPD2_MC ${Geant4_LIBRARIES} )
 
 #----------------------------------------------------------------------------
 # Copy all scripts to the build directory, i.e. the directory in which we
