@@ -1,4 +1,6 @@
 build/
+install/
+ana/
 *~
 mysel.C
 mysel.h
