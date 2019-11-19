@@ -13,7 +13,18 @@ cmake --version
 
 # ROOT
 echo "Exporting ROOT vars"
+UNAME=`uname`
+if [ $UNAME == "Darwin" ]; then
 source ~pzuccon/Library/root6/bin/thisroot.sh
+echo Darwin
+export DYLD_LIBRARY_PATH=$PWD/../VGM/lib/:$DYLD_LIBRARY_PATH
+fi
+if [ $UNAME == "Linux" ] ; then
+echo Linux
+export LD_LIBRARY_PATH=$PWD/../VGM/lib64/:$LD_LIBRARY_PATH
+fi
+
+##
 #export ROOTSYS=/cvmfs/sft.cern.ch/lcg/app/releases/ROOT/6.14.04/x86_64-centos7-gcc48-opt/root
 #export PATH=$ROOTSYS/bin:$PATH
 #export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$ROOTSYS/lib
@@ -21,7 +32,7 @@ source ~pzuccon/Library/root6/bin/thisroot.sh
 #  export ROOT_INCLUDE_PATH=/cvmfs/ams.cern.ch/Offline/dbar/public/release_v5/AMS_vdev_190318/include/
 #fi
 echo "ROOT version" `root-config --version`
-export DYLD_LIBRARY_PATH=$PWD/../VGM/lib64/:$DYLD_LIBRARY_PATH
+#
 
 source  ../Geant4-10.01-p03/bin/geant4.sh
 

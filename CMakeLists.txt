@@ -1,7 +1,7 @@
 #----------------------------------------------------------------------------
 # Setup the project
 #
-cmake_minimum_required(VERSION 2.6 FATAL_ERROR)
+cmake_minimum_required(VERSION 3.1...3.15)
 project(HEPD2_MC)
 
 #----------------------------------------------------------------------------
@@ -65,7 +65,7 @@ file(GLOB headers ${PROJECT_SOURCE_DIR}/include/*.hh)
 option(STATIC_BUILD "Build HEPDSW static library" ON)
 STRING(TOUPPER ${STATIC_BUILD} staticbuild)
 STRING(COMPARE EQUAL ${staticbuild} "ON" test_res)
-set(ROOT_LIBRARIES "${ROOT_LIBRARIES} -lGeom  -L${PROJECT_SOURCE_DIR}/../VGM/lib/ -lClhepVGM -lBaseVGM -lGeant4GM -lRootGM -lXmlVGM")
+set(ROOT_LIBRARIES "${ROOT_LIBRARIES} -lGeom  -L${PROJECT_SOURCE_DIR}/../VGM/lib64/ -lClhepVGM -lBaseVGM -lGeant4GM -lRootGM -lXmlVGM")
 if (test_res)
     add_library(hepdsw_lib STATIC ${sources} ${headers})
 

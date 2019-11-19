@@ -605,35 +605,35 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   G4VSolid* BlanketS = new G4Box("Blanket", Blanket_X/2., Blanket_Y/2., Blanket_Z/2.);
   G4LogicalVolume* BlanketLV = new G4LogicalVolume(BlanketS, MylarMaterial, "Blanket");
   fBlanketPV = new G4PVPlacement(0,G4ThreeVector(0.,0.,axes+Blanket_Z/2.),BlanketLV,"Blanket",worldLV,false,0,fCheckOverlaps);
-  //****************************************************************************************
+  // //****************************************************************************************
   
   //****************************************************************************************
   // EXTERNAL WINDOW
   // Window container
-  //G4VSolid* WindowContainerS = new G4Box("WindowContainer", Wall_X/2., Wall_Y/2., (WallExternal_Z+WallHoneyComb_Z+WallExternal_Z)/2.);
-//  G4LogicalVolume* WindowContainerLV = new G4LogicalVolume(WindowContainerS, defaultMaterial, "WindowContainer");
-  //fWindowContainerPV = new G4PVPlacement(0, G4ThreeVector(-WallHole_X,-WallHole_Y,axes+blanket_dist+Blanket_Z+(windowOut_Z+windowIn_Z)/2.), WindowContainerLV, "WindowContainer", worldLV, false, 0, fCheckOverlaps);
+  G4VSolid* WindowContainerS = new G4Box("WindowContainer", Wall_X/2., Wall_Y/2., (WallExternal_Z + WallHoneyComb_Z + WallExternal_Z)/2.);
+  G4LogicalVolume* WindowContainerLV = new G4LogicalVolume(WindowContainerS, defaultMaterial, "WindowContainer");
+  fWindowContainerPV = new G4PVPlacement(0, G4ThreeVector(-WallHole_X,-WallHole_Y,axes+blanket_dist+Blanket_Z+(windowOut_Z+windowIn_Z)/2.), WindowContainerLV, "WindowContainer", worldLV, false, 0, fCheckOverlaps);
   
   // WindowOut
-//  G4VSolid* WindowOutS = new G4Box("WindowOut", window_X/2., window_Y/2., windowOut_Z/2.);
- // G4LogicalVolume* WindowOutLV = new G4LogicalVolume(WindowOutS, KaptonMaterial, "WindowOut");
- // fWindowOutPV = new G4PVPlacement(0,G4ThreeVector(WallHole_X,WallHole_Y,-(windowOut_Z+windowIn_Z)/2.+windowOut_Z/2.), WindowOutLV,"WindowOut",WindowContainerLV,false,0,fCheckOverlaps);
+  G4VSolid* WindowOutS = new G4Box("WindowOut", window_X/2., window_Y/2., windowOut_Z/2.);
+  G4LogicalVolume* WindowOutLV = new G4LogicalVolume(WindowOutS, KaptonMaterial, "WindowOut");
+  fWindowOutPV = new G4PVPlacement(0,G4ThreeVector(WallHole_X,WallHole_Y,-(windowOut_Z+windowIn_Z)/2.+windowOut_Z/2.), WindowOutLV,"WindowOut",WindowContainerLV,false,0,fCheckOverlaps);
   
   // WindowIn
-//  G4VSolid* WindowInS = new G4Box("WindowIn", window_X/2., window_Y/2., windowIn_Z/2.);
-//  G4LogicalVolume* WindowInLV = new G4LogicalVolume(WindowInS, CopperMaterial, "WindowIn");
- // fWindowInPV = new G4PVPlacement(0,G4ThreeVector(WallHole_X,WallHole_Y,-(windowOut_Z+windowIn_Z)/2.+windowOut_Z+windowIn_Z/2.),WindowInLV,"WindowIn",WindowContainerLV,false,0,fCheckOverlaps);
+  G4VSolid* WindowInS = new G4Box("WindowIn", window_X/2., window_Y/2., windowIn_Z/2.);
+  G4LogicalVolume* WindowInLV = new G4LogicalVolume(WindowInS, CopperMaterial, "WindowIn");
+  fWindowInPV = new G4PVPlacement(0,G4ThreeVector(WallHole_X,WallHole_Y,-(windowOut_Z+windowIn_Z)/2.+windowOut_Z+windowIn_Z/2.),WindowInLV,"WindowIn",WindowContainerLV,false,0,fCheckOverlaps);
   
   //Wall
-//  G4ThreeVector transWallHole(WallHole_X,WallHole_Y,0.);
-//  G4SubtractionSolid* WallHoneyCombS = new G4SubtractionSolid("WallHoneyComb", new G4Box("WallHoneyComb_1",Wall_X/2., Wall_Y/2., WallHoneyComb_Z/2.), new G4Box("WallHoneyComb_2",window_X/2., window_Y/2., WallHole_Z/2.), 0, transWallHole);
-//  G4LogicalVolume* WallHoneyCombLV = new G4LogicalVolume(WallHoneyCombS, AlMaterial,"WallHoneyComb");
- // fWallHoneyCombPV = new G4PVPlacement(0,G4ThreeVector(0,0,0),WallHoneyCombLV,"WallHoneyComb",WindowContainerLV,false,0,fCheckOverlaps);
+  G4ThreeVector transWallHole(WallHole_X,WallHole_Y,0.);
+  G4SubtractionSolid* WallHoneyCombS = new G4SubtractionSolid("WallHoneyComb", new G4Box("WallHoneyComb_1",Wall_X/2., Wall_Y/2., WallHoneyComb_Z/2.), new G4Box("WallHoneyComb_2",window_X/2., window_Y/2., WallHole_Z/2.), 0, transWallHole);
+  G4LogicalVolume* WallHoneyCombLV = new G4LogicalVolume(WallHoneyCombS, AlMaterial,"WallHoneyComb");
+  fWallHoneyCombPV = new G4PVPlacement(0,G4ThreeVector(0,0,0),WallHoneyCombLV,"WallHoneyComb",WindowContainerLV,false,0,fCheckOverlaps);
   
-//  G4SubtractionSolid* WallExternalS = new G4SubtractionSolid("WallExternal", new G4Box("WallExternal_1",Wall_X/2., Wall_Y/2., WallExternal_Z/2.), new G4Box("WallExternal_2",window_X/2., window_Y/2., WallHole_Z/2.), 0, transWallHole);
-//  G4LogicalVolume* WallExternalLV = new G4LogicalVolume(WallExternalS, AlMaterial,"WallExternal");
- // fWallExternalOutPV = new G4PVPlacement(0,G4ThreeVector(0,0,-WallExternal_Z/2.-WallHoneyComb_Z/2.),WallExternalLV,"WallExternalOut",WindowContainerLV,false,0,fCheckOverlaps);
- // fWallExternalInPV = new G4PVPlacement(0,G4ThreeVector(0,0,+WallExternal_Z/2.+WallHoneyComb_Z/2.),WallExternalLV,"WallExternalIn",WindowContainerLV,false,0,fCheckOverlaps);
+  G4SubtractionSolid* WallExternalS = new G4SubtractionSolid("WallExternal", new G4Box("WallExternal_1",Wall_X/2., Wall_Y/2., WallExternal_Z/2.), new G4Box("WallExternal_2",window_X/2., window_Y/2., WallHole_Z/2.), 0, transWallHole);
+  G4LogicalVolume* WallExternalLV = new G4LogicalVolume(WallExternalS, AlMaterial,"WallExternal");
+  fWallExternalOutPV = new G4PVPlacement(0,G4ThreeVector(0,0,-WallExternal_Z/2.-WallHoneyComb_Z/2.),WallExternalLV,"WallExternalOut",WindowContainerLV,false,0,fCheckOverlaps);
+  fWallExternalInPV = new G4PVPlacement(0,G4ThreeVector(0,0,+WallExternal_Z/2.+WallHoneyComb_Z/2.),WallExternalLV,"WallExternalIn",WindowContainerLV,false,0,fCheckOverlaps);
   //****************************************************************************************
   
   //****************************************************************************************
@@ -651,9 +651,9 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
                                  AlpContLV, "AlpCont", worldLV, false, 0, fCheckOverlaps);
 
   //Plate in kapton
-  G4VSolid* KPlateS = new G4Box("KPlate", ColdPlateSizeX/2., 5.*(ColdPlateSizeY+2.*AlpRibsY+alpideGap_Y)/2., KPlate_Z/2.);
-  G4LogicalVolume* KPlateLV = new G4LogicalVolume(KPlateS, KaptonMaterial, "KPlate");
-  fKPlateBeforePV = new G4PVPlacement(0, G4ThreeVector(0.,0.,axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+KPlateWall_gap+KPlate_Z/2.), KPlateLV, "KPlateBefore", worldLV, false, 0, fCheckOverlaps);
+  // G4VSolid* KPlateS = new G4Box("KPlate", ColdPlateSizeX/2., 5.*(ColdPlateSizeY+2.*AlpRibsY+alpideGap_Y)/2., KPlate_Z/2.);
+  // G4LogicalVolume* KPlateLV = new G4LogicalVolume(KPlateS, KaptonMaterial, "KPlate");
+  // fKPlateBeforePV = new G4PVPlacement(0, G4ThreeVector(0.,0.,axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+KPlateWall_gap+KPlate_Z/2.), KPlateLV, "KPlateBefore", worldLV, false, 0, fCheckOverlaps);
   
   // //Alpide container
   // G4VSolid* AlpContS = new G4Box("AlpCont", ColdPlateSizeX/2., ((nofAlpideY/2)*(2*alpideSizeY+alpchip_gap+2.*alpideGap_Y+2*AlpRibsY)-2.*alpideGap_Y)/2., (AlpRibsZ+GlueColdPlate_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueFPC_SizeZ+FPCSizeZ+CuSupportSizeZ)/2.);
@@ -1374,7 +1374,7 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   attBlack->SetVisibility(true);
   attBlack->SetForceAuxEdgeVisible(true);
   //FPC_LV->SetVisAttributes(attBlack);
-  KPlateLV->SetVisAttributes(attBlack);
+  //KPlateLV->SetVisAttributes(attBlack);
   CScotchTapeLat1LV->SetVisAttributes(attBlack);
   CScotchTape1LV->SetVisAttributes(attBlack);
   CScotchTapeLat2LV->SetVisAttributes(attBlack);
@@ -1396,7 +1396,7 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   attGrey->SetVisibility(true);
   attGrey->SetForceAuxEdgeVisible(true);
   LysoCoverLV->SetVisAttributes (attGrey);
-  BlanketLV->SetVisAttributes (attGrey);
+  //BlanketLV->SetVisAttributes (attGrey);
   T1WrappingLV->SetVisAttributes (attGrey);
   T2WrappingLV->SetVisAttributes (attGrey);
   PWrappingLV->SetVisAttributes (attGrey);

@@ -30,10 +30,18 @@ void HEPD2MCSteppingAction::UserSteppingAction(const G4Step* step)
   G4VPhysicalVolume *PreStepVolume = volume;
   G4VPhysicalVolume *PostStepVolume = step->GetPostStepPoint()->GetTouchableHandle()->GetVolume();
   
+  G4StepPoint* pre=step->GetPreStepPoint();
+  G4StepPoint* post=step->GetPostStepPoint();
    //energy deposit
   G4double edep = step->GetTotalEnergyDeposit();
-    
-  //step length
+// printf("Previous: %20s Pos: X:%+7.3f   Y: %+7.3f  Z: %+7.3f\n",volume->GetName().c_str(),pre->GetPosition()[0],pre->GetPosition()[1],pre->GetPosition()[2]);
+// printf("Post    : %20s Pos: X:%+7.3f   Y: %+7.3f  Z: %+7.3f\n",PostStepVolume->GetName().c_str(),post->GetPosition()[0],post->GetPosition()[1],post->GetPosition()[2]);
+// printf("Length  : %7.3f Edep: %7.3f P[0]: %7.4f P[1]: %7.4f P[2]: %7.4f\n",
+//  	 step->GetStepLength(),edep,
+// 	 step->GetDeltaMomentum()[0],
+//      step->GetDeltaMomentum()[1],
+//      step->GetDeltaMomentum()[2]);
+   //step length
   G4double stepLength = 0.;
   if ( step->GetTrack()->GetDefinition()->GetPDGCharge() != 0.)
     {
@@ -72,6 +80,8 @@ void HEPD2MCSteppingAction::UserSteppingAction(const G4Step* step)
 	  Z = step->GetPreStepPoint()->GetPosition().getZ();
 	  fEventAction->AddAlp(edep, stepLength, alpcopyNumber, X, Y, Z);
   }
+
+
   //copyNumber for trigger bars
   G4int barcopyNumber;
   if(volume->GetName() == "Bar1")
@@ -81,8 +91,9 @@ void HEPD2MCSteppingAction::UserSteppingAction(const G4Step* step)
       if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T1_3") barcopyNumber = 2;
       if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T1_4") barcopyNumber = 3;
       if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T1_5") barcopyNumber = 4;
-      
-      fEventAction->AddT1Bars(edep,stepLength,barcopyNumber);
+      X = step->GetPreStepPoint()->GetPosition().getX();
+	  Y = step->GetPreStepPoint()->GetPosition().getY();
+      fEventAction->AddT1Bars(X,Y,edep,stepLength,barcopyNumber);
     }
   if(volume->GetName() == "Bar2")
     {
@@ -90,7 +101,9 @@ void HEPD2MCSteppingAction::UserSteppingAction(const G4Step* step)
       if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T2_2") barcopyNumber = 1;
       if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T2_3") barcopyNumber = 2;
       if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "T2_4") barcopyNumber = 3;
-      fEventAction->AddT2Bars(edep,stepLength,barcopyNumber);
+      X = step->GetPreStepPoint()->GetPosition().getX();
+	  Y = step->GetPreStepPoint()->GetPosition().getY();
+	  fEventAction->AddT2Bars(X,Y,edep,stepLength,barcopyNumber);
     }
   
   //copyNumber for calo planes
@@ -103,8 +116,9 @@ void HEPD2MCSteppingAction::UserSteppingAction(const G4Step* step)
       if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxdx3_Block2") planecopyNumber = 5;
       if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxdx2_Block3") planecopyNumber = 8;
       if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxdx4_Block3") planecopyNumber = 10;
-      
-      fEventAction->AddPlane(edep,stepLength,planecopyNumber);
+      X = step->GetPreStepPoint()->GetPosition().getX();
+	  Y = step->GetPreStepPoint()->GetPosition().getY();
+      fEventAction->AddPlane(X,Y,edep,stepLength,planecopyNumber);
     }
   if(volume->GetName() == "Planesx")
     {
@@ -113,8 +127,9 @@ void HEPD2MCSteppingAction::UserSteppingAction(const G4Step* step)
       if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxsx4_Block2") planecopyNumber = 6;
       if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxsx1_Block3") planecopyNumber = 7;
       if(step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(3)->GetName() == "PBoxsx3_Block3") planecopyNumber = 9;
-      
-      fEventAction->AddPlane(edep,stepLength,planecopyNumber);
+      X = step->GetPreStepPoint()->GetPosition().getX();
+	  Y = step->GetPreStepPoint()->GetPosition().getY();
+      fEventAction->AddPlane(X,Y,edep,stepLength,planecopyNumber);
     }
   
   //copyNumber for crystals
@@ -159,7 +174,7 @@ void HEPD2MCSteppingAction::UserSteppingAction(const G4Step* step)
 
   if (PostStepVolume != 0 && (PreStepVolume->GetName() == "AlStaveColdPlatePV") && (PostStepVolume->GetName() != "AlStaveColdPlatePV"))
   {
-	  printf("POSTPRE  %s %s\n", PreStepVolume->GetName().c_str(), PostStepVolume->GetName().c_str() );
+//g	  printf("POSTPRE  %s %s\n", PreStepVolume->GetName().c_str(), PostStepVolume->GetName().c_str() );
 	  int depth = step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetDepth();
 	  if (step->GetPreStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(depth-1)->GetName() == "AlStaveCont0")
 		  alpcopyNumber = 0;
@@ -184,9 +199,9 @@ void HEPD2MCSteppingAction::UserSteppingAction(const G4Step* step)
 			alpcopyNumber = 1;
 		if (step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(depth-2)->GetName() == "AlStaveCont2")
 			alpcopyNumber = 2;
-		printf("PREPOST  %s %s  %s %d\n", PreStepVolume->GetName().c_str(), PostStepVolume->GetName().c_str(),
-			   step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(depth-2)->GetName().c_str(),
-				   alpcopyNumber);
+		//printf("PREPOST  %s %s  %s %d\n", PreStepVolume->GetName().c_str(), PostStepVolume->GetName().c_str(),
+			//    step->GetPostStepPoint()->GetTouchableHandle()->GetHistory()->GetVolume(depth-2)->GetName().c_str(),
+			// 	   alpcopyNumber);
 
 		G4double theta = step->GetPreStepPoint()->GetMomentumDirection().getTheta();
 		G4double phi = step->GetPreStepPoint()->GetMomentumDirection().getPhi();
@@ -194,6 +209,23 @@ void HEPD2MCSteppingAction::UserSteppingAction(const G4Step* step)
 		phi *= 180. / 3.14;
 		fEventAction->AddAlpMSCPre(alpcopyNumber, theta, phi);
 	}
+
+	if(PostStepVolume != 0 && PreStepVolume->GetName() != "T1Cont" && PostStepVolume->GetName() == "T1Cont"){
+		G4double theta = step->GetPreStepPoint()->GetMomentumDirection().getTheta();
+		G4double phi = step->GetPreStepPoint()->GetMomentumDirection().getPhi();
+		theta *= 180. / 3.14;
+		phi *= 180. / 3.14;
+		fEventAction->AddT1Pre( theta, phi);
+	}
+
+	if(PostStepVolume != 0 && PreStepVolume->GetName() == "T1Cont" && PostStepVolume->GetName() != "T1Cont"){
+		G4double theta = step->GetPreStepPoint()->GetMomentumDirection().getTheta();
+		G4double phi = step->GetPreStepPoint()->GetMomentumDirection().getPhi();
+		theta *= 180. / 3.14;
+		phi *= 180. / 3.14;
+		fEventAction->AddT1Post( theta, phi);
+	}
+
 
 	//fraction of energy lost before entering in trigger
 	if (PostStepVolume != 0 && PostStepVolume->GetName() == "Bar1" && (volume->GetName() == "T1Cont" || volume->GetName() == "WrappingAfterT1" || volume->GetName() == "WrappingBeforeT1" || volume->GetName() == "T1"))

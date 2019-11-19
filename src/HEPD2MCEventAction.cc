@@ -23,6 +23,10 @@ HEPD2MCEventAction::HEPD2MCEventAction()
    fTA{0},
    fTT1{0},
    fTT2{0},
+   fPT1{0},
+   fPT2{0},
+   fXP{0},
+   fYP{0},
    fTP{0},
    fTC1{0},
    fTC2{0},
@@ -50,7 +54,7 @@ HEPD2MCEventAction::HEPD2MCEventAction()
    fAlp3Dir{-999.},
    fWinPos{-9999.},
    fWinDir{-9999.},
-
+   fT1Dir{-999.},
    fGammaKin(0),
    
    fEBeforeT1(0),
@@ -83,7 +87,13 @@ void HEPD2MCEventAction::BeginOfEventAction(const G4Event* /*event*/)
   for (int i=0; i<4; i++) fAlp3Dir[i] = -9990.;
   for (int ii=0; ii<3;ii++) fWinPos[ii] = -9999.;
   for (int ii = 0; ii < 2; ii++) fWinDir[ii] = -9999.;
+  for (int ii = 0; ii < 4; ii++) fT1Dir[ii]=0;
 
+  fPT1[0]=-9999.;fPT1[1]= -99999.;
+  fPT2[0]=-9999.;fPT2[1]= -99999.;
+  
+  for (int ii=0;ii<NCALOPLANES;ii++) { fXP[ii]=-9999.;fYP[ii]= -99999.;}
+  
   fGammaKin = 0.;
 
   fEBeforeT1 = 0.;
@@ -168,7 +178,8 @@ void HEPD2MCEventAction::EndOfEventAction(const G4Event* event)
 
   fVWinPos = { fWinPos[0], fWinPos[1],fWinPos[2]};
   fVWinDir = { fWinDir[0], fWinDir[1]};
-
+  fVT1Dir = {fT1Dir[0],fT1Dir[1],fT1Dir[2],fT1Dir[3],};
+  
   if(NBARST1!=5) G4cout << "WARNING: NBARST1 is " << NBARST1 << ". Modify code in EventAction" << G4endl;
   if(NBARST2!=4) G4cout << "WARNING: NBARST2 is " << NBARST2 << ". Modify code in EventAction" << G4endl;
   fVT1Edep = {fET1[0], fET1[1], fET1[2], fET1[3], fET1[4]};
@@ -245,7 +256,13 @@ void HEPD2MCEventAction::EndOfEventAction(const G4Event* event)
   fVL2Leng = {fTC2[0], fTC2[1], fTC2[2]};
   
   fVVLeng = {fTVL[0], fTVL[1], fTVL[2], fTVL[3], fTVB};
+
+  fVT1Pos = {fPT1[0],fPT1[1]};
   
+  fVT2Pos = {fPT2[0],fPT2[1]};
+  
+  fVPPosX = {fXP[0],fXP[1],fXP[2],fXP[3],fXP[4],fXP[5],fXP[6],fXP[7],fXP[8],fXP[9],fXP[10]};
+  fVPPosY = {fYP[0],fYP[1],fYP[2],fYP[3],fYP[4],fYP[5],fYP[6],fYP[7],fYP[8],fYP[9],fYP[10]};
   analysisManager->FillNtupleDColumn(14, fGammaKin);
   
   analysisManager->FillNtupleDColumn(15, fEBeforeT1);

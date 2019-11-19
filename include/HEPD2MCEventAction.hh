@@ -25,13 +25,13 @@ public:
   virtual void  BeginOfEventAction(const G4Event* event);
   virtual void  EndOfEventAction(const G4Event* event);
   
-  void AddPlane(G4double de, G4double dl, G4int copynumber);
+  void AddPlane(G4double X,  G4double Y, G4double de, G4double dl, G4int copynumber);
   
   void AddBotVeto(G4double de, G4double dl);
   void AddLatVeto(G4double de, G4double dl, G4int copyNumber);
   
-  void AddT1Bars(G4double de, G4double dl, G4int copynumber);
-  void AddT2Bars(G4double de, G4double dl, G4int copynumber);
+  void AddT1Bars(G4double X,  G4double Y, G4double de, G4double dl, G4int copynumber);
+  void AddT2Bars(G4double X,  G4double Y, G4double de, G4double dl, G4int copynumber);
   void AddC1Bars(G4double de, G4double dl, G4int copynumber);
   void AddC2Bars(G4double de, G4double dl, G4int copynumber);
   
@@ -42,6 +42,8 @@ public:
   void AddEBeforeT1(G4double E);
   void AddEBeforeT2(G4double E);
   void AddEBeforeP1(G4double E);
+  void AddT1Pre(G4double theta, G4double phi);
+  void AddT1Post(G4double theta, G4double phi);
   
   void AddGammaKin(G4double E);
   
@@ -73,6 +75,14 @@ public:
 
   std::vector<G4double> &GetWinPos() { return fVWinPos; }
   std::vector<G4double> &GetWinDir() { return fVWinDir; }
+  std::vector<G4double> &GetT1Dir() { return fVT1Dir; }
+  std::vector<G4double> &GetT1Pos() {  return fVT1Pos;}
+  std::vector<G4double> &GetT2Pos() {  return fVT2Pos;}
+  std::vector<G4double> &GetPPosX() {  return fVPPosX;}
+  std::vector<G4double> &GetPPosY() {  return fVPPosY;}
+
+
+
 
   void AddPhot(G4int pmtID);
   void AddPhotEnergy(G4int pmtID, G4double E);
@@ -89,13 +99,18 @@ private:
   std::vector<G4double> fVL1Edep;
   std::vector<G4double> fVL2Edep;
   std::vector<G4double> fVVEdep;
-  
+  std::vector<G4double> fVT1Dir;
+
   std::vector<G4int> fVphot;
   std::vector<G4double> fVphotenergy;
   
   std::vector<G4double> fVT1Leng;
   std::vector<G4double> fVT2Leng;
+  std::vector<G4double> fVT1Pos;
+  std::vector<G4double> fVT2Pos;
   std::vector<G4double> fVPLeng;
+  std::vector<G4double> fVPPosX;
+  std::vector<G4double> fVPPosY;
   std::vector<G4double> fVL1Leng;
   std::vector<G4double> fVL2Leng;
   std::vector<G4double> fVVLeng;
@@ -105,11 +120,16 @@ private:
 
   G4double fTA[3];
   G4double  fTT1[NBARST1];
+  G4double  fPT1[NBARST1];
   G4double  fTT2[NBARST2];
+  G4double  fPT2[NBARST2];
   G4double  fTP[NCALOPLANES];
+  G4double  fXP[NCALOPLANES];
+  G4double  fYP[NCALOPLANES];
   G4double  fTC1[NCRYSTALS];
   G4double  fTC2[NCRYSTALS];
-  
+  G4double  fT1Dir[4];
+
   G4double fTVL[4];
   G4double fTVB;
   
@@ -144,6 +164,15 @@ private:
 };
 
 // inline functions
+inline void HEPD2MCEventAction::AddT1Pre(G4double theta, G4double phi){
+  fT1Dir[0]=theta;
+  fT1Dir[1]=phi;
+}
+
+inline void HEPD2MCEventAction::AddT1Post(G4double theta, G4double phi){
+  fT1Dir[2]=theta;
+  fT1Dir[3]=phi;
+}
 
 inline void HEPD2MCEventAction::AddAlp(G4double de, G4double dl, G4int copynumber, G4double X, G4double Y, G4double Z)
 {
@@ -228,22 +257,27 @@ inline void HEPD2MCEventAction::AddAlpMSCPre(G4int copynumber, G4double theta, G
 }
 
 
-inline void HEPD2MCEventAction::AddT1Bars(G4double de, G4double dl, G4int copynumber)
+inline void HEPD2MCEventAction::AddT1Bars(G4double X,  G4double Y, G4double de, G4double dl, G4int copynumber)
 {
   fET1[copynumber] += de;
   fTT1[copynumber] += dl;
-}
+  fPT1[0]  = X;
+  fPT1[1]  = Y;}
 
-inline void HEPD2MCEventAction::AddT2Bars(G4double de, G4double dl, G4int copynumber)
+inline void HEPD2MCEventAction::AddT2Bars(G4double X,  G4double Y, G4double de, G4double dl, G4int copynumber)
 {
   fET2[copynumber] += de;
   fTT2[copynumber] += dl;
+  fPT2[0]  = X;
+  fPT2[1]  = Y;
 }
 
-inline void HEPD2MCEventAction::AddPlane(G4double de, G4double dl, G4int copynumber)
+inline void HEPD2MCEventAction::AddPlane(G4double X,  G4double Y, G4double de, G4double dl, G4int copynumber)
 {
   fEP[copynumber] += de;
   fTP[copynumber] += dl;
+  fXP[copynumber]  = X;
+  fYP[copynumber]  = Y;
 }
 
 inline void HEPD2MCEventAction::AddC1Bars(G4double de, G4double dl, G4int copynumber)
