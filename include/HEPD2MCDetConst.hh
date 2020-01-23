@@ -34,7 +34,6 @@ const double WALLEXTERNAL_THICKNESS = 0.5; //thickness of external wall
 //PLATE KAPTON
 const double KPLATE_SIZEZ = 0.15; //thickness of plate in kapton before and after alpide
 const double KPLATEWALL_GAP = 33.; //distance between plate before alpide and wall honeycomb
-const double KPLATECOLDPLATE_GAP = 10.8; //distance between plate before alpide and coldplate of the 1st alpide stave
 const double KPLATEFPC_GAP = 4.5; //distance between plate after alpide and last fpc alpide stave
 
 //ALPIDE

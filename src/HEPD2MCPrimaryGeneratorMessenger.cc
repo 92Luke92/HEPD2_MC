@@ -143,7 +143,7 @@ void HEPD2MCPrimaryGeneratorMessenger::SetNewValue(G4UIcommand* command,G4String
       
       fAction->SetPoint(X, Y, Z);
     }
-    
+  
   if(command == fPlanewaveCmd)
     {
       G4double Xside = 0.;
@@ -163,7 +163,7 @@ void HEPD2MCPrimaryGeneratorMessenger::SetNewValue(G4UIcommand* command,G4String
       
       fAction->SetPlanewave(Xside, Yside, Zplane, theta, phi);
     }
-    
+  
   if(command == fRandomCmd)
     {
       G4double Xside = 0.;

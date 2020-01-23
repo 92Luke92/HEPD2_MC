@@ -43,7 +43,8 @@ public:
   void AddEBeforeP1(G4double E);
   
   void AddGammaKin(G4double E);
-  
+   void AddProtonKin(G4double E);
+   
   std::vector<G4double>& GetVgen() {return fVgen;}
   std::vector<G4double>& GetVp() {return fVp;}
   std::vector<G4double>& GetVT1Edep() {return fVT1Edep;}
@@ -128,6 +129,7 @@ private:
   G4double fAlp1Dir[2], fAlp2Dir[2], fAlp3Dir[2];
   
   G4double fGammaKin;
+   G4double fProtonKin;
   
   G4double fEBeforeT1;
   G4double fEBeforeT2;
@@ -245,6 +247,11 @@ inline void HEPD2MCEventAction::AddEBeforeP1(G4double E)
 inline void HEPD2MCEventAction::AddGammaKin(G4double E)
 {
   fGammaKin += E;
+}
+
+inline void HEPD2MCEventAction::AddProtonKin(G4double E)
+{
+  fProtonKin += E;
 }
 
 inline void HEPD2MCEventAction::AddPhot(G4int pmtID)

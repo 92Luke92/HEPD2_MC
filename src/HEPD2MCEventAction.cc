@@ -50,6 +50,7 @@ HEPD2MCEventAction::HEPD2MCEventAction()
    fAlp3Dir{0},
    
    fGammaKin(0),
+   fProtonKin(0),
    
    fEBeforeT1(0),
    fEBeforeT2(0),
@@ -81,6 +82,7 @@ void HEPD2MCEventAction::BeginOfEventAction(const G4Event* /*event*/)
   for (int i=0; i<2; i++) fAlp3Dir[i] = 0.;
   
   fGammaKin = 0.;
+  fProtonKin = 0.;
   
   fEBeforeT1 = 0.;
   fEBeforeT2 = 0.;
@@ -111,7 +113,6 @@ void HEPD2MCEventAction::BeginOfEventAction(const G4Event* /*event*/)
 
 void HEPD2MCEventAction::EndOfEventAction(const G4Event* event)
 {
-  
   G4AnalysisManager* analysisManager = G4AnalysisManager::Instance();
   
   G4PrimaryVertex* primaryVertex = event->GetPrimaryVertex();
@@ -240,10 +241,11 @@ void HEPD2MCEventAction::EndOfEventAction(const G4Event* event)
   fVVLeng = {fTVL[0], fTVL[1], fTVL[2], fTVL[3], fTVB};
   
   analysisManager->FillNtupleDColumn(14, fGammaKin);
+  analysisManager->FillNtupleDColumn(15, fProtonKin);
   
-  analysisManager->FillNtupleDColumn(15, fEBeforeT1);
-  analysisManager->FillNtupleDColumn(16, fEBeforeT2);
-  analysisManager->FillNtupleDColumn(17, fEBeforeP1);
+  analysisManager->FillNtupleDColumn(16, fEBeforeT1);
+  analysisManager->FillNtupleDColumn(17, fEBeforeT2);
+  analysisManager->FillNtupleDColumn(18, fEBeforeP1);
   
   analysisManager->AddNtupleRow();
   

@@ -74,7 +74,7 @@ void HEPD2MCPhysicsList::ConstructParticle()
 
 void HEPD2MCPhysicsList::ConstructProcess()
 {
-  
+   
   AddTransportation();
   ConstructDecay();
   ConstructOp();

@@ -72,6 +72,7 @@ HEPD2MCRunAction::HEPD2MCRunAction(HEPD2MCEventAction* eventAction)
   analysisManager->CreateNtupleDColumn("VLeng", fEventAction->GetVVLeng());
   
   analysisManager->CreateNtupleDColumn("EGammaKin");
+  analysisManager->CreateNtupleDColumn("EProtonKin");
   
   analysisManager->CreateNtupleDColumn("EBeforeT1");
   analysisManager->CreateNtupleDColumn("EBeforeT2");
