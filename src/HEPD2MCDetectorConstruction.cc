@@ -201,7 +201,7 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::Construct()
 
 void HEPD2MCDetectorConstruction::DefineMaterials()
 {
-   // Lead material defined using NIST Manager
+  // Lead material defined using NIST Manager
   G4NistManager* nistManager = G4NistManager::Instance();
   nistManager->FindOrBuildMaterial("G4_PLASTIC_SC_VINYLTOLUENE");
   nistManager->FindOrBuildMaterial("G4_POLYCARBONATE");
@@ -246,8 +246,15 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   
   //Kapton plate
   G4double KPlate_Z = KPLATE_SIZEZ;
-  G4double KPlateWall_gap = KPLATEWALL_GAP;
-  G4double KPlateFPC_gap = KPLATEFPC_GAP;
+  G4double KPlateCompT1_gap = KPLATECOMPT1_GAP;
+  G4double KFPC_dist = KFPC_DIST;
+  G4double KPlateCold_dist = KPLATECOLD_DIST;
+  G4double KPlateT2_dist = KPLATET2_DIST;
+  
+  //Alpide interface plate
+  G4double AlpInterfacePlate_X = ALPINTERFACE_SIZEX;
+  G4double AlpInterfacePlate_Y = ALPINTERFACE_SIZEY;
+  G4double AlpInterfacePlate_Z = ALPINTERFACE_THICKNESS;
   
   //alpide
   G4int nofAlpideX = NALPIDEX;
@@ -290,25 +297,21 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   G4double AlpRibsY = ALPRIBS_SIZEY;
   G4double AlpRibsZ = ALPRIBS_SIZEZ;
   
-  //Alpide interface plate
-  G4double AlpInterfacePlate_X = ALPINTERFACE_SIZEX;
-  G4double AlpInterfacePlate_Y = ALPINTERFACE_SIZEY;
-  G4double AlpInterfacePlate_Z = ALPINTERFACE_THICKNESS;
-  
   //Trigger T1
   G4int nofBarsT1 = NBARST1;
   G4double trigger1SizeX = TRIGGER1_SIZEX;
   G4double trigger1SizeY = TRIGGER1_SIZEY;
   G4double barsGap = BARS_GAP;
   G4double trigger1Thickness = TRIGGER1_THICKNESS;
-  G4double triggerGap = TRIGGER_GAP;
+  G4double TrigWin_dist = TRIGWIND_DIST;
   
   G4double T1WrappingThickness = T1WRAPPING_THICKNESS;
   
   //Light guide for T1
   G4double LG_X = LGEXIT_X;
   G4double LG_Y = LGEXIT_Y;
-  G4double LG_height = LG_HEIGHT;
+  G4double LG_heightUp = LG_HEIGHTUP;
+  G4double LG_heightDown = LG_HEIGHTDOWN;
   
   //Support ribs between T1 bars
   G4double T1Ribs_X = T1RIBS_SIZEX;
@@ -316,7 +319,7 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   G4double T1Ribs_Z = T1RIBS_SIZEZ;
   
   //Comp plane before and after T1
-  G4double T1CompPlane_X = TRIGGER1_SIZEX + 2*LG_HEIGHT;
+  G4double T1CompPlane_X = TRIGGER1_SIZEX + LG_HEIGHTUP+LG_HEIGHTDOWN;
   G4double T1CompPlane_Y = TRIGGER1_SIZEY;
   G4double T1CompPlane_Z = T1COMP_THICKNESS;
   G4double T1CompPlane_dist = T1COMP_DIST;
@@ -388,8 +391,10 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   G4double VetoLatContainer_X = VETOLATCONT_X;
   G4double VetoLatContainer_Y = VETOLATCONT_Y;
   
-  G4double vetoHoleX = VETO_HOLEX;
-  G4double vetoHoleY = VETO_HOLEY;
+  G4double vetoHoleUpX = VETO_HOLEUPX;
+  G4double vetoHoleUpY = VETO_HOLEUPY;
+  G4double vetoHoleDownX = VETO_HOLEDOWNX;
+  G4double vetoHoleDownY = VETO_HOLEDOWNY;
   G4double VetoLat_X = VETOLAT_X;
   G4double VetoLat_Y = VETOLAT_Y;
   G4double VetoLat_Z = VETO_THICKNESS;
@@ -637,18 +642,18 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   //****************************************************************************************
   // TRIGGER T1
   // Trigger: container 1st plane and its structures
-  G4VSolid* T1ContS = new G4Box("T1Cont", (trigger1SizeX+2.*LG_height+2.*FrameT1_X+2.*PmtFrameT1_dist)/2., (AlpInterfacePlate_Y)/2., FrameT1_Z/2.);
+  G4VSolid* T1ContS = new G4Box("T1Cont", (trigger1SizeX+LG_heightUp+LG_heightDown+2.*FrameT1_X+2.*PmtFrameT1_dist)/2., (AlpInterfacePlate_Y)/2., FrameT1_Z/2.);
   G4LogicalVolume* T1ContLV = new G4LogicalVolume(T1ContS, defaultMaterial, "T1Cont");
-  G4double T1_posZ = axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+KPlateWall_gap+KPlate_Z/2.;
-  new G4PVPlacement(0, G4ThreeVector(0,0,T1_posZ), T1ContLV, "T1Cont", worldLV, false, 0, fCheckOverlaps);
+  G4double T1_posZ = axes+Blanket_Z+blanket_dist+windowOut_Z+windowIn_Z+TrigWin_dist+T1CompPlane_Z+T1CompPlane_dist+T1WrappingThickness+trigger1Thickness/2.;
+  new G4PVPlacement(0, G4ThreeVector((LG_heightUp-LG_heightDown)/2.,0,T1_posZ), T1ContLV, "T1Cont", worldLV, false, 0, fCheckOverlaps);
   
   // Trigger: container 1st plane
-  G4VSolid* triggerCont1S = new G4Box("triggerCont1", (trigger1SizeX+2.*pmtHeight+2.*LG_height)/2., trigger1SizeY/2., T1Ribs_Z/2.);
+  G4VSolid* triggerCont1S = new G4Box("triggerCont1", (trigger1SizeX+2.*pmtHeight+LG_heightUp+LG_heightDown+5.*mm)/2., trigger1SizeY/2., (T1Ribs_Z)/2.);
   G4LogicalVolume* triggerCont1LV = new G4LogicalVolume(triggerCont1S, defaultMaterial, "triggerCont1");
   new G4PVPlacement(0, G4ThreeVector(0,0,0), triggerCont1LV, "triggerCont1", T1ContLV, false, 0, fCheckOverlaps);
   
   // Trigger: bars 1st plane
-  G4VSolid* trigger1S = new G4Box("T1", (trigger1SizeX+2.*pmtHeight+2.*LG_height)/2., (trigger1SizeY/nofBarsT1 - barsGap)/2., (8.*mm)/2.);
+  G4VSolid* trigger1S = new G4Box("T1", (trigger1SizeX+2.*pmtHeight+LG_heightUp+LG_heightDown+5.*mm)/2., (trigger1SizeY/nofBarsT1 - barsGap)/2., (8.*mm)/2.);
   G4LogicalVolume* trigger1LV = new G4LogicalVolume(trigger1S, defaultMaterial, "T1");
   ftrigger1_1PV = new G4PVPlacement(0, G4ThreeVector(0.,-2.*(trigger1SizeY/nofBarsT1),0.), trigger1LV, "T1_1", triggerCont1LV, false, 0, fCheckOverlaps);
   ftrigger1_2PV = new G4PVPlacement(0, G4ThreeVector(0.,-1.*(trigger1SizeY/nofBarsT1),0.), trigger1LV, "T1_2", triggerCont1LV, false, 0, fCheckOverlaps);
@@ -659,13 +664,13 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   // Trigger: bars 1st plane
   G4VSolid* bar1S = new G4Box("Bar1", trigger1SizeX/2., (trigger1SizeY/nofBarsT1 - barsGap)/2., trigger1Thickness/2.);
   G4LogicalVolume* bar1LV = new G4LogicalVolume(bar1S, absorberMaterial, "Bar1");
-  fTBars1PV = new G4PVPlacement(0, G4ThreeVector(0., 0., 0.), bar1LV, "Bar1", trigger1LV, false, 0, fCheckOverlaps);
+  fTBars1PV = new G4PVPlacement(0, G4ThreeVector(-(LG_heightUp-LG_heightDown)/2., 0., 0.), bar1LV, "Bar1", trigger1LV, false, 0, fCheckOverlaps);
   
   // Trigger: wrapping 1st plane
   G4VSolid* T1WrappingS = new G4Box("T1Wrapping", trigger1SizeX/2., (trigger1SizeY/nofBarsT1 - barsGap)/2., T1WrappingThickness/2.);
   G4LogicalVolume* T1WrappingLV = new G4LogicalVolume(T1WrappingS, MylarMaterial, "T1Wrapping");
-  fWrappingBeforeT1PV = new G4PVPlacement(0, G4ThreeVector(0., 0., -trigger1Thickness/2.-T1WrappingThickness/2.), T1WrappingLV, "WrappingBeforeT1", trigger1LV, false, 0, fCheckOverlaps);
-  fWrappingAfterT1PV = new G4PVPlacement(0, G4ThreeVector(0., 0., trigger1Thickness/2.+T1WrappingThickness/2.), T1WrappingLV, "WrappingAfterT1", trigger1LV, false, 0, fCheckOverlaps);
+  fWrappingBeforeT1PV = new G4PVPlacement(0, G4ThreeVector(-(LG_heightUp-LG_heightDown)/2., 0., -trigger1Thickness/2.-T1WrappingThickness/2.), T1WrappingLV, "WrappingBeforeT1", trigger1LV, false, 0, fCheckOverlaps);
+  fWrappingAfterT1PV = new G4PVPlacement(0, G4ThreeVector(-(LG_heightUp-LG_heightDown)/2., 0., trigger1Thickness/2.+T1WrappingThickness/2.), T1WrappingLV, "WrappingAfterT1", trigger1LV, false, 0, fCheckOverlaps);
   
   //Comp planes before and after T1
   G4Box* T1CompPlaneS = new G4Box("T1CompPlane", (T1CompPlane_X+PmtFrameT1_dist)/2., T1CompPlane_Y/2., T1CompPlane_Z/2.);
@@ -674,9 +679,9 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   fCompPlaneAfterT1PV = new G4PVPlacement(0, G4ThreeVector(0., 0.,+trigger1Thickness/2.+T1WrappingThickness+T1CompPlane_dist+T1CompPlane_Z/2.), T1CompPlaneLV, "CompPlaneAfterT1", T1ContLV, false, 0, fCheckOverlaps);
   
   //Frame structure for T1
-  G4SubtractionSolid* FrameT1S = new G4SubtractionSolid("FrameT1S", new G4Box("FrameT1_1", (trigger1SizeX+2.*LG_height+2.*FrameT1_X+2.*PmtFrameT1_dist)/2., (AlpInterfacePlate_Y)/2., FrameT1_Z/2.),new G4Box("FrameT1_2", (trigger1SizeX+2.*LG_height+PmtFrameT1_dist)/2., (AlpInterfacePlate_Y-2.*FrameT1_Y)/2., FrameT1_Z/2.));
+  G4SubtractionSolid* FrameT1S = new G4SubtractionSolid("FrameT1S", new G4Box("FrameT1_1", (trigger1SizeX+LG_heightUp+LG_heightDown+2.*FrameT1_X+2.*PmtFrameT1_dist)/2., (AlpInterfacePlate_Y)/2., FrameT1_Z/2.),new G4Box("FrameT1_2", (trigger1SizeX+LG_heightUp+LG_heightDown+PmtFrameT1_dist)/2., (AlpInterfacePlate_Y-2.*FrameT1_Y)/2., FrameT1_Z/2.));
   G4LogicalVolume* FrameT1LV = new G4LogicalVolume(FrameT1S, AlMixMaterial, "FrameT1");
-  fFrameT1PV = new G4PVPlacement(0, G4ThreeVector(0,0,0), FrameT1LV, "FrameT1", T1ContLV, false, 0, fCheckOverlaps);
+  fFrameT1PV = new G4PVPlacement(0, G4ThreeVector(0.,0,0), FrameT1LV, "FrameT1", T1ContLV, false, 0, fCheckOverlaps);
   
   //Support ribs between T1 bars
   G4Box* T1RibsS = new G4Box("T1Ribs", T1Ribs_X/2., T1Ribs_Y/2., T1Ribs_Z/2.);
@@ -687,30 +692,38 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   fT1RibsPV_4 = new G4PVPlacement(0, G4ThreeVector(0.,-3.*(trigger1SizeY/nofBarsT1)/2.,0), T1RibsLV, "T1Ribs", triggerCont1LV, false, 0, fCheckOverlaps);
   
   //Light Guide for T1
-  G4VSolid* LightGuide1S = new G4Trd("LightGuide1", ((trigger1SizeY)/2.)/nofBarsT1-barsGap/2., LG_X/2., trigger1Thickness/2., LG_Y/2., LG_height/2.);
-  G4LogicalVolume* LightGuide1LV = new G4LogicalVolume(LightGuide1S, LightGuideMaterial, "LightGuide1");
-  G4RotationMatrix* LG1_rot1 = new G4RotationMatrix;
-  LG1_rot1->rotateZ(+90.*deg);
-  LG1_rot1->rotateX(+90.*deg);
-  G4RotationMatrix* LG1_rot2 = new G4RotationMatrix;
-  LG1_rot2->rotateZ(-90.*deg);
-  LG1_rot2->rotateX(+90.*deg);
-  new G4PVPlacement(LG1_rot1,G4ThreeVector(trigger1SizeX/2.+LG_height/2., 0., 0.), LightGuide1LV, "LightGuideT1_1", trigger1LV, false, 0, fCheckOverlaps);
-  new G4PVPlacement(LG1_rot2,G4ThreeVector(-trigger1SizeX/2.-LG_height/2., 0., 0.), LightGuide1LV, "LightGuideT1_2", trigger1LV, false, 0, fCheckOverlaps);
+  G4VSolid* LightGuide1UpS = new G4Trd("LightGuide1Up", ((trigger1SizeY)/2.)/nofBarsT1-barsGap/2., LG_X/2., trigger1Thickness/2., LG_Y/2., LG_heightUp/2.);
+  G4LogicalVolume* LightGuide1UpLV = new G4LogicalVolume(LightGuide1UpS, LightGuideMaterial, "LightGuide1Up");
+  G4RotationMatrix* LG1_rotUp = new G4RotationMatrix;
+  LG1_rotUp->rotateZ(+90.*deg);
+  LG1_rotUp->rotateX(+90.*deg);
+  new G4PVPlacement(LG1_rotUp,G4ThreeVector(trigger1SizeX/2.+LG_heightUp/2.-(LG_heightUp-LG_heightDown)/2., 0., 0.), LightGuide1UpLV, "LightGuideT1Up_1", trigger1LV, false, 0, fCheckOverlaps);
+  
+  G4VSolid* LightGuide1DownS = new G4Trd("LightGuide1Down", ((trigger1SizeY)/2.)/nofBarsT1-barsGap/2., LG_X/2., trigger1Thickness/2., LG_Y/2., LG_heightDown/2.);
+  G4LogicalVolume* LightGuide1DownLV = new G4LogicalVolume(LightGuide1DownS, LightGuideMaterial, "LightGuide1Down");
+  G4RotationMatrix* LG1_rotDown = new G4RotationMatrix;
+  LG1_rotDown->rotateZ(-90.*deg);
+  LG1_rotDown->rotateX(+90.*deg);
+  new G4PVPlacement(LG1_rotDown,G4ThreeVector(-trigger1SizeX/2.-LG_heightDown/2.-(LG_heightUp-LG_heightDown)/2., 0., 0.), LightGuide1DownLV, "LightGuideT1Down_2", trigger1LV, false, 0, fCheckOverlaps);
   
   //****************************************************************************************
   
   //****************************************************************************************
   // ALPIDE
   //Plate in kapton
-  G4VSolid* KPlateS = new G4Box("KPlate", ColdPlateSizeX/2., 5.*(ColdPlateSizeY+2.*AlpRibsY+alpideGap_Y)/2., KPlate_Z/2.);
+  G4VSolid* KPlateS = new G4Box("KPlate", (ColdPlateSizeX-2.*mm)/2., 5.*(ColdPlateSizeY+2.*AlpRibsY+alpideGap_Y)/2., KPlate_Z/2.);
   G4LogicalVolume* KPlateLV = new G4LogicalVolume(KPlateS, KaptonMaterial, "KPlate");
-  fKPlateBeforePV = new G4PVPlacement(0, G4ThreeVector(0.,0.,axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+KPlateWall_gap+FrameT1_Z/2.+KPlate_Z), KPlateLV, "KPlateBefore", worldLV, false, 0, fCheckOverlaps);
+  fKPlateBeforePV = new G4PVPlacement(0, G4ThreeVector(1.5*mm,0.,T1_posZ+trigger1Thickness/2.+T1WrappingThickness+T1CompPlane_dist+T1CompPlane_Z+KPlateCompT1_gap+KPlate_Z/2.), KPlateLV, "KPlateBefore", worldLV, false, 0, fCheckOverlaps);
+  
+  //Alpide interface plate (positioned between Alpide and T1)
+  G4SubtractionSolid* AlpInterfacePlateS = new G4SubtractionSolid("AlpInterfacePlate", new G4Box("AlpInterfacePlate_1", (AlpInterfacePlate_X)/2., (AlpInterfacePlate_Y)/2., AlpInterfacePlate_Z/2.),new G4Box("AlpInterfacePlate_2", ColdPlateSizeX/2., 5.*(ColdPlateSizeY+2.*AlpRibsY+alpideGap_Y+1.*mm)/2., (AlpInterfacePlate_Z+1.*mm)/2.),0,G4ThreeVector(24.*mm,0,0));
+  G4LogicalVolume* AlpInterfacePlateLV = new G4LogicalVolume(AlpInterfacePlateS, AlMixMaterial, "AlpInterfacePlate");
+  fAlpInterfacePlatePV = new G4PVPlacement(0, G4ThreeVector(FPCShift_X-(LG_heightUp-LG_heightDown)/2.,0,T1_posZ+FrameT1_Z/2.+AlpInterfacePlate_Z/2.), AlpInterfacePlateLV, "AlpInterfacePlate", worldLV, false, 0, fCheckOverlaps);
   
   //Alpide container
   G4VSolid* AlpContS = new G4Box("AlpCont", ColdPlateSizeX/2., ((nofAlpideY/2)*(2*alpideSizeY+alpchip_gap+2.*alpideGap_Y+2*AlpRibsY)-2.*alpideGap_Y)/2., (CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+3.*GlueFPC_SizeZ+3.*GlueColdPlate_SizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.);
   G4LogicalVolume* AlpContLV = new G4LogicalVolume(AlpContS, defaultMaterial, "AlpCont");
-  fAlpContPV = new G4PVPlacement(0, G4ThreeVector(-ColdPlateShift_X,0.,axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+KPlateWall_gap+FrameT1_Z/2.+KPlate_Z+KPlateFPC_gap+(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+3.*GlueFPC_SizeZ+3.*GlueColdPlate_SizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.), AlpContLV, "AlpCont", worldLV, false, 0, fCheckOverlaps);
+  fAlpContPV = new G4PVPlacement(0, G4ThreeVector(-ColdPlateShift_X,0.,T1_posZ+trigger1Thickness/2.+T1WrappingThickness+T1CompPlane_dist+T1CompPlane_Z+KPlateCompT1_gap+KPlate_Z+KFPC_dist+(CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+3.*GlueFPC_SizeZ+3.*GlueColdPlate_SizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.), AlpContLV, "AlpCont", worldLV, false, 0, fCheckOverlaps);
   
   //Alpide tower
   G4VSolid* AlpTowerS = new G4Box("AlpTower", ColdPlateSizeX/2., (2*alpideSizeY+alpchip_gap+2.*alpideGap_Y+2*AlpRibsY)/2., (CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+3.*GlueFPC_SizeZ+3.*GlueColdPlate_SizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ)/2.);
@@ -790,12 +803,7 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   fAlpRibs6_PV = new G4PVPlacement(0,G4ThreeVector(0., +ColdPlateSizeY/2.+AlpRibsY/2.,-(CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+3.*alpideSizeZ+2.*alpideGap+GlueColdPlate_SizeZ+ColdPlateSizeZ+AlpRibsZ)/2.+CuSupportSizeZ+FPCSizeZ+GlueFPC_SizeZ+alpideSizeZ+GlueColdPlate_SizeZ+alpideGap+alpideSizeZ+alpideGap+alpideSizeZ+AlpRibsZ/2.),AlpRibsLV,"AlpRibs", AlpTowerLV, false, 0, fCheckOverlaps);
   
   //Plate in kapton
-  fKPlateAfterPV = new G4PVPlacement(0, G4ThreeVector(0.,0.,axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+KPlateWall_gap+FrameT1_Z/2.+KPlate_Z+KPlateFPC_gap+CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+3.*GlueFPC_SizeZ+3.*GlueColdPlate_SizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ+AlpInterfacePlate_Z/2.), KPlateLV, "KPlateAfter", worldLV, false, 0, fCheckOverlaps);
-  
-  //Alpide interface plate (positioned between Alpide and T1)
-  G4SubtractionSolid* AlpInterfacePlateS = new G4SubtractionSolid("AlpInterfacePlate", new G4Box("AlpInterfacePlate_1", (AlpInterfacePlate_X)/2., (AlpInterfacePlate_Y)/2., AlpInterfacePlate_Z/2.),new G4Box("AlpInterfacePlate_2", ColdPlateSizeX/2., 5.*(ColdPlateSizeY+2.*AlpRibsY+alpideGap_Y)/2., (AlpInterfacePlate_Z+1.*mm)/2.),0,G4ThreeVector(24.*mm,0,0));
-  G4LogicalVolume* AlpInterfacePlateLV = new G4LogicalVolume(AlpInterfacePlateS, AlMixMaterial, "AlpInterfacePlate");
-  fAlpInterfacePlatePV = new G4PVPlacement(0, G4ThreeVector(FPCShift_X,0,axes+blanket_dist+Blanket_Z+windowOut_Z+windowIn_Z+KPlateWall_gap+FrameT1_Z/2.+KPlate_Z+KPlateFPC_gap+CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+3.*GlueFPC_SizeZ+3.*GlueColdPlate_SizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ+AlpInterfacePlate_Z/2.), AlpInterfacePlateLV, "AlpInterfacePlate", worldLV, false, 0, fCheckOverlaps);  
+  fKPlateAfterPV = new G4PVPlacement(0, G4ThreeVector(0.,0.,T1_posZ+FrameT1_Z/2.+KPlate_Z+KFPC_dist+CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+3.*GlueFPC_SizeZ+3.*GlueColdPlate_SizeZ+2.*alpideGap+ColdPlateSizeZ+KPlateCold_dist+KPlate_Z/2.), KPlateLV, "KPlateAfter", worldLV, false, 0, fCheckOverlaps);
   //****************************************************************************************
    
   //****************************************************************************************  
@@ -803,7 +811,7 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   // Trigger: container 2nd plane and its structures
   G4VSolid* T2ContS = new G4Box("T2Cont", trigger2SizeX/2., (trigger2SizeY+2.*pmtHeight)/2., (2.*T2PoronThickness + 2.*T2WrappingThickness + 2.*T2CompPlane_Z + trigger2Thickness)/2.);
   G4LogicalVolume* T2ContLV = new G4LogicalVolume(T2ContS, defaultMaterial, "T2Cont");
-  G4double T2_posZ = T1_posZ + CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+3.*GlueFPC_SizeZ+3.*GlueColdPlate_SizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ + trigger1Thickness/2. + T1WrappingThickness + triggerGap + T2CompPlane_Z + T2PoronThickness + T2WrappingThickness + trigger2Thickness/2. + 8.*mm;
+  G4double T2_posZ = T1_posZ+FrameT1_Z/2.+KPlate_Z+KFPC_dist+CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+3.*GlueFPC_SizeZ+3.*GlueColdPlate_SizeZ+2.*alpideGap+ColdPlateSizeZ+KPlateCold_dist+KPlate_Z+KPlateT2_dist+T2CompPlane_Z+T2PoronThickness+T2WrappingThickness+trigger2Thickness/2.;
   new G4PVPlacement(0, G4ThreeVector(0,0,T2_posZ), T2ContLV, "T2Cont", worldLV, false, 0, fCheckOverlaps);
     
   // Trigger: container 2nd plane
@@ -895,6 +903,7 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   new G4PVPlacement(0, G4ThreeVector(0.,0.,-caloBlock1_Thickness/2.+PCompPlaneThickness+(PPoronThickness+PWrappingThickness+planeThickness+PWrappingThickness)/2.), PBoxdxLV, "PBoxdx1_Block1", calorimeterBlock1LV, false, 0, fCheckOverlaps);
   new G4PVPlacement(0, G4ThreeVector(0.,0.,-caloBlock1_Thickness/2.+PCompPlaneThickness+3.*(PPoronThickness+PWrappingThickness+planeThickness+PWrappingThickness)/2.), PBoxsxLV, "PBoxsx2_Block1", calorimeterBlock1LV, false, 0, fCheckOverlaps);
   new G4PVPlacement(0, G4ThreeVector(0.,0.,-caloBlock1_Thickness/2.+PCompPlaneThickness+5.*(PPoronThickness+PWrappingThickness+planeThickness+PWrappingThickness)/2.), PBoxdxLV, "PBoxdx3_Block1", calorimeterBlock1LV, false, 0, fCheckOverlaps);
+  new G4PVPlacement(0, G4ThreeVector(0.,0.,-caloBlock1_Thickness/2.+PCompPlaneThickness+7.*(PPoronThickness+PWrappingThickness+planeThickness+PWrappingThickness)/2.), PBoxsxLV, "PBoxsx4_Block1", calorimeterBlock1LV, false, 0, fCheckOverlaps);
   
   //poron
   G4Box* PPoronS_1 = new G4Box("PPoron_1", caloSizeXY/2.-cutPlane, caloSizeXY/2., PPoronThickness/2.);
@@ -962,10 +971,10 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   fPCompPlane2_Block3PV = new G4PVPlacement(0, G4ThreeVector(0., 0., caloBlock3_Thickness/2.-PCompPlaneThickness/2.), PCompPlaneLV, "PCompPlane2_Block3", calorimeterBlock3LV, false, 0, fCheckOverlaps);
   
   //plane box (poron+wrapping+plane+wrapping)
-  new G4PVPlacement(0, G4ThreeVector(0.,0.,-caloBlock3_Thickness/2.+PCompPlaneThickness+(PPoronThickness+PWrappingThickness+planeThickness+PWrappingThickness)/2.), PBoxsxLV, "PBoxsx1_Block3", calorimeterBlock3LV, false, 0, fCheckOverlaps);
-  new G4PVPlacement(0, G4ThreeVector(0.,0.,-caloBlock3_Thickness/2.+PCompPlaneThickness+3.*(PPoronThickness+PWrappingThickness+planeThickness+PWrappingThickness)/2.), PBoxdxLV, "PBoxdx2_Block3", calorimeterBlock3LV, false, 0, fCheckOverlaps);
-  new G4PVPlacement(0, G4ThreeVector(0.,0.,-caloBlock3_Thickness/2.+PCompPlaneThickness+5.*(PPoronThickness+PWrappingThickness+planeThickness+PWrappingThickness)/2.), PBoxsxLV, "PBoxsx3_Block3", calorimeterBlock3LV, false, 0, fCheckOverlaps);
-  new G4PVPlacement(0, G4ThreeVector(0.,0.,-caloBlock3_Thickness/2.+PCompPlaneThickness+7.*(PPoronThickness+PWrappingThickness+planeThickness+PWrappingThickness)/2.), PBoxdxLV, "PBoxdx4_Block3", calorimeterBlock3LV, false, 0, fCheckOverlaps);
+  new G4PVPlacement(0, G4ThreeVector(0.,0.,-caloBlock3_Thickness/2.+PCompPlaneThickness+(PPoronThickness+PWrappingThickness+planeThickness+PWrappingThickness)/2.), PBoxdxLV, "PBoxdx1_Block3", calorimeterBlock3LV, false, 0, fCheckOverlaps);
+  new G4PVPlacement(0, G4ThreeVector(0.,0.,-caloBlock3_Thickness/2.+PCompPlaneThickness+3.*(PPoronThickness+PWrappingThickness+planeThickness+PWrappingThickness)/2.), PBoxsxLV, "PBoxsx2_Block3", calorimeterBlock3LV, false, 0, fCheckOverlaps);
+  new G4PVPlacement(0, G4ThreeVector(0.,0.,-caloBlock3_Thickness/2.+PCompPlaneThickness+5.*(PPoronThickness+PWrappingThickness+planeThickness+PWrappingThickness)/2.), PBoxdxLV, "PBoxdx3_Block3", calorimeterBlock3LV, false, 0, fCheckOverlaps);
+  new G4PVPlacement(0, G4ThreeVector(0.,0.,-caloBlock3_Thickness/2.+PCompPlaneThickness+7.*(PPoronThickness+PWrappingThickness+planeThickness+PWrappingThickness)/2.), PBoxsxLV, "PBoxsx4_Block3", calorimeterBlock3LV, false, 0, fCheckOverlaps);
   
   //poron at the end of calorimeter block
   fPPoronEndBlock3PV = new G4PVPlacement(0, G4ThreeVector(0., 0., caloBlock3_Thickness/2.-PCompPlaneThickness-PPoronThickness/2.), PPoronLV, "PoronEndBlock3", calorimeterBlock3LV, false, 0, fCheckOverlaps);
@@ -1125,7 +1134,8 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   fVetobPV = new G4PVPlacement(0, G4ThreeVector(0., 0., -(RearVetoBot_Z + RearCover_dist + VetoBotCover_Z + VetoBotPoron_Z + VetoBotWrappingThickness + VetoBot_Z)/2. + RearVetoBot_Z + RearCover_dist + VetoBotCover_Z + VetoBotPoron_Z + VetoBotWrappingThickness + VetoBot_Z/2.), vetobLV, "Vetob", VetoBotContLV, false, 0, fCheckOverlaps);
   
   // Veto lateral
-  G4double V_posZ = T1_posZ + FrameT1_Z/2. + VetoLatContainer_Y/2. + CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+3.*GlueFPC_SizeZ+3.*GlueColdPlate_SizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ+2.*AlpInterfacePlate_Z + 1.*mm;
+  G4double V_posZ = T1_posZ+FrameT1_Z/2.+KPlate_Z+KFPC_dist+CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+3.*GlueFPC_SizeZ+3.*GlueColdPlate_SizeZ+2.*alpideGap+ColdPlateSizeZ+KPlateCold_dist+KPlate_Z+KPlateT2_dist+T2CompPlane_Z+T2PoronThickness+T2WrappingThickness+VetoLatContainer_Y/2.;
+  //G4double V_posZ = T1_posZ + FrameT1_Z/2. + VetoLatContainer_Y/2. + CuSupportSizeZ+FPCSizeZ+3.*alpideSizeZ+3.*GlueFPC_SizeZ+3.*GlueColdPlate_SizeZ+2.*alpideGap+ColdPlateSizeZ+AlpRibsZ+2.*AlpInterfacePlate_Z + 1.*mm;
   
   G4VSolid* VetoLatContainerS = new G4Box("VetoLatContainer",VetoLatContainer_X/2., (2.*VetoLatPoron_Z + 2.*VetoLatWrapping_Z + VetoLat_Z + VetoLatCover_Z)/2., VetoLatContainer_Y/2.);
   
@@ -1148,22 +1158,22 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   fVetoLatCoverPV = new G4PVPlacement(0, G4ThreeVector(0., -(2.*VetoLatPoron_Z + 2.*VetoLatWrapping_Z + VetoLat_Z + VetoLatCover_Z)/2.+VetoLatCover_Z/2., 0.), VetoLatCoverLV, "VetoLatCover", VetoLatContainerLV, false, 0, fCheckOverlaps);
   
   G4VSolid* VetoLatPoronS_1 = new G4Box("VetoLatPoron_1", VetoLat_X/2., VetoLatPoron_Z/2., VetoLat_Y/2.);
-  G4SubtractionSolid *VetoLatPoronS_2 = new G4SubtractionSolid("VetoLatPoron_2", VetoLatPoronS_1, new G4Box("VetoLatPoron_sub1", vetoHoleX/2., (VetoLatPoron_Z+0.01)*mm/2., (vetoHoleY +0.01)*mm/2.), 0, G4ThreeVector(VetoLat_X/2.-vetoHoleX/2.,0.,-VetoLat_Y/2.+vetoHoleY/2.));
-  G4SubtractionSolid *VetoLatPoronS = new G4SubtractionSolid("VetoLatPoron", VetoLatPoronS_2, new G4Box("VetoLatPoron_sub2", vetoHoleX/2., (VetoLatPoron_Z+0.01)*mm/2., (vetoHoleY+0.01)*mm/2.), 0, G4ThreeVector(-VetoLat_X/2.+vetoHoleX/2.,0.,+VetoLat_Y/2.-vetoHoleY/2.));
+  G4SubtractionSolid *VetoLatPoronS_2 = new G4SubtractionSolid("VetoLatPoron_2", VetoLatPoronS_1, new G4Box("VetoLatPoron_sub1", vetoHoleUpX/2., (VetoLatPoron_Z+0.01)*mm/2., (vetoHoleUpY +0.01)*mm/2.), 0, G4ThreeVector(VetoLat_X/2.-vetoHoleUpX/2.,0.,+VetoLat_Y/2.-vetoHoleUpY/2.));
+  G4SubtractionSolid *VetoLatPoronS = new G4SubtractionSolid("VetoLatPoron", VetoLatPoronS_2, new G4Box("VetoLatPoron_sub2", vetoHoleDownX/2., (VetoLatPoron_Z+0.01)*mm/2., (vetoHoleDownY+0.01)*mm/2.), 0, G4ThreeVector(-VetoLat_X/2.+vetoHoleDownX/2.,0.,+VetoLat_Y/2.-vetoHoleDownY/2.));
   G4LogicalVolume *VetoLatPoronLV = new G4LogicalVolume(VetoLatPoronS, PoronMaterial, "VetoLatPoron");
   fVetoLatPoronIntPV = new G4PVPlacement(0, G4ThreeVector(0., -(2.*VetoLatPoron_Z + 2.*VetoLatWrapping_Z + VetoLat_Z + VetoLatCover_Z)/2.+VetoLatCover_Z+VetoLatPoron_Z/2., 0.), VetoLatPoronLV, "VetoLatPoronInt", VetoLatContainerLV, false, 0, fCheckOverlaps);
   fVetoLatPoronExtPV = new G4PVPlacement(0, G4ThreeVector(0., -(2.*VetoLatPoron_Z + 2.*VetoLatWrapping_Z + VetoLat_Z + VetoLatCover_Z)/2.+VetoLatCover_Z+VetoLatPoron_Z+VetoLatWrapping_Z + VetoLat_Z+VetoLatWrapping_Z+VetoLatPoron_Z/2., 0.), VetoLatPoronLV, "VetoLatPoronExt", VetoLatContainerLV, false, 0, fCheckOverlaps);
   
   G4VSolid* VetoLatWrappingS_1 = new G4Box("VetoLatWrapping_1", VetoLat_X/2., VetoLatWrapping_Z/2., VetoLat_Y/2.);
-  G4SubtractionSolid *VetoLatWrappingS_2 = new G4SubtractionSolid("VetoLatWrapping_2", VetoLatWrappingS_1, new G4Box("VetoLatWrapping_sub1", vetoHoleX/2., (VetoLatWrapping_Z+0.01)*mm /2., (vetoHoleY+0.01)*mm/2.), 0, G4ThreeVector(VetoLat_X/2.-vetoHoleX/2.,0.,-VetoLat_Y/2.+vetoHoleY/2.));
-  G4SubtractionSolid *VetoLatWrappingS = new G4SubtractionSolid("VetoLatWrapping", VetoLatWrappingS_2, new G4Box("VetoLatWrapping_sub2", vetoHoleX/2., (VetoLatWrapping_Z+0.01)*mm/2.,(vetoHoleY+0.01)*mm/2.), 0, G4ThreeVector(-VetoLat_X/2.+vetoHoleX/2.,0.,+VetoLat_Y/2.-vetoHoleY/2.));
+  G4SubtractionSolid *VetoLatWrappingS_2 = new G4SubtractionSolid("VetoLatWrapping_2", VetoLatWrappingS_1, new G4Box("VetoLatWrapping_sub1", vetoHoleUpX/2., (VetoLatWrapping_Z+0.01)*mm /2., (vetoHoleUpY+0.01)*mm/2.), 0, G4ThreeVector(VetoLat_X/2.-vetoHoleUpX/2.,0.,+VetoLat_Y/2.-vetoHoleUpY/2.));
+  G4SubtractionSolid *VetoLatWrappingS = new G4SubtractionSolid("VetoLatWrapping", VetoLatWrappingS_2, new G4Box("VetoLatWrapping_sub2", vetoHoleDownX/2., (VetoLatWrapping_Z+0.01)*mm/2.,(vetoHoleDownY+0.01)*mm/2.), 0, G4ThreeVector(-VetoLat_X/2.+vetoHoleDownX/2.,0.,+VetoLat_Y/2.-vetoHoleDownY/2.));
   G4LogicalVolume *VetoLatWrappingLV = new G4LogicalVolume(VetoLatWrappingS, MylarMaterial, "VetoLatWrapping");
   fVetoLatWrappingIntPV = new G4PVPlacement(0, G4ThreeVector(0., -(2.*VetoLatPoron_Z + 2.*VetoLatWrapping_Z + VetoLat_Z + VetoLatCover_Z)/2.+VetoLatCover_Z+VetoLatPoron_Z+VetoLatWrapping_Z/2., 0.), VetoLatWrappingLV, "VetoLatWrappingInt", VetoLatContainerLV, false, 0, fCheckOverlaps);
   fVetoLatWrappingExtPV = new G4PVPlacement(0, G4ThreeVector(0., -(2.*VetoLatPoron_Z + 2.*VetoLatWrapping_Z + VetoLat_Z + VetoLatCover_Z)/2.+VetoLatCover_Z+VetoLatPoron_Z+VetoLatWrapping_Z + VetoLat_Z+VetoLatWrapping_Z/2., 0.), VetoLatWrappingLV, "VetoLatWrappingExt", VetoLatContainerLV, false, 0, fCheckOverlaps);
   
   G4VSolid* VetoLatS_1 = new G4Box("VetoLat_1", VetoLat_X/2., VetoLat_Z/2., VetoLat_Y/2.);
-  G4SubtractionSolid *VetoLatS_2 = new G4SubtractionSolid("VetoLat_2", VetoLatS_1, new G4Box("VetoLat_sub1", vetoHoleX/2., (VetoLat_Z+0.01)*mm/2., (vetoHoleY+0.01)*mm/2.), 0, G4ThreeVector(+VetoLat_X/2.-vetoHoleX/2.,0.,-VetoLat_Y/2.+vetoHoleY/2.));
-  G4SubtractionSolid *VetoLatS = new G4SubtractionSolid("VetoLat", VetoLatS_2, new G4Box("VetoLat_sub2", vetoHoleX/2., (VetoLat_Z+0.01)*mm/2., (vetoHoleY+0.01)*mm/2.), 0, G4ThreeVector(-VetoLat_X/2.+vetoHoleX/2.,0.,+VetoLat_Y/2.-vetoHoleY/2.));
+  G4SubtractionSolid *VetoLatS_2 = new G4SubtractionSolid("VetoLat_2", VetoLatS_1, new G4Box("VetoLat_sub1", vetoHoleUpX/2., (VetoLat_Z+0.01)*mm/2., (vetoHoleUpY+0.01)*mm/2.), 0, G4ThreeVector(+VetoLat_X/2.-vetoHoleUpX/2.,0.,+VetoLat_Y/2.-vetoHoleUpY/2.));
+  G4SubtractionSolid *VetoLatS = new G4SubtractionSolid("VetoLat", VetoLatS_2, new G4Box("VetoLat_sub2", vetoHoleDownX/2., (VetoLat_Z+0.01)*mm/2., (vetoHoleDownY+0.01)*mm/2.), 0, G4ThreeVector(-VetoLat_X/2.+vetoHoleDownX/2.,0.,+VetoLat_Y/2.-vetoHoleDownY/2.));
   G4LogicalVolume *VetoLatLV = new G4LogicalVolume(VetoLatS, absorberMaterial, "VetoLat");
   fVetoLatPV = new G4PVPlacement(0, G4ThreeVector(0., -(2.*VetoLatPoron_Z + 2.*VetoLatWrapping_Z + VetoLat_Z + VetoLatCover_Z)/2.+VetoLatCover_Z+VetoLatPoron_Z+VetoLatWrapping_Z+VetoLat_Z/2., 0.), VetoLatLV, "VetoLat", VetoLatContainerLV, false, 0, fCheckOverlaps);
   
@@ -1176,8 +1186,8 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   
   G4RotationMatrix* T1rm = new G4RotationMatrix();
   T1rm->set(90.*deg, 90.*deg, 0.*deg);
-  new G4PVPlacement(T1rm, G4ThreeVector(trigger1SizeX/2.+pmtHeight/2.+LG_height, 0., 0.), pmtLV,"PmtT1_1", trigger1LV, false, 0, fCheckOverlaps);
-  new G4PVPlacement(T1rm, G4ThreeVector(-trigger1SizeX/2.-pmtHeight/2.-LG_height,0., 0.), pmtLV,"PmtT1_2", trigger1LV, false, 0, fCheckOverlaps);
+  new G4PVPlacement(T1rm, G4ThreeVector(trigger1SizeX/2.+pmtHeight/2.+LG_heightUp-(LG_heightUp-LG_heightDown)/2., 0., 0.), pmtLV,"PmtT1_1", trigger1LV, false, 0, fCheckOverlaps);
+  new G4PVPlacement(T1rm, G4ThreeVector(-trigger1SizeX/2.-pmtHeight/2.-LG_heightDown-(LG_heightUp-LG_heightDown)/2.,0., 0.), pmtLV,"PmtT1_2", trigger1LV, false, 0, fCheckOverlaps);
   
   G4RotationMatrix* T2rm = new G4RotationMatrix();
   T2rm->set(0.*deg, 90.*deg, 0.*deg);
@@ -1186,13 +1196,13 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   
   G4RotationMatrix* P1rm = new G4RotationMatrix();
   P1rm->set(-45.*deg, 90.*deg, 0.*deg);
-  new G4PVPlacement(P1rm, G4ThreeVector(+caloSizeXY/2.-cutPlane/2.+pmtHeight/(2.*sqrt(2.)),+caloSizeXY/2.-cutPlane/2.+pmtHeight/(2.*sqrt(2.)),0.), pmtLV,"PmtPdx_1", PBoxdxLV, false, 0, fCheckOverlaps);
-  new G4PVPlacement(P1rm, G4ThreeVector(-caloSizeXY/2.+cutPlane/2.-pmtHeight/(2.*sqrt(2.)),-caloSizeXY/2.+cutPlane/2.-pmtHeight/(2.*sqrt(2.)),0.), pmtLV,"PmtPdx_2", PBoxdxLV, false, 0, fCheckOverlaps);
+  new G4PVPlacement(P1rm, G4ThreeVector(+caloSizeXY/2.-cutPlane/2.+pmtHeight/(2.*sqrt(2.)),+caloSizeXY/2.-cutPlane/2.+pmtHeight/(2.*sqrt(2.)),0.), pmtLV,"PmtPsx_1", PBoxsxLV, false, 0, fCheckOverlaps);
+  new G4PVPlacement(P1rm, G4ThreeVector(-caloSizeXY/2.+cutPlane/2.-pmtHeight/(2.*sqrt(2.)),-caloSizeXY/2.+cutPlane/2.-pmtHeight/(2.*sqrt(2.)),0.), pmtLV,"PmtPsx_2", PBoxsxLV, false, 0, fCheckOverlaps);
   
   G4RotationMatrix* P2rm = new G4RotationMatrix();
   P2rm->set(+45.*deg, 90.*deg, 0.*deg);
-  new G4PVPlacement(P2rm, G4ThreeVector(-caloSizeXY/2.+cutPlane/2.-pmtHeight/(2.*sqrt(2.)),+caloSizeXY/2.-cutPlane/2.+pmtHeight/(2.*sqrt(2.)),0.), pmtLV,"PmtPsx_1", PBoxsxLV, false, 0, fCheckOverlaps);
-  new G4PVPlacement(P2rm, G4ThreeVector(+caloSizeXY/2.-cutPlane/2.+pmtHeight/(2.*sqrt(2.)),-caloSizeXY/2.+cutPlane/2.-pmtHeight/(2.*sqrt(2.)),0.), pmtLV,"PmtPsx_2", PBoxsxLV, false, 0, fCheckOverlaps);
+  new G4PVPlacement(P2rm, G4ThreeVector(-caloSizeXY/2.+cutPlane/2.-pmtHeight/(2.*sqrt(2.)),+caloSizeXY/2.-cutPlane/2.+pmtHeight/(2.*sqrt(2.)),0.), pmtLV,"PmtPdx_1", PBoxdxLV, false, 0, fCheckOverlaps);
+  new G4PVPlacement(P2rm, G4ThreeVector(+caloSizeXY/2.-cutPlane/2.+pmtHeight/(2.*sqrt(2.)),-caloSizeXY/2.+cutPlane/2.-pmtHeight/(2.*sqrt(2.)),0.), pmtLV,"PmtPdx_2", PBoxdxLV, false, 0, fCheckOverlaps);
   
   G4RotationMatrix* L1rm = new G4RotationMatrix();
   L1rm->set(90.*deg, 90.*deg, 0.*deg);
@@ -1206,8 +1216,8 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   
   G4RotationMatrix* VLatrm = new G4RotationMatrix();
   VLatrm->set(90.*deg, 90.*deg, 0.*deg);
-  new G4PVPlacement(VLatrm, G4ThreeVector(VetoLat_X/2.-vetoHoleX+pmtHeight/2.,0.,-VetoLat_Y/2.+vetoHoleY/2.), pmtLV,"PmtVLat_1", VetoLatContainerLV, false, 0, fCheckOverlaps);
-  new G4PVPlacement(VLatrm, G4ThreeVector(-VetoLat_X/2.+vetoHoleX-pmtHeight/2.,0.,VetoLat_Y/2.-vetoHoleY/2.), pmtLV,"PmtVLat_2", VetoLatContainerLV, false, 0, fCheckOverlaps);
+  new G4PVPlacement(VLatrm, G4ThreeVector(VetoLat_X/2.+pmtHeight/2.,0.,-VetoLat_Y/2.+vetoHoleUpY/2.), pmtLV,"PmtVLat_1", VetoLatContainerLV, false, 0, fCheckOverlaps);
+  new G4PVPlacement(VLatrm, G4ThreeVector(-VetoLat_X/2.+vetoHoleDownX-pmtHeight/2.,0.,VetoLat_Y/2.-vetoHoleDownY/2.), pmtLV,"PmtVLat_2", VetoLatContainerLV, false, 0, fCheckOverlaps);
   
   G4RotationMatrix* VBotrm = new G4RotationMatrix();
   VBotrm->set(45.*deg, 90.*deg, 0.*deg);
@@ -1316,7 +1326,8 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   attCyan->SetForceAuxEdgeVisible(true);
   bar1LV->SetVisAttributes(attCyan);
   bar2LV->SetVisAttributes(attCyan);
-  LightGuide1LV->SetVisAttributes(attCyan);
+  LightGuide1UpLV->SetVisAttributes(attCyan);
+  LightGuide1DownLV->SetVisAttributes(attCyan);
   vetobLV->SetVisAttributes(attCyan);
   VetoLatLV->SetVisAttributes(attCyan);
   
@@ -1374,9 +1385,9 @@ G4VPhysicalVolume* HEPD2MCDetectorConstruction::DefineVolumes()
   
   //GREY
   G4VisAttributes* attGrey = new G4VisAttributes(G4Colour::Grey());
-  pmtLV->SetVisAttributes (attGrey);
   attGrey->SetVisibility(true);
   attGrey->SetForceAuxEdgeVisible(true);
+  pmtLV->SetVisAttributes(attGrey);
   LysoCoverLV->SetVisAttributes (attGrey);
   BlanketLV->SetVisAttributes (attGrey);
   T1WrappingLV->SetVisAttributes (attGrey);

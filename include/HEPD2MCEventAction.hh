@@ -94,9 +94,9 @@ private:
   std::vector<G4double> fVL1Leng;
   std::vector<G4double> fVL2Leng;
   std::vector<G4double> fVVLeng;
-  
-  G4double  fTA[3];
+
   G4double  fTT1[NBARST1];
+  G4double  fTA[3];
   G4double  fTT2[NBARST2];
   G4double  fTP[NCALOPLANES];
   G4double  fTC1[NCRYSTALS];
@@ -107,9 +107,9 @@ private:
   
   G4int fPhot[NPMTS];
   G4double fPhotEnergy[NPMTS];
-  
-  G4double  fEA[3];
+
   G4double  fET1[NBARST1];
+  G4double  fEA[3];
   G4double  fET2[NBARST2];
   G4double  fEP[NCALOPLANES];
   G4double  fEC1[NCRYSTALS];

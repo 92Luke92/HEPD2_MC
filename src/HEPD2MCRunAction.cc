@@ -36,6 +36,8 @@ HEPD2MCRunAction::HEPD2MCRunAction(HEPD2MCEventAction* eventAction)
   analysisManager->CreateNtupleDColumn("phi");
   analysisManager->CreateNtupleDColumn("p", fEventAction->GetVp());
   
+  analysisManager->CreateNtupleDColumn("T1Edep", fEventAction->GetVT1Edep());
+  
   analysisManager->CreateNtupleDColumn("Alp1Edep");
   analysisManager->CreateNtupleDColumn("Alp2Edep");
   analysisManager->CreateNtupleDColumn("Alp3Edep");
@@ -47,7 +49,6 @@ HEPD2MCRunAction::HEPD2MCRunAction(HEPD2MCEventAction* eventAction)
   analysisManager->CreateNtupleDColumn("Alp2Dir", fEventAction->GetAlp2Dir());
   analysisManager->CreateNtupleDColumn("Alp3Dir", fEventAction->GetAlp3Dir());
   
-  analysisManager->CreateNtupleDColumn("T1Edep", fEventAction->GetVT1Edep());
   analysisManager->CreateNtupleDColumn("T2Edep", fEventAction->GetVT2Edep());
   analysisManager->CreateNtupleDColumn("TRIGEdep");
   analysisManager->CreateNtupleDColumn("PEdep", fEventAction->GetVPEdep());
@@ -61,10 +62,10 @@ HEPD2MCRunAction::HEPD2MCRunAction(HEPD2MCEventAction* eventAction)
   analysisManager->CreateNtupleIColumn("phot", fEventAction->GetPhot());
   analysisManager->CreateNtupleDColumn("phot_energy", fEventAction->GetPhotEnergy());
   
+  analysisManager->CreateNtupleDColumn("T1Leng", fEventAction->GetVT1Leng());
   analysisManager->CreateNtupleDColumn("Alp1Leng");
   analysisManager->CreateNtupleDColumn("Alp2Leng");
   analysisManager->CreateNtupleDColumn("Alp3Leng");
-  analysisManager->CreateNtupleDColumn("T1Leng", fEventAction->GetVT1Leng());
   analysisManager->CreateNtupleDColumn("T2Leng", fEventAction->GetVT2Leng());
   analysisManager->CreateNtupleDColumn("PLeng", fEventAction->GetVPLeng());
   analysisManager->CreateNtupleDColumn("L1Leng", fEventAction->GetVL1Leng());

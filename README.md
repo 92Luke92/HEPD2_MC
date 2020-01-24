@@ -1,5 +1,5 @@
 # HEPD2_MC
-Last changes on 23/10/2019
+Last changes on 24/01/2020
 
 Monte Carlo Geant4 software of experiment HEPD-02
 
@@ -29,15 +29,17 @@ To execute HEPD2_MC in batch mode from macro files (without visualization)
 
 The detector is composed of
 
-(1) 3 planes of ALPIDE tracker (with mechanical supports);
+(1) 1 plastic scintillator plane, segmented in 5 bars;
 
-(2) 2 planes of plastic scintillators, each segmented in 5 bars perpendicularly allineated;
+(2) 3 planes of ALPIDE tracker (with mechanical supports);
 
-(3) a calorimeter of 11 plastic scintillator planes;
+(3) 1 plastic scintillator plane, segmented in 4 bars perpendicularly allineated to the previous one;
 
-(4) 2 planes of LYSO crystal, each segmented in 3 bars perpendicularly allineated;
+(4) a calorimeter of 12 plastic scintillator planes;
 
-(5) a veto system composed by plastic scintillator planes surrounds the calorimeter and the crystals.
+(5) 2 planes of LYSO crystal, each segmented in 3 bars perpendicularly allineated;
+
+(6) a veto system composed by plastic scintillator planes surrounds the calorimeter and the crystals.
 
 The simulation includes also the satellite thermal blanket and the box window in front of the tracker.
 
@@ -124,7 +126,7 @@ At the end of the simulation, the ROOT file includes a TTree "HEPD2", which is c
 
 "TRIGEdep"	  Double_t	       stores the energy deposit in the 2 trigger planes overall;
 
-"PEdep[11]"	  vector<double>       stores the energy deposit in the calorimeter planes (11 planes);
+"PEdep[12]"	  vector<double>       stores the energy deposit in the calorimeter planes (12 planes);
 
 "TOWEREdep"	  Double_t	       stores the energy deposit in the calorimeter planes overall;
 
@@ -150,7 +152,7 @@ At the end of the simulation, the ROOT file includes a TTree "HEPD2", which is c
 
 "T2Leng[5]"	  vector<double>       stores the track length in the 2nd trigger plane (5 bars);
 
-"PLeng[11]"	  vector<double>       stores the track length in the calorimeter planes (11 planes);
+"PLeng[12]"	  vector<double>       stores the track length in the calorimeter planes (12 planes);
 
 "L1Leng[3]"	  vector<double>       stores the track length in the 1st crystal plane (3 bars);
 
